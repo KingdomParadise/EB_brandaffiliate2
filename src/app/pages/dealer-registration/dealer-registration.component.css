@@ -1,0 +1,122 @@
+button:focus{
+    outline:none;
+    border:0;
+    box-shadow: none;
+}
+.main-color{
+    color: #a63da1;
+}
+.header{
+    background-color: #f3f2f2;
+    padding:1.3rem;
+    text-align: center;
+}
+#mobile-logo{
+    width: 40px;
+}
+.btn-reg{
+    font-weight: 600;
+    font-size: 16px;
+}
+.btn-login{
+    background-color: #a63da1;
+    padding:.5rem 3rem;
+    outline: none;
+    border:0;
+    text-transform: uppercase;
+}
+.bold{
+    font-weight: 600;
+}
+.form-group{
+    margin-bottom:20px;
+}
+input{
+    margin:0 auto;
+    border:none;
+    border-bottom: 1px solid gray;
+    outline: none;
+    border-radius: 0;
+    color: black;
+    text-align: center;
+}
+select{
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    border:none;
+    border-bottom: 1px solid gray;
+    color: black;
+}
+input:focus{
+    background-color: transparent;
+    border:none;
+    box-shadow: none;
+}
+input::placeholder {
+    color: black;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center;
+}
+#footer{
+    background-color: black;
+    padding:1rem;
+    position: fixed;
+    bottom:0
+}
+.text2{
+    font-style: italic;
+    font-size: 24px;
+    vertical-align: middle;
+    margin-left: 10px;
+    
+}
+
+::ng-deep .mat-step-icon{
+    border-radius: 0 !important;
+    transform: rotate(45deg);
+    width:20px !important;
+    height:20px !important;
+}
+::ng-deep .mat-horizontal-stepper-header {
+    width: 20px;
+    padding: 0 20px !important;
+}
+::ng-deep .ng-select .ng-select-container{
+    border:0 !important;
+    border-bottom: 1px solid gray !important;
+    justify-content: center;
+    border-radius: 0;
+}
+::ng-deep .ng-select .ng-select-container .ng-value-container{
+    justify-content: center;
+}
+::ng-deep .ng-select .ng-select-container .ng-value-container .ng-placeholder{
+    color:black;
+    font-weight: 600;
+    font-size: 1rem;
+}
+#mobile-login-img{
+    position: absolute;
+    right:20px;
+    top: 30px;
+    width: 30px;
+}
+@media only screen and (min-device-width: 768px){
+    .header{
+        padding:1.3rem 5rem;
+        text-align: left;
+    }
+    #footer{
+        padding:1rem 5rem;
+        position: static;
+    }
+    .form-group{
+        margin-bottom: 48px;
+    }
+    ::ng-deep .mat-stepper-horizontal{
+        margin-right: 8rem !important;
+    }
+}
