@@ -13,7 +13,6 @@ export class InitialDataService {
   private apiUrl = environment.apiUrl;
   constructor(private http: HttpClient) { }
 
-  // HttpClient API get() method => Fetch Industries list
   getIndustries(): Observable<any> {
     return this.http.get<any>(this.apiUrl + '/dealer/getAllIndustry')
       .pipe(
@@ -22,6 +21,20 @@ export class InitialDataService {
       )
   }
 
+  getCountries(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + '/dealer/getCountryCode')
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+  getStates(id:number): Observable<any> {
+    return this.http.get<any>(this.apiUrl + '/dealer/getStates/countryId/'+id)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
   handleError(error: HttpErrorResponse) {
     let errorMessage = 'Unknown error!';
     if (error.error instanceof ErrorEvent) {
