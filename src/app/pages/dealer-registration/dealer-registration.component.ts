@@ -45,13 +45,14 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
       this.countries = data.response.countryList;
     });
     this.regForm1 = this._formBuilder.group({
-      industry: ['', Validators.required],
-      address1: ['', Validators.required],
-      address2: ['', Validators.required],
-      city: ['', Validators.required],
-      state: ['', Validators.required],
-      country: ['', Validators.required],
-      zipcode: ['', Validators.required],
+      companyName: [null, Validators.required],
+      industry: [null, Validators.required],
+      companyEmail: ['', Validators.required],
+      companyPhone: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: [null, Validators.required],
+      userEmail: [null, Validators.required],
+      userPhone: ['', Validators.required],
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
