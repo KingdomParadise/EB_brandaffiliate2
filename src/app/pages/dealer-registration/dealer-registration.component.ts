@@ -10,6 +10,7 @@ import { InitialDataService } from 'src/app/services/initial-data.service';
 })
 export class DealerRegistrationComponent implements OnInit, AfterViewInit {
   regForm1: FormGroup;
+  regForm3: FormGroup;
   secondFormGroup: FormGroup;
   isEditable = true;
   industries = [];
@@ -25,9 +26,11 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
       url: 'assets/images/stepper2image.png'
     },
     {
-      url: 'assets/images/main-image.png'
+      url: 'assets/images/stepper3image.png'
     }
-  ]
+  ];
+  selectedCompanyLogo: File;
+  selectedUserImg: File;
   @ViewChild(MatHorizontalStepper) stepper: MatHorizontalStepper;
   constructor(
     private _formBuilder: FormBuilder,
@@ -53,9 +56,12 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
-    // this.firstFormGroup = this._formBuilder.group({
-    //   firstCtrl: ['', Validators.required]
-    // });
+    this.regForm3 = this._formBuilder.group({
+      companyEmail: ['', Validators.required],
+      companyPhone: ['', Validators.required],
+      personalEmail: ['', Validators.required],
+      personalPhone: ['', Validators.required]
+    });
     // this.secondFormGroup = this._formBuilder.group({
     //   secondCtrl: ['', Validators.required]
     // });
@@ -64,10 +70,20 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.stepper._getIndicatorType = () => 'none';
   }
+
   public onStepChange(event: any): void {
     console.log(event.selectedIndex);
     this.currentStepperImage= this.stepperImages[event.selectedIndex].url;
   }
+
+  onFileChanged(event:any, type:string){
+    if(type == 'company'){
+      this.selectedCompanyLogo = event.target.files[0];
+    }else if(type == 'user'){
+      this.selectedUserImg = event.target.files[0];
+    }
+  }
+
   onCountrySelect(country:any){
     console.log(country);
     if(country){
@@ -75,5 +91,8 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
         this.states = data.response.stateList;
       })
     }
+  }
+  submit(){
+
   }
 }

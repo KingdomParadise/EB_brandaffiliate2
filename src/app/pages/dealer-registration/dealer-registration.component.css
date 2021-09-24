@@ -121,7 +121,7 @@ input::placeholder {
         position: static;
     }
     .form-group{
-        margin-bottom: 48px;
+        margin-bottom: 28px;
     }
     ::ng-deep .mat-stepper-horizontal{
         margin-right: 8rem !important;
