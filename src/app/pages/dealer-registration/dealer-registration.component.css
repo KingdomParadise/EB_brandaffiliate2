@@ -25,6 +25,13 @@ button:focus{
     border:0;
     text-transform: uppercase;
 }
+.btn-back{
+    font-size: 18px;
+    background-color: #c1c1c1;
+    text-transform: uppercase;
+    margin-right: 4px;
+    color:white;
+}
 .bold{
     font-weight: 600;
 }
@@ -118,5 +125,8 @@ input::placeholder {
     }
     ::ng-deep .mat-stepper-horizontal{
         margin-right: 8rem !important;
+    }
+    .btn-back{
+        padding:.25rem 3rem;
     }
 }

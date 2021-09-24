@@ -15,6 +15,19 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
   industries = [];
   countries = [];
   states = [];
+  isLinear = true;
+  currentStepperImage= 'assets/images/main-image.png';
+  stepperImages = [
+    {
+      url: 'assets/images/main-image.png'
+    },
+    {
+      url: 'assets/images/stepper2image.png'
+    },
+    {
+      url: 'assets/images/main-image.png'
+    }
+  ]
   @ViewChild(MatHorizontalStepper) stepper: MatHorizontalStepper;
   constructor(
     private _formBuilder: FormBuilder,
@@ -29,15 +42,31 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
       this.countries = data.response.countryList;
     });
     this.regForm1 = this._formBuilder.group({
-      industry: ['', Validators.required]
+      industry: ['', Validators.required],
+      address1: ['', Validators.required],
+      address2: ['', Validators.required],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      country: ['', Validators.required],
+      zipcode: ['', Validators.required],
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
+    // this.firstFormGroup = this._formBuilder.group({
+    //   firstCtrl: ['', Validators.required]
+    // });
+    // this.secondFormGroup = this._formBuilder.group({
+    //   secondCtrl: ['', Validators.required]
+    // });
   }
 
   ngAfterViewInit() {
     this.stepper._getIndicatorType = () => 'none';
+  }
+  public onStepChange(event: any): void {
+    console.log(event.selectedIndex);
+    this.currentStepperImage= this.stepperImages[event.selectedIndex].url;
   }
   onCountrySelect(country:any){
     console.log(country);
