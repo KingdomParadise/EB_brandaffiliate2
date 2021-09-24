@@ -121,6 +121,9 @@ input::placeholder {
     font-size: 1rem;
     font-size: 12px;
 }
+::ng-deep .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit{
+    background-color: black;
+}
 #mobile-login-img{
     position: absolute;
     right:20px;
@@ -142,10 +145,24 @@ input::placeholder {
         margin-bottom: 18px;
     }
     ::ng-deep .mat-stepper-horizontal{
-        margin-right: 8rem !important;
+        margin-right: 5rem !important;
         width:70%;
     }
     .btn-back{
         padding:.25rem 3rem;
     }
 }
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+    .form-group{
+        margin-bottom: 18px;
+    }
+ }
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+    .form-group{
+        margin-bottom: 48px;
+    }
+ }
