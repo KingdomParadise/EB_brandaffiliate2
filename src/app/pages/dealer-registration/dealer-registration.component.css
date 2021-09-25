@@ -167,7 +167,22 @@ input::placeholder {
         margin-bottom: 2rem;
     }
  }
-
+/* XXX-Large devices (larger desktops, 1800px and up) */
+@media (min-width: 1800px) {
+    .form-group{
+        margin-bottom: 3rem;
+        font-size: 20px;
+    }
+    input{
+        font-size: 22px;
+    }
+    input::placeholder {
+        font-size: 22px;
+    }
+    ::ng-deep .ng-select .ng-select-container .ng-value-container .ng-placeholder{
+        font-size: 22px;
+    }
+ }
 
 
 
