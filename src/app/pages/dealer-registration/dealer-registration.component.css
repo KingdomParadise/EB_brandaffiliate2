@@ -23,6 +23,9 @@ button:focus{
 #mobile-logo{
     width: 40px;
 }
+.btn{
+    border-radius: 0;
+}
 .btn-reg{
     font-weight: 600;
     font-size: 16px;
@@ -165,12 +168,18 @@ input::placeholder {
     .form-group{
         margin-bottom: 1rem;
     }
+    .btn-back{
+        margin-right: 6px;
+    }
  }
 
 /* XX-Large devices (larger desktops, 1400px and up) */
 @media (min-width: 1400px) {
     .form-group{
         margin-bottom: 2rem;
+    }
+    .btn-back{
+        margin-right: 6px;
     }
  }
 /* XXX-Large devices (larger desktops, 1800px and up) */
@@ -186,6 +195,9 @@ input::placeholder {
     }
     ::ng-deep .ng-select .ng-select-container .ng-value-container .ng-placeholder{
         font-size: 18px;
+    }
+    .btn-back{
+        margin-right: 8px;
     }
  }
 
