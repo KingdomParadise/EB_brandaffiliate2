@@ -25,6 +25,7 @@ button:focus{
 }
 .btn{
     border-radius: 0;
+    text-transform: uppercase;
 }
 .btn-reg{
     font-weight: 600;
@@ -103,7 +104,9 @@ input::placeholder {
     margin-left: 10px;
     
 }
-
+.uploadIcon{
+    width:80%;
+}
 ::ng-deep .mat-step-icon{
     border-radius: 0 !important;
     transform: rotate(45deg);
@@ -124,7 +127,10 @@ input::placeholder {
 ::ng-deep .ng-select .ng-select-container .ng-value-container{
     justify-content: center;
 }
-
+::ng-deep .ng-select.ng-select-single .ng-select-container{
+    min-height: 30px;
+    height: 30px;
+}
 ::ng-deep .ng-select .ng-select-container .ng-value-container .ng-placeholder{
     color:black;
     font-weight: 500;
@@ -160,6 +166,9 @@ input::placeholder {
     }
     .btn-back{
         padding:.25rem 3rem;
+    }
+    .uploadIcon{
+        width:100%;
     }
 }
 
