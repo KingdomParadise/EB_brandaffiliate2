@@ -8,11 +8,17 @@ button:focus{
 }
 .header{
     background-color: #f3f2f2;
-    padding:.75rem 1.3rem;
+    padding:1.5rem 1.3rem .75rem 1.3rem;
     text-align: center;
 }
 #header-logo{
     width:50%;
+}
+#mobile-dealers-text{
+    color:white;
+    position: absolute;
+    left:48%;
+    top:8px;
 }
 #mobile-logo{
     width: 40px;
@@ -171,16 +177,15 @@ input::placeholder {
 @media (min-width: 1800px) {
     .form-group{
         margin-bottom: 3rem;
-        font-size: 20px;
     }
     input{
-        font-size: 22px;
+        font-size: 18px;
     }
     input::placeholder {
-        font-size: 22px;
+        font-size: 18px;
     }
     ::ng-deep .ng-select .ng-select-container .ng-value-container .ng-placeholder{
-        font-size: 22px;
+        font-size: 18px;
     }
  }
 
