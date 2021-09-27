@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ReviewDealerComponent } from './pages/review-dealer/review-dealer.component';
 import { DealerCompleteProfileComponent } from './pages/dealer-complete-profile/dealer-complete-profile.component';
+import { DealerPackageComponent } from './pages/dealer-package/dealer-package.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DealerCompleteProfileComponent } from './pages/dealer-complete-profile/
     VerifyComponent,
     DealerRegistrationComponent,
     ReviewDealerComponent,
-    DealerCompleteProfileComponent
+    DealerCompleteProfileComponent,
+    DealerPackageComponent
   ],
   imports: [
     BrowserModule,

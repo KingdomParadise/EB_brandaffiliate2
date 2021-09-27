@@ -118,7 +118,19 @@ input::placeholder {
 ::ng-deep .mat-horizontal-stepper-header {
     width: 20px;
     padding: 0 20px !important;
+    cursor: default !important;
+    background-color: transparent !important;
 }
+::ng-deep .mat-horizontal-stepper-header:visited {
+    background-color: transparent !important;
+}
+::ng-deep .mat-horizontal-stepper-header:active {
+    background-color: transparent !important;
+}
+::ng-deep .mat-horizontal-stepper-header:hover {
+    background-color: transparent !important;
+}
+
 ::ng-deep .ng-select .ng-select-container{
     border:0 !important;
     border-bottom: 1px solid gray !important;

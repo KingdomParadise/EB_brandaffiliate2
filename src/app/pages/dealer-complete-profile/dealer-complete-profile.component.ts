@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dealer-complete-profile',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dealer-complete-profile.component.css']
 })
 export class DealerCompleteProfileComponent implements OnInit {
-
-  constructor() { }
+  completeProfile: FormGroup;
+  constructor(
+    private _formBuilder: FormBuilder,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
+    this.completeProfile = this._formBuilder.group({
+      companyFb: ['', Validators.required],
+      companyInsta: ['', Validators.required],
+      companyLinkedin: ['', Validators.required]
+    });
   }
-
+  goToNextPage(){
+    this.router.navigateByUrl('/dealer-package');
+  }
 }
