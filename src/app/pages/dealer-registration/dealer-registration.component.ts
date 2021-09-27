@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatHorizontalStepper } from '@angular/material/stepper';
+import { Router } from '@angular/router';
 import { InitialDataService } from 'src/app/services/initial-data.service';
 
 @Component({
@@ -12,6 +13,9 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
   regForm1: FormGroup;
   regForm3: FormGroup;
   secondFormGroup: FormGroup;
+  isCompleted1:boolean = true;
+  isCompleted2:boolean = true;
+  isCompleted3:boolean = true;
   isEditable = true;
   industries = [];
   countries = [];
@@ -34,7 +38,8 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
   @ViewChild(MatHorizontalStepper) stepper: MatHorizontalStepper;
   constructor(
     private _formBuilder: FormBuilder,
-    private dataService: InitialDataService
+    private dataService: InitialDataService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -96,6 +101,6 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
     }
   }
   submit(){
-
+    this.router.navigateByUrl("/verify");
   }
 }

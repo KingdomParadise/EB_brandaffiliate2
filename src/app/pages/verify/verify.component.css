@@ -30,9 +30,7 @@ button:focus{
 .bold{
     font-weight: 600;
 }
-#center-logo{
-    width:120px
-}
+
 #otpBox{
     width:100%;
     margin: 0 auto;
@@ -120,6 +118,9 @@ button:focus{
 #mobile-logo{
     width: 40px;
 }
+#center-logo{
+    width:120px;
+}
 .btn{
     border-radius: 0;
     text-transform: uppercase;
@@ -140,8 +141,9 @@ button:focus{
     font-size: 18px;
     background-color: #c1c1c1;
     text-transform: uppercase;
-    margin-right: 4px;
+    margin-right: 8px;
     color:white;
+    padding: 0.375rem 2rem;
 }
 .stepperImage{
     width:50%;
@@ -162,15 +164,7 @@ input{
     text-align: center;
     font-size: 12px;
 }
-select{
-    text-transform: uppercase;
-    font-weight: 600;
-    text-align: center;
-    width: 100%;
-    border:none;
-    border-bottom: 1px solid gray;
-    color: black;
-}
+
 input:focus{
     background-color: transparent;
     border:none;
@@ -188,14 +182,14 @@ input::placeholder {
     font-size: 12px;
 }
 #otpBox{
-    width:100%;
+    width:90%;
     margin: 0 auto;
     padding-bottom: 40px;
-    padding: 2rem 0;
+    padding: 1rem 0;
 }
 #center-logo{
     width:100px;
-    margin-bottom:18px;
+    margin:18px auto;
 }
 #footer{
     width: 100%;
@@ -214,39 +208,7 @@ input::placeholder {
 .uploadIcon{
     width:80%;
 }
-::ng-deep .mat-step-icon{
-    border-radius: 0 !important;
-    transform: rotate(45deg);
-    width:20px !important;
-    height:20px !important;
-}
 
-::ng-deep .mat-horizontal-stepper-header {
-    width: 20px;
-    padding: 0 20px !important;
-}
-::ng-deep .ng-select .ng-select-container{
-    border:0 !important;
-    border-bottom: 1px solid gray !important;
-    justify-content: center;
-    border-radius: 0;
-}
-::ng-deep .ng-select .ng-select-container .ng-value-container{
-    justify-content: center;
-}
-::ng-deep .ng-select.ng-select-single .ng-select-container{
-    min-height: 30px;
-    height: 30px;
-}
-::ng-deep .ng-select .ng-select-container .ng-value-container .ng-placeholder{
-    color:black;
-    font-weight: 500;
-    font-size: 1rem;
-    font-size: 12px;
-}
-::ng-deep .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit{
-    background-color: black;
-}
 #mobile-login-img{
     position: absolute;
     right:20px;
@@ -266,10 +228,6 @@ input::placeholder {
     }
     .form-group{
         margin-bottom: 18px;
-    }
-    ::ng-deep .mat-stepper-horizontal{
-        margin-right: 5rem !important;
-        width:70%;
     }
     .btn-back{
         padding:.25rem 3rem;
@@ -302,6 +260,7 @@ input::placeholder {
     }
     .btn-back{
         margin-right: 6px;
+        padding: 0.375rem 3rem;
     }
  }
 /* XXX-Large devices (larger desktops, 1800px and up) */
@@ -315,11 +274,14 @@ input::placeholder {
     input::placeholder {
         font-size: 18px;
     }
-    ::ng-deep .ng-select .ng-select-container .ng-value-container .ng-placeholder{
-        font-size: 18px;
-    }
     .btn-back{
         margin-right: 8px;
+        padding: 0.375rem 5rem;
+    }
+    #center-logo{
+        width:100px;
+        margin-top:30px;
+        margin-bottom: 50px;
     }
  }
 
