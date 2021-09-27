@@ -13,12 +13,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { ReviewDealerComponent } from './pages/review-dealer/review-dealer.component';
+import { DealerCompleteProfileComponent } from './pages/dealer-complete-profile/dealer-complete-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     VerifyComponent,
-    DealerRegistrationComponent
+    DealerRegistrationComponent,
+    ReviewDealerComponent,
+    DealerCompleteProfileComponent
   ],
   imports: [
     BrowserModule,
