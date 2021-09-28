@@ -1,0 +1,45 @@
+ul li{
+    list-style: none;
+    opacity: 80%;
+}
+
+mat-icon{
+    padding-top: 6px;
+}
+li {
+    span{
+        font-size: 14px;
+        margin-right: 10px;
+        
+    }
+    img {
+        width: 30px;
+        height: 30px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+}
+mat-toolbar{
+    height: auto;
+}
+.trap {
+   margin-left: 30%;
+    position: absolute;
+	border-bottom: 30px solid #F9D328;
+	border-left: -100px solid transparent;
+	border-right: -150px solid transparent;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    height: 0;
+	width: 200px;
+    text-align: center;
+    label{
+       text-align: left;
+        font-size: 10px;
+        padding-right: 5px;
+    }
+    mat-slide-toggle{
+        height: -5px;
+        width: 5px;
+    }
+}

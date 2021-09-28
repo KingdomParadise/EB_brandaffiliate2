@@ -18,6 +18,8 @@ import { DealerCompleteProfileComponent } from './pages/dealer-complete-profile/
 import { DealerPackageComponent } from './pages/dealer-package/dealer-package.component';
 import { DealerLoginComponent } from './pages/dealer-login/dealer-login.component';
 import { DealerForgetPasswordComponent } from './pages/dealer-forget-password/dealer-forget-password.component';
+//import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { DefaultModule } from './layouts/default/default.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { DealerForgetPasswordComponent } from './pages/dealer-forget-password/de
     DealerCompleteProfileComponent,
     DealerPackageComponent,
     DealerLoginComponent,
-    DealerForgetPasswordComponent
+    DealerForgetPasswordComponent,
+    //DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import { DealerForgetPasswordComponent } from './pages/dealer-forget-password/de
     MatStepperModule,
     MatFormFieldModule,
     MatInputModule,
-    NgSelectModule
+    NgSelectModule,
+    DefaultModule
     
   ],
   providers: [],

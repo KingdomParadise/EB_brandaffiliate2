@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DefaultComponent } from './layouts/default/default.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DealerCompleteProfileComponent } from './pages/dealer-complete-profile/dealer-complete-profile.component';
 import { DealerForgetPasswordComponent } from './pages/dealer-forget-password/dealer-forget-password.component';
 import { DealerLoginComponent } from './pages/dealer-login/dealer-login.component';
@@ -11,6 +13,14 @@ import { VerifyComponent } from './pages/verify/verify.component';
 const routes: Routes = [
   {
     path: '',
+    component: DefaultComponent,
+    children: [{
+      path: 'dashboard',
+      component: DashboardComponent
+    }]
+  },
+  {
+    path: 'register',
     component: DealerRegistrationComponent,
   },
   {
@@ -36,7 +46,7 @@ const routes: Routes = [
   {
     path: 'dealer-forgot-password',
     component: DealerForgetPasswordComponent,
-  },
+  }
 ];
 
 @NgModule({
