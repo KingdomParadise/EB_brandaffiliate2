@@ -16,6 +16,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { ReviewDealerComponent } from './pages/review-dealer/review-dealer.component';
 import { DealerCompleteProfileComponent } from './pages/dealer-complete-profile/dealer-complete-profile.component';
 import { DealerPackageComponent } from './pages/dealer-package/dealer-package.component';
+import { DealerLoginComponent } from './pages/dealer-login/dealer-login.component';
+import { DealerForgetPasswordComponent } from './pages/dealer-forget-password/dealer-forget-password.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { DealerPackageComponent } from './pages/dealer-package/dealer-package.co
     DealerRegistrationComponent,
     ReviewDealerComponent,
     DealerCompleteProfileComponent,
-    DealerPackageComponent
+    DealerPackageComponent,
+    DealerLoginComponent,
+    DealerForgetPasswordComponent
   ],
   imports: [
     BrowserModule,
