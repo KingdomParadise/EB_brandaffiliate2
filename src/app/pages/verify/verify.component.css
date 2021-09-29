@@ -208,7 +208,12 @@ input::placeholder {
 .uploadIcon{
     width:80%;
 }
-
+.ng-dirty.ng-invalid {
+    border-color: red;
+}
+.ng-touched.ng-invalid {
+    border-color: red !important;
+}
 #mobile-login-img{
     position: absolute;
     right:20px;
