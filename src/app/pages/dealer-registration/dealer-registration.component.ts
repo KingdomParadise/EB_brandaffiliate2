@@ -12,7 +12,7 @@ import { InitialDataService } from 'src/app/services/initial-data.service';
 export class DealerRegistrationComponent implements OnInit, AfterViewInit {
   regForm1: FormGroup;
   regForm3: FormGroup;
-  secondFormGroup: FormGroup;
+  regForm2: FormGroup;
   isCompleted1:boolean = true;
   isCompleted2:boolean = true;
   isCompleted3:boolean = true;
@@ -34,7 +34,13 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
     }
   ];
   selectedCompanyLogo: File;
+  selectedCompanyLogoPath: any;
+  selectedUserImgPath: any;
   selectedUserImg: File;
+  alertMsg: any ={
+    type:'',
+    message:''
+  };
   @ViewChild(MatHorizontalStepper) stepper: MatHorizontalStepper;
   constructor(
     private _formBuilder: FormBuilder,
@@ -51,24 +57,26 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
     });
     this.regForm1 = this._formBuilder.group({
       companyName: [null, Validators.required],
-      industry: [null, Validators.required],
+      industryId: [null, Validators.required],
       companyEmail: ['', Validators.required],
       companyPhone: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: [null, Validators.required],
-      userEmail: [null, Validators.required],
-      userPhone: ['', Validators.required],
+      personalEmail: [null, Validators.required],
+      personalPhone: ['', Validators.required],
     });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+    this.regForm2 = this._formBuilder.group({
+      companyLogo: [null, Validators.required],
+      userLogo: [null, Validators.required],
     });
     this.regForm3 = this._formBuilder.group({
-      address1: ['', Validators.required],
-      address2: ['', Validators.required],
+      addressLine1: ['', Validators.required],
+      addressLine2: ['', Validators.required],
       city: ['', Validators.required],
-      country: [null, Validators.required],
-      state: [null, Validators.required],
-      zipcode: ['', Validators.required]
+      countryId: [null, Validators.required],
+      stateId: [null, Validators.required],
+      zipCode: ['', Validators.required],
+      mapLocations: [null]
     });
     // this.secondFormGroup = this._formBuilder.group({
     //   secondCtrl: ['', Validators.required]
@@ -84,11 +92,20 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
     this.currentStepperImage= this.stepperImages[event.selectedIndex].url;
   }
 
-  onFileChanged(event:any, type:string){
-    if(type == 'company'){
+  onFileChanged(event: any, type: string) {
+    const reader = new FileReader();
+    if (type == 'company') {
       this.selectedCompanyLogo = event.target.files[0];
-    }else if(type == 'user'){
+      reader.readAsDataURL(this.selectedCompanyLogo);
+      reader.onload = (_event) => {
+        this.selectedCompanyLogoPath = reader.result;
+      }
+    } else if (type == 'user') {
       this.selectedUserImg = event.target.files[0];
+      reader.readAsDataURL(this.selectedUserImg);
+      reader.onload = (_event) => {
+        this.selectedUserImgPath = reader.result;
+      }
     }
   }
 
@@ -100,7 +117,33 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
       })
     }
   }
+  close() {
+    this.alertMsg.message = ''
+  }
   submit(){
-    this.router.navigateByUrl("/verify");
+    console.log(this.regForm1.value);
+    console.log(this.regForm2.value);
+
+    let formObj = {...this.regForm1.value, ...this.regForm3.value};
+    formObj.mapLocations = [{lat:"12.11",lng:"12.13"},{lat:"12.45",lng:"12.4643"}];
+    if(this.regForm3.valid){
+      let formData = new FormData();
+      formData.append('data', JSON.stringify(formObj));
+      formData.append('userPhoto', this.selectedUserImg);
+      formData.append('companyLogo', this.selectedCompanyLogo);
+      this.dataService.registerDealer(formData).subscribe(res =>{
+        console.log(res);
+        if (res.responseCode == 0) {
+          this.router.navigateByUrl("/verify");
+        }
+        else if (res.responseCode == -1) {
+          this.alertMsg.type = 'danger';
+          this.alertMsg.message = res.errorMsg
+        } else {
+
+        }
+      });
+    }
+    
   }
 }

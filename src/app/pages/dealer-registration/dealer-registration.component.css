@@ -108,6 +108,12 @@ input::placeholder {
 .uploadIcon{
     width:80%;
 }
+.ng-dirty.ng-invalid {
+    border-color: red;
+}
+.ng-touched.ng-invalid {
+    border-color: red !important;
+}
 ::ng-deep .mat-step-icon{
     border-radius: 0 !important;
     transform: rotate(45deg);

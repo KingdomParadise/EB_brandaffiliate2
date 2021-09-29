@@ -20,6 +20,7 @@ import { DealerLoginComponent } from './pages/dealer-login/dealer-login.componen
 import { DealerForgetPasswordComponent } from './pages/dealer-forget-password/dealer-forget-password.component';
 //import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DefaultModule } from './layouts/default/default.module';
+import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { DefaultModule } from './layouts/default/default.module';
     MatFormFieldModule,
     MatInputModule,
     NgSelectModule,
-    DefaultModule
+    DefaultModule,
+    NgbAlertModule
     
   ],
   providers: [],
