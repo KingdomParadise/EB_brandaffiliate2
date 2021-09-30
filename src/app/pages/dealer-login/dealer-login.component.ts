@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { InitialDataService } from 'src/app/services/initial-data.service';
 
 @Component({
   selector: 'app-dealer-login',
@@ -9,18 +10,51 @@ import { Router } from '@angular/router';
 })
 export class DealerLoginComponent implements OnInit {
   login: FormGroup;
+  alertMsg: any = {
+    type: '',
+    message: ''
+  };
   constructor(
     private router: Router,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private dataService: InitialDataService,
   ) { }
 
   ngOnInit(): void {
     this.login = this._formBuilder.group({
-      email: ['', Validators.required],
+      emailId: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
-  goToNextPage(){
-    this.router.navigateByUrl('/dealer-forgot-password')
+  submit() {
+    if (this.login.valid) {
+      this.dataService.dealerLogin(this.login.value).subscribe(res => {
+        console.log(res);
+        if (res.responseCode == -1) {
+          this.alertMsg.type = 'danger';
+          this.alertMsg.message = res.errorMsg
+          //this.router.navigateByUrl('/review', { state: { msg: res.successMsg } });
+        } else if (res.responseCode == 0) {
+          if (res.response.status == 'phoneVerificationPending') {
+            this.router.navigateByUrl('/verify');
+          } else if(res.response.status == 'new' || res.response.status == 'rejected'){
+            this.router.navigateByUrl('/review', { state: { msg: res.successMsg } });
+          } else if ((res.response.facebookLink == null) && (res.response.instaLink == null) && (res.response.linkedinLink == null)) {
+            this.router.navigateByUrl('/complete-profile', { state: { data: res.response } });
+          }else if(res.response.firstTimeLogin ==1){
+            this.router.navigateByUrl('/dealer-create-password');
+          }else{
+            this.router.navigateByUrl('/dashboard');
+          }
+        } else {
+          this.alertMsg.type = 'danger';
+          this.alertMsg.message = 'Server error'
+        }
+      })
+    }
+    //this.router.navigateByUrl('/dealer-forgot-password')
+  }
+  close() {
+    this.alertMsg.message = ''
   }
 }

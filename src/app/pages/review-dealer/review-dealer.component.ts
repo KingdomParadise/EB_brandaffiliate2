@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-review-dealer',
@@ -7,10 +8,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./review-dealer.component.css']
 })
 export class ReviewDealerComponent implements OnInit {
-
-  constructor( public router: Router) { }
+  message:any;
+  constructor( public router: Router, private activatedroute:ActivatedRoute) { 
+   
+  }
 
   ngOnInit(): void {
+    console.log(history.state)
+    this.message = history.state.msg
   }
 
   goToNextPage(){

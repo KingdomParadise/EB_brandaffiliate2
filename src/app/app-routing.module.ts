@@ -13,16 +13,17 @@ import { VerifyComponent } from './pages/verify/verify.component';
 const routes: Routes = [
   {
     path: '',
+    component: DealerRegistrationComponent,
+  },
+  {
+    path: '',
     component: DefaultComponent,
     children: [{
       path: 'dashboard',
       component: DashboardComponent
     }]
   },
-  {
-    path: 'register',
-    component: DealerRegistrationComponent,
-  },
+  
   {
     path: 'verify',
     component: VerifyComponent,
@@ -44,7 +45,7 @@ const routes: Routes = [
     component: DealerLoginComponent,
   },
   {
-    path: 'dealer-forgot-password',
+    path: 'dealer-create-password',
     component: DealerForgetPasswordComponent,
   }
 ];

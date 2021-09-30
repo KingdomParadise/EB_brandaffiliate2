@@ -11,12 +11,59 @@
     </div> -->
 
    
-    <mat-toolbar-row style="width: 100%">
+    <mat-toolbar-row style="width: 100%;">
+        <!-- <div>
+            <img src="assets/images/logo.png" alt="">
+            <span class="text2">- Dealers</span>
+            <button mat-icon-button style="color: rgb(55, 10, 160);" (click)="toggleSideBar()">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </div>
+        <div>
+            <a mat-button class="companyName" routerLink="/">
+                <span>Site name</span>
+              </a>
+              <span class="example-spacer"></span>
+              <div fxShow="true" fxHide.lt-md="true">
+                <a mat-button routerLink="/about-us">About us</a>
+                <a mat-button routerLink="/prices">Prices</a>
+                <a mat-button routerLink="/start-page">Start page</a>
+                <a mat-button routerLink="/offer">Offer</a>
+                <a mat-button routerLink="/contact">Contact</a>
+              </div>
+        </div> -->
+        <div class="row w-100">
+            <div class="col-md-12 p-0">
+                <div class="header d-flex flex-column flex-md-row justify-content-between align-item-center">
+                    <div class="d-flex my-auto">
+                        <div class="my-auto d-none d-md-block">
+                            <img src="assets/images/logo.png" alt="logo" id="header-logo"> <span class="text2">-Dealers</span>
+                        </div>
+                        <button mat-icon-button style="color: rgb(55, 10, 160);" (click)="toggleSideBar()">
+                            <mat-icon>menu</mat-icon>
+                        </button>
+                    </div>
+                    
+                    <div class="d-block d-md-none text-center my-auto">
+                        <span id="mobile-dealers-text" class="d-block d-md-none">- Dealers</span>
+                        <img src="assets/images/main-logo-mobile.png" alt="main-logo" id="mobile-logo">
+                        <img src="assets/images/login.png" alt="login" id="mobile-login-img">
+                    </div>
+                    <div class="my-auto d-none d-md-flex">
+                        <button class="btn btn-link headerLink my-auto">Contact Us</button>
+                        <button class="btn btn-link headerLink">Support</button>
+                        <div class="my-auto">
+                            <img src="assets/images/fb-dark.png" alt="fb" class="headerIcon">
+                            <img src="assets/images/linkedIn-dark.png" alt="linkedIn" class="headerIcon">
+                        </div>
+                        
+                        <div id="headerProfileImg">
 
-        <button mat-icon-button style="color: rgb(55, 10, 160);" (click)="toggleSideBar()">
-            <mat-icon>menu</mat-icon>
-        </button>
-        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </mat-toolbar-row>
 
 </mat-toolbar>

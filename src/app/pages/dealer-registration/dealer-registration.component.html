@@ -166,8 +166,11 @@
                                 <button mat-button matStepperPrevious class="btn btn-default btn-back">Back</button>
                                 <button mat-button (click)="submit()" class="btn btn-dark flex-grow-1" [disabled]="!regForm3.valid">SUBMIT</button>
                             </div>
-                            <div *ngIf="alertMsg.message">
-                                <ngb-alert [type]="alertMsg.type" (closed)="close()">{{ alertMsg.message }}</ngb-alert>
+                            <div *ngIf="alertMsg.message" class="alert alert-danger fade show d-flex justify-content-between align-items-center mt-2 p-2" role="alert">
+                                <span>{{alertMsg.message}}</span>
+                                <button type="button" class="btn btn-default close" (click)="close()" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
                         </form>
                         <!-- <div class="d-flex p-3 mt-5">

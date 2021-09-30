@@ -37,9 +37,9 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
   selectedCompanyLogoPath: any;
   selectedUserImgPath: any;
   selectedUserImg: File;
-  alertMsg: any ={
-    type:'',
-    message:''
+  alertMsg: any = {
+    type: '',
+    message: ''
   };
   @ViewChild(MatHorizontalStepper) stepper: MatHorizontalStepper;
   constructor(
@@ -123,7 +123,7 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
   submit(){
     console.log(this.regForm1.value);
     console.log(this.regForm2.value);
-
+    localStorage.setItem('personalPhone', this.regForm1.value.personalPhone);
     let formObj = {...this.regForm1.value, ...this.regForm3.value};
     formObj.mapLocations = [{lat:"12.11",lng:"12.13"},{lat:"12.45",lng:"12.4643"}];
     if(this.regForm3.valid){
@@ -140,7 +140,8 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
           this.alertMsg.type = 'danger';
           this.alertMsg.message = res.errorMsg
         } else {
-
+          this.alertMsg.type = 'danger';
+          this.alertMsg.message = 'Server error'
         }
       });
     }
