@@ -30,6 +30,7 @@ button:focus{
 .btn-reg{
     font-weight: 600;
     font-size: 16px;
+    text-decoration: none;
 }
 .btn-login{
     background-color: #a63da1;
