@@ -70,10 +70,7 @@ export class InitialDataService {
   }
 
   updateDealerSocialInfo(data: any){
-    let headers = new HttpHeaders()
-headers=headers.set('content-type','application/json')
-headers=headers.set('Access-Control-Allow-Origin', '*');
-    return this.http.post<any>(this.apiUrl + '/dealer/updateDealerSocialInfo', data, { headers: headers })
+    return this.http.post<any>(this.apiUrl + '/dealer/updateDealerSocialInfo', data)
     .pipe(
       retry(1),
       catchError(this.handleError)
