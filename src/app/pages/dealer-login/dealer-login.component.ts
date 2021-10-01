@@ -17,7 +17,7 @@ export class DealerLoginComponent implements OnInit {
   constructor(
     private router: Router,
     private _formBuilder: FormBuilder,
-    private dataService: InitialDataService,
+    private dataService: InitialDataService
   ) { }
 
   ngOnInit(): void {
@@ -40,10 +40,13 @@ export class DealerLoginComponent implements OnInit {
           } else if(res.response.status == 'new' || res.response.status == 'rejected'){
             this.router.navigateByUrl('/review', { state: { msg: res.successMsg } });
           } else if ((res.response.facebookLink == null) && (res.response.instaLink == null) && (res.response.linkedinLink == null)) {
+            localStorage.setItem('token',res.response.token);
             this.router.navigateByUrl('/complete-profile', { state: { data: res.response } });
           }else if(res.response.firstTimeLogin ==1){
+            localStorage.setItem('token',res.response.token);
             this.router.navigateByUrl('/dealer-create-password');
           }else{
+            localStorage.setItem('token',res.response.token);
             this.router.navigateByUrl('/dashboard');
           }
         } else {

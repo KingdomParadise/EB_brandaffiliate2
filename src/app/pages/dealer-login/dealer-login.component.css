@@ -119,6 +119,12 @@ input::placeholder {
     top: 30px;
     width: 30px;
 }
+.ng-dirty.ng-invalid {
+    border-color: red;
+}
+.ng-touched.ng-invalid {
+    border-color: red !important;
+}
 @media only screen and (min-device-width: 768px){
     .header{
         padding:.5rem 5rem;

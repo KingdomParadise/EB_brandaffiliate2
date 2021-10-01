@@ -9,7 +9,7 @@ import { Location } from '@angular/common';
 })
 export class ReviewDealerComponent implements OnInit {
   message:any;
-  constructor( public router: Router, private activatedroute:ActivatedRoute) { 
+  constructor( public location: Location, public router: Router, private activatedroute:ActivatedRoute) { 
    
   }
 
@@ -18,7 +18,7 @@ export class ReviewDealerComponent implements OnInit {
     this.message = history.state.msg
   }
 
-  goToNextPage(){
-    this.router.navigateByUrl('/complete-profile')
+  goBack(){
+    this.location.back();
   }
 }

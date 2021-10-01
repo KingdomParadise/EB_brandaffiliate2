@@ -38,21 +38,29 @@
                     <form [formGroup]="completeProfile" class="mt-3 mt-md-1">
                         <div class="form-group mt-md-3">
                             <input type="text" matInput class="form-control" id="exampleFormControlInput1"
-                                formControlName="companyFb"
+                                formControlName="facebookLink"
                                 placeholder="Company Facebook">
                         </div>
                         <div class="form-group">
                             <input type="text" matInput class="form-control" id="exampleFormControlInput1"
-                                formControlName="companyInsta"
+                                formControlName="instaLink"
                                 placeholder="Company Instagram">
                         </div>
                         <div class="form-group d-flex flex-column flex-md-row">
                                 <input type="text" class="form-control" id="city" placeholder="Company LinkedIn"
-                                 formControlName="companyLinkedin">
+                                 formControlName="linkedinLink">
                         </div>
     
                         <div class="d-grid mt-5">
-                            <button mat-button class="btn btn-dark mb-5 mb-md-0" (click)="goToNextPage()">Next</button>
+                            <button mat-button class="btn btn-dark mb-5 mb-md-0" (click)="submit()" [disabled]="!completeProfile.valid">Next</button>
+                        </div>
+                        <div *ngIf="alertMsg.message" class="alert fade show d-flex justify-content-between align-items-center mt-2 p-2"
+                            [ngClass]="(alertMsg.type == 'danger')?'alert-danger': 'alert-success'"
+                            role="alert">
+                            <span>{{alertMsg.message}}</span>
+                            <button type="button" class="btn btn-default close" (click)="close()" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
                     </form>
                 </div>

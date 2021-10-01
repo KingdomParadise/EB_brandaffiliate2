@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { InitialDataService } from 'src/app/services/initial-data.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'verify',
@@ -18,6 +19,7 @@ export class VerifyComponent implements OnInit {
     public router: Router,
     public _formBuilder: FormBuilder,
     private dataService: InitialDataService,
+    public location: Location
   ) {
 
   }
@@ -50,5 +52,8 @@ export class VerifyComponent implements OnInit {
   }
   close() {
     this.alertMsg.message = ''
+  }
+  goBack(){
+    this.location.back();
   }
 }

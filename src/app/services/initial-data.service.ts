@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ import { environment } from 'src/environments/environment';
 
 export class InitialDataService {
   private apiUrl = environment.apiUrl;
+
   constructor(private http: HttpClient) { }
 
   getIndustries(): Observable<any> {
@@ -28,31 +30,50 @@ export class InitialDataService {
         catchError(this.handleError)
       )
   }
-  getStates(id:number): Observable<any> {
-    return this.http.get<any>(this.apiUrl + '/dealer/getStates/countryId/'+id)
+  getStates(id: number): Observable<any> {
+    return this.http.get<any>(this.apiUrl + '/dealer/getStates/countryId/' + id)
       .pipe(
         retry(1),
         catchError(this.handleError)
       )
   }
 
-  
-  registerDealer(data:any): Observable<any> {
+
+  registerDealer(data: any): Observable<any> {
     return this.http.post<any>(this.apiUrl + '/dealer/registerDealer', data)
       .pipe(
         retry(1),
         catchError(this.handleError)
       )
   }
-  verifyDealerRegOtp(data:any){
+  verifyDealerRegOtp(data: any) {
     return this.http.post<any>(this.apiUrl + '/dealer/verifyDealerRegOtp', data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+  dealerLogin(data: any) {
+    return this.http.post<any>(this.apiUrl + '/dealer/dealerLogin', data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+
+  updateDealerPassword(data: any) {
+    return this.http.post<any>(this.apiUrl + '/dealer/updateDealerPassword', data)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
   }
-  dealerLogin(data:any){
-    return this.http.post<any>(this.apiUrl + '/dealer/dealerLogin', data)
+
+  updateDealerSocialInfo(data: any){
+    let headers = new HttpHeaders()
+headers=headers.set('content-type','application/json')
+headers=headers.set('Access-Control-Allow-Origin', '*');
+    return this.http.post<any>(this.apiUrl + '/dealer/updateDealerSocialInfo', data, { headers: headers })
     .pipe(
       retry(1),
       catchError(this.handleError)

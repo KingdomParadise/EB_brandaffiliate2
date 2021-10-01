@@ -11,7 +11,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ReviewDealerComponent } from './pages/review-dealer/review-dealer.component';
 import { DealerCompleteProfileComponent } from './pages/dealer-complete-profile/dealer-complete-profile.component';
@@ -21,6 +21,7 @@ import { DealerForgetPasswordComponent } from './pages/dealer-forget-password/de
 //import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DefaultModule } from './layouts/default/default.module';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { TokenInterceptor } from './services/tokenInterceptor';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,13 @@ import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
     NgbAlertModule
     
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
