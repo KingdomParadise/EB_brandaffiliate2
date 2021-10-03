@@ -11,7 +11,7 @@
     </div> -->
 
    
-    <mat-toolbar-row style="width: 100%;">
+    <mat-toolbar-row style="width: 100%;margin:auto">
         <!-- <div>
             <img src="assets/images/logo.png" alt="">
             <span class="text2">- Dealers</span>
@@ -32,9 +32,9 @@
                 <a mat-button routerLink="/contact">Contact</a>
               </div>
         </div> -->
-        <div class="row w-100">
+        <div class="row w-100 d-none d-md-block">
             <div class="col-md-12 p-0">
-                <div class="header d-flex flex-column flex-md-row justify-content-between align-item-center">
+                <div class="header d-none d-md-flex flex-column flex-md-row justify-content-between align-item-center">
                     <div class="d-flex my-auto">
                         <div class="my-auto d-none d-md-block">
                             <img src="assets/images/logo.png" alt="logo" id="header-logo"> <span class="text2">-Dealers</span>
@@ -44,11 +44,7 @@
                         </button>
                     </div>
                     
-                    <div class="d-block d-md-none text-center my-auto">
-                        <span id="mobile-dealers-text" class="d-block d-md-none">- Dealers</span>
-                        <img src="assets/images/main-logo-mobile.png" alt="main-logo" id="mobile-logo">
-                        <img src="assets/images/login.png" alt="login" id="mobile-login-img">
-                    </div>
+                   
                     <div class="my-auto d-none d-md-flex">
                         <button class="btn btn-link headerLink my-auto">Contact Us</button>
                         <button class="btn btn-link headerLink">Support</button>
@@ -62,6 +58,19 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="d-flex d-md-none justify-content-center my-3 w-100" id="header-mobile">
+            <div class="d-flex flex-row d-md-none text-center mt-2">
+                <button id="mobileMenu"mat-icon-button style="color: rgb(55, 10, 160);" (click)="toggleSideBar()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+                <div>
+                    <span id="mobile-dealers-text" class="d-block d-md-none">- Dealers</span>
+                    <img src="assets/images/main-logo-mobile.png" alt="main-logo" id="mobile-logo">
+                    
+                </div>
+
             </div>
         </div>
     </mat-toolbar-row>

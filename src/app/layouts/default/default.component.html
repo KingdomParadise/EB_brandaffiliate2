@@ -1,11 +1,11 @@
 <app-header (toggleSideBarForMe)="sideBarToggler()"></app-header>
 <mat-drawer-container>
 
-    <mat-drawer mode="side" [opened]="sideBarOpen">
-        <app-sidebar (toggleSideBarForMe)="sideBarToggler()"></app-sidebar>
+    <mat-drawer mode="side" [opened]="sideBarOpen" [style.width]="isPartialClose? '60px !important': '240px !important'">
+        <app-sidebar [isPartialClose]="isPartialClose" (toggleSideBarForMe)="sideBarToggler()"></app-sidebar>
     </mat-drawer>
 
-    <mat-drawer-content>
+    <mat-drawer-content [style.margin-left]="marginLeft">
        
         <div style="padding: 10px; width: 100%;height:90vh;background-color: #eff3f4;">
             <router-outlet></router-outlet>

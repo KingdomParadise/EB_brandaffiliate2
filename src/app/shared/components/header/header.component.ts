@@ -8,6 +8,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 
 export class HeaderComponent implements OnInit {
+  isExpanded: boolean = true;
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
   constructor() { }
   selected: any = '0';
@@ -16,5 +17,6 @@ export class HeaderComponent implements OnInit {
   
   toggleSideBar(){
     this.toggleSideBarForMe.emit();
+    this.isExpanded = !this.isExpanded
   }
 }

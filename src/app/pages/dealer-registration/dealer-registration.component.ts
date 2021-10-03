@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatHorizontalStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
 import { InitialDataService } from 'src/app/services/initial-data.service';
-
+import {} from 'googlemaps';
 @Component({
   selector: 'app-dealer-registration',
   templateUrl: './dealer-registration.component.html',
@@ -41,6 +41,8 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
     type: '',
     message: ''
   };
+  @ViewChild('map1', { static: true }) mapElement: any;
+  map: google.maps.Map;
   @ViewChild(MatHorizontalStepper) stepper: MatHorizontalStepper;
   constructor(
     private _formBuilder: FormBuilder,
@@ -81,6 +83,12 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
     // this.secondFormGroup = this._formBuilder.group({
     //   secondCtrl: ['', Validators.required]
     // });
+    const mapProperties = {
+      center: new google.maps.LatLng(35.2271, -80.8431),
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
   }
 
   ngAfterViewInit() {

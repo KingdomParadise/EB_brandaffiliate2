@@ -1,28 +1,40 @@
 <mat-nav-list>
 
-   
+
 
     <!-- <img style="height: 70px; padding-left: 20px; padding-bottom: 10px;" src="/assets/logo.png"> -->
 
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+        <mat-icon>home</mat-icon>
+        <span *ngIf="!isPartialClose">Home</span>
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+        <mat-icon>local_offer</mat-icon>
+        <span  *ngIf="!isPartialClose">Promotions</span>
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+        <mat-icon>person</mat-icon>
+        <span  *ngIf="!isPartialClose">Affiliates</span>
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+        <mat-icon>extension</mat-icon>
+        <span  *ngIf="!isPartialClose">Prospects</span>
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+        <mat-icon>request_quote</mat-icon>
+        <span  *ngIf="!isPartialClose">Commission Payments</span>
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/payment-pages">
+        <mat-icon> perm_media</mat-icon>
+        <span  *ngIf="!isPartialClose"> Upload Assets</span>
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+        <mat-icon> local_atm</mat-icon>
+        <span  *ngIf="!isPartialClose">Packages</span>
+    </a>
 
-
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/"><mat-icon>home</mat-icon>Home</a>
-
-
-
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/"><mat-icon>local_offer</mat-icon>Promotions</a>
-
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/"><mat-icon>person</mat-icon>Affiliates</a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/"><mat-icon>extension</mat-icon>Prospects</a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/"><mat-icon>request_quote</mat-icon>Commission Payments</a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/payment-pages">	<mat-icon> perm_media</mat-icon>Upload Assets</a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/"><mat-icon> local_atm</mat-icon>Packages</a>
-
-    
-
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/"><mat-icon>settings</mat-icon>Settings</a>
-
-    
-    
-
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+        <mat-icon>settings</mat-icon>
+        <span  *ngIf="!isPartialClose">Settings</span>
+    </a>
 </mat-nav-list>
