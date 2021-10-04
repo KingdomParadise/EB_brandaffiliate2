@@ -13,3 +13,23 @@
     width: 240px !important;
     background: black !important;
 }
+.mat-list-base{
+    height: 90vh;
+    padding-bottom: 30px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#profile-pic{
+    width:50px;
+    height: 50px;
+    margin:10px auto;
+}
+#date{
+    color: #8c37a3;
+    font-weight: 500;
+}
+#userName{
+    font-weight: bold !important;
+}

@@ -22,6 +22,9 @@ import { DealerForgetPasswordComponent } from './pages/dealer-forget-password/de
 import { DefaultModule } from './layouts/default/default.module';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { TokenInterceptor } from './services/tokenInterceptor';
+import { SettingsComponent } from './pages/settings/settings.component';
+import { AgmCoreModule } from '@agm/core';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,7 @@ import { TokenInterceptor } from './services/tokenInterceptor';
     DealerPackageComponent,
     DealerLoginComponent,
     DealerForgetPasswordComponent,
+    SettingsComponent,
     //DashboardComponent
   ],
   imports: [
@@ -46,8 +50,13 @@ import { TokenInterceptor } from './services/tokenInterceptor';
     MatFormFieldModule,
     MatInputModule,
     NgSelectModule,
+    MatTabsModule,
     DefaultModule,
-    NgbAlertModule
+    NgbAlertModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAhWahf8oOXf9UyFu8W_iCE8HChcbgOVbQ',
+      libraries: ['places']
+    })
     
   ],
   providers: [

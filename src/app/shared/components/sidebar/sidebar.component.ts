@@ -6,6 +6,7 @@ import { Component, OnInit,Output, EventEmitter, Input } from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+  date1 = new Date();
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
   @Input() isPartialClose: boolean;
   //isExpanded = false;

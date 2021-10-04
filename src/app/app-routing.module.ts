@@ -8,6 +8,7 @@ import { DealerLoginComponent } from './pages/dealer-login/dealer-login.componen
 import { DealerPackageComponent } from './pages/dealer-package/dealer-package.component';
 import { DealerRegistrationComponent } from './pages/dealer-registration/dealer-registration.component';
 import { ReviewDealerComponent } from './pages/review-dealer/review-dealer.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 import { VerifyComponent } from './pages/verify/verify.component';
 
 const routes: Routes = [
@@ -18,10 +19,16 @@ const routes: Routes = [
   {
     path: '',
     component: DefaultComponent,
-    children: [{
-      path: 'dashboard',
-      component: DashboardComponent
-    }]
+    children: [
+      {
+        path: 'dashboard',
+        component: DashboardComponent
+      },
+      {
+        path: 'settings',
+        component: SettingsComponent,
+      }
+    ]
   },
   
   {
@@ -48,6 +55,7 @@ const routes: Routes = [
     path: 'dealer-create-password',
     component: DealerForgetPasswordComponent,
   }
+  
 ];
 
 @NgModule({

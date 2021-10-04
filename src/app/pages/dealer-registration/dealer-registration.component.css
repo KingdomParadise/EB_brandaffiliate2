@@ -115,6 +115,9 @@ input::placeholder {
 .ng-touched.ng-invalid {
     border-color: red !important;
 }
+agm-map{
+    height: 150px
+}
 ::ng-deep .mat-step-icon{
     border-radius: 0 !important;
     transform: rotate(45deg);

@@ -32,7 +32,7 @@ export class VerifyComponent implements OnInit {
   onSubmit() {
     if (this.otpForm.valid) {
       this.otpForm.patchValue({
-        personalPhone: "9844038037" //localStorage.getItem('personalPhone')
+        personalPhone: localStorage.getItem('personalPhone')
       })
       this.dataService.verifyDealerRegOtp(this.otpForm.value).subscribe(res => {
         console.log(res);

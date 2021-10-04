@@ -20,7 +20,6 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle'; 
 import {NgbPaginationModule, NgbAlertModule, NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
 
-
 @NgModule({
   declarations: [
     DefaultComponent,

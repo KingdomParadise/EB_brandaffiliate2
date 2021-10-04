@@ -3,38 +3,58 @@
 
 
     <!-- <img style="height: 70px; padding-left: 20px; padding-bottom: 10px;" src="/assets/logo.png"> -->
+    <div>
+        <div class="ps-3 text-light">
+            <img src="assets/images/profile-pic.png" alt="profile-pic" class="img-fluid" id="profile-pic">
+            <h3 *ngIf="!isPartialClose" class="my-0" id="userName">Lorem Ipsum</h3>
+            <p *ngIf="!isPartialClose" ><i>lorenipsum@gmail.com</i></p>
+            <p *ngIf="!isPartialClose" id="date">{{date1 | date: 'medium'}}</p>
+        </div>
+        <div class="px-3 text-light" *ngIf="!isPartialClose">
+            <hr style="color:#d8d8d8" />
+        </div>
 
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
-        <mat-icon>home</mat-icon>
-        <span *ngIf="!isPartialClose">Home</span>
-    </a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
-        <mat-icon>local_offer</mat-icon>
-        <span  *ngIf="!isPartialClose">Promotions</span>
-    </a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
-        <mat-icon>person</mat-icon>
-        <span  *ngIf="!isPartialClose">Affiliates</span>
-    </a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
-        <mat-icon>extension</mat-icon>
-        <span  *ngIf="!isPartialClose">Prospects</span>
-    </a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
-        <mat-icon>request_quote</mat-icon>
-        <span  *ngIf="!isPartialClose">Commission Payments</span>
-    </a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/payment-pages">
-        <mat-icon> perm_media</mat-icon>
-        <span  *ngIf="!isPartialClose"> Upload Assets</span>
-    </a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
-        <mat-icon> local_atm</mat-icon>
-        <span  *ngIf="!isPartialClose">Packages</span>
-    </a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard">
+            <mat-icon>home</mat-icon>
+            <span *ngIf="!isPartialClose">Home</span>
+        </a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+            <mat-icon>local_offer</mat-icon>
+            <span *ngIf="!isPartialClose">Promotions</span>
+        </a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+            <mat-icon>person</mat-icon>
+            <span *ngIf="!isPartialClose">Affiliates</span>
+        </a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+            <mat-icon>extension</mat-icon>
+            <span *ngIf="!isPartialClose">Prospects</span>
+        </a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+            <mat-icon>request_quote</mat-icon>
+            <span *ngIf="!isPartialClose">Commission Payments</span>
+        </a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/payment-pages">
+            <mat-icon> perm_media</mat-icon>
+            <span *ngIf="!isPartialClose"> Upload Assets</span>
+        </a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+            <mat-icon> local_atm</mat-icon>
+            <span *ngIf="!isPartialClose">Packages</span>
+        </a>
 
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
-        <mat-icon>settings</mat-icon>
-        <span  *ngIf="!isPartialClose">Settings</span>
-    </a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/settings">
+            <mat-icon>settings</mat-icon>
+            <span *ngIf="!isPartialClose">Settings</span>
+        </a>
+    </div>
+    <div>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+
+            <span *ngIf="!isPartialClose" class="me-3">Log Out</span>
+            <mat-icon >logout</mat-icon>
+        </a>
+    </div>
+
+
 </mat-nav-list>
