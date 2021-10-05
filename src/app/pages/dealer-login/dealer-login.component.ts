@@ -47,7 +47,7 @@ export class DealerLoginComponent implements OnInit {
             this.router.navigateByUrl('/dealer-create-password');
           }else{
             localStorage.setItem('token',res.response.token);
-            localStorage.setItem('userPhotoUrl',res.response.userPhotoUrl);
+            localStorage.setItem('userData',JSON.stringify(res.response));
             
             this.router.navigateByUrl('/dashboard');
           }

@@ -12,7 +12,8 @@ export class HeaderComponent implements OnInit {
   userPhotoUrl: any;
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
   constructor() { 
-    this.userPhotoUrl = localStorage.getItem('userPhotoUrl');
+    let userData = JSON.parse(localStorage.getItem('userData') || '{}');
+    this.userPhotoUrl = userData.userPhotoUrl;
   }
   selected: any = '0';
   ngOnInit(): void {

@@ -12,7 +12,8 @@ export class SidebarComponent implements OnInit {
   @Input() isPartialClose: boolean;
   //isExpanded = false;
   constructor() {
-    this.userPhotoUrl = localStorage.getItem('userPhotoUrl');
+    let userData = JSON.parse(localStorage.getItem('userData') || '{}');
+    this.userPhotoUrl = userData.userPhotoUrl;
   }
 
   ngOnInit(): void {

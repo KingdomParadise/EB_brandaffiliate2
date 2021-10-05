@@ -70,8 +70,8 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
     this.regForm1 = this._formBuilder.group({
       companyName: [null, Validators.required],
       industryId: [null, Validators.required],
-      companyEmail: ['', [Validators.required, Validators.email]],
-      companyPhone: ['', Validators.required],
+      //companyEmail: ['', [Validators.required, Validators.email]],
+      //companyPhone: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: [null, Validators.required],
       personalEmail:  ['', [Validators.required, Validators.email]],

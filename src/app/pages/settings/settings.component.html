@@ -5,9 +5,12 @@
         </div>
         <div class="col-md-4">
             <div class="d-flex flex-column">
-                <div class="bg-white p-3 text-center mb-3">
+                <div class="bg-white p-3 text-center mb-3 position-relative">
                     <h4 class="text-uppercase text-muted">User Photo</h4>
                     <img src="assets/images/profile-pic.png" alt="" class="img-fluid w-50 mb-4">
+                    <div class="camera-icon">
+                        <img src="assets/images/camera.png" alt="camera">
+                    </div>
                 </div>
                 <div class="bg-white p-3 text-center">
                     <h4 class="text-uppercase text-muted">Company Photo</h4>
@@ -15,11 +18,102 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-7 bg-white">
-            <mat-tab-group>
-                <mat-tab label="Profile"> Profile </mat-tab>
+        <div class="col-md-7 bg-white p-3">
+            <mat-tab-group mat-stretch-tabs>
+                <mat-tab label="Profile"> 
+                    <form [formGroup]="profileForm" class="m-0 p-0" style="width:97%">
+                        <div class="form-group mt-3">
+                            <label>Address 1</label>
+                            <input type="text" matInput class="form-control"
+                                formControlName="addressLine1"
+                                placeholder="ADDRESS LINE 1">
+                        </div>
+                        <div class="form-group">
+                            <label>Address 2</label>
+                            <input type="text" class="form-control"
+                                formControlName="addressLine2"
+                                placeholder="ADDRESS LINE 2">
+                        </div>
+                        <div class="form-group row">
+                            <div class="col">
+                                <label>City</label>
+                                <input type="text" class="form-control" id="city" placeholder="CITY"
+                                 formControlName="city">
+                            </div>
+                            <div class="col">
+                                <label>Country</label>
+                                <ng-select [items]="countries" 
+                                    bindLabel="countryName" placeholder="COUNTRY" 
+                                    formControlName="countryId"
+                                    (change)="onCountrySelect($event)"
+                                    bindValue="countryId">
+                                </ng-select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col">
+                                <label>State</label>
+                                <ng-select [items]="states" bindLabel="stateName" 
+                                    formControlName="stateId" 
+                                    placeholder="STATE" 
+                                    bindValue="stateId">
+                                </ng-select>
+                            </div>
+                            <div class="col">
+                                <label>Zipcode</label>
+                                <input type="text" class="form-control" formControlName="zipCode" id="zipcode" placeholder="ZIPCODE">
+                            </div>
+                        </div>
+                        <div class="form-group d-flex flex-column flex-md-row">
+                            <div class="col me-md-2">
+                                <label for="">Comapany Email</label>
+                                <input type="text" class="form-control mb-3 mb-md-0 mb-lg-2 me-md-2" id="city" placeholder="Company Email"
+                                 formControlName="companyEmail">
+                            </div>
+                            <div class="col ms-md-2">
+                                <label for="">Comapany Phone</label>
+                                <input type="tel" class="form-control" id="companyPhone" placeholder="Company Phone"
+                                 formControlName="companyPhone">
+                            </div>
+                        </div>
+                        <div class="form-group d-flex flex-column flex-md-row">
+                            <div class="col me-md-2">
+                                <label for="">Personal Email</label>
+                                <input type="text" class="form-control mb-3 mb-md-0 mb-lg-2 me-md-2" id="personalEmail" placeholder="User Email"
+                                 formControlName="personalEmail">
+                            </div>
+                            <div class="col ms-md-2">
+                                <label for="">Personal Phone</label>
+                                <input matInput type="tel" class="form-control" id="personalPhone" placeholder="User Phone"
+                                 formControlName="personalPhone">
+                            </div>
+                        </div>
+                        <div class="form-group d-flex">
+                            <div class="col-4">
+                                <input matInput type="text" class="form-control" id="password" placeholder="password" style="border:none">
+                            </div>
+                            <div class="flex-grow-1">
+                                <button class="btn btn-password">Change Password</button>
+                            </div>
+                        </div>
+                        <!-- <div class="d-flex mt-4">
+                            <button mat-button class="btn btn-default btn-back">Back</button>
+                            <button mat-button (click)="submit()" class="btn btn-dark flex-grow-1" [disabled]="!profileForm.valid">SUBMIT</button>
+                        </div> -->
+                        <div *ngIf="alertMsg.message" class="alert alert-danger fade show d-flex justify-content-between align-items-center mt-2 p-2" role="alert">
+                            <span>{{alertMsg.message}}</span>
+                            <button type="button" class="btn btn-default close" (click)="close()" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </form>
+                </mat-tab>
                 <mat-tab label="Social Media"> Social Media </mat-tab>
               </mat-tab-group>
+        </div>
+        <div class="col-md-12 text-center mt-3">
+            <button class="btn btn-secondary me-3">Reset</button>
+            <button class="btn btn-dark btn-save">Save Changes</button>
         </div>
     </div>
 </div>

@@ -242,5 +242,22 @@ agm-map{
     }
  }
 
+ @media screen and ( max-height: 699px ) {
+    #footer{
+        width: 100%;
+        padding:.5rem 5rem;
+        position: static;
+        margin-top:20px;
+    }
+}
+
+@media screen and ( min-height: 700px ) {
+    #footer{
+        width: 100%;
+        padding:.5rem 5rem;
+        position: fixed;
+        bottom:0
+    }
+}
 
 
