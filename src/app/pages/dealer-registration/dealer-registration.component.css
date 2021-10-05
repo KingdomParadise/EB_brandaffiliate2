@@ -116,7 +116,7 @@ input::placeholder {
     border-color: red !important;
 }
 agm-map{
-    height: 150px
+    height: 120px
 }
 ::ng-deep .mat-step-icon{
     border-radius: 0 !important;

@@ -179,6 +179,7 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
         this.states = data.response.stateList;
       })
     }
+    console.log(this.regForm3);
   }
   close() {
     this.alertMsg.message = ''

@@ -7,10 +7,13 @@ import { Component, OnInit,Output, EventEmitter, Input } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
   date1 = new Date();
+  userPhotoUrl: any = '';
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
   @Input() isPartialClose: boolean;
   //isExpanded = false;
-  constructor() { }
+  constructor() {
+    this.userPhotoUrl = localStorage.getItem('userPhotoUrl');
+  }
 
   ngOnInit(): void {
   }

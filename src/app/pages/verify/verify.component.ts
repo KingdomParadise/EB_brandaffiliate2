@@ -50,6 +50,13 @@ export class VerifyComponent implements OnInit {
     }
     //this.router.navigateByUrl('/review');
   }
+  EnterSubmit(eve:any){
+   
+    if(eve.keyCode === 13){
+      eve.preventDefault();
+      this.onSubmit();
+    }
+  }
   close() {
     this.alertMsg.message = ''
   }

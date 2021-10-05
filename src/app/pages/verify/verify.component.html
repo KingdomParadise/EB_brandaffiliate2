@@ -42,7 +42,7 @@
                     <br class="d-none d-md-block"/> aliqua. Ut enim ad minim
                     veniam
                 </p>
-                <form [formGroup]="otpForm" class="mt-md-3">
+                <form [formGroup]="otpForm" class="mt-md-3" (keydown)="EnterSubmit($event)">
                     <div class="form-group mt-4 mt-md-5">
                         <input type="text" matInput class="form-control" id="exampleFormControlInput1"
                             formControlName="otpNumber"

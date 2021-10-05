@@ -5,7 +5,7 @@
     <!-- <img style="height: 70px; padding-left: 20px; padding-bottom: 10px;" src="/assets/logo.png"> -->
     <div>
         <div class="ps-3 text-light">
-            <img src="assets/images/profile-pic.png" alt="profile-pic" class="img-fluid" id="profile-pic">
+            <img [src]="userPhotoUrl ? userPhotoUrl :'assets/images/profile-pic.png'" alt="profile-pic" class="img-fluid" id="profile-pic">
             <h3 *ngIf="!isPartialClose" class="my-0" id="userName">Lorem Ipsum</h3>
             <p *ngIf="!isPartialClose" ><i>lorenipsum@gmail.com</i></p>
             <p *ngIf="!isPartialClose" id="date">{{date1 | date: 'medium'}}</p>
