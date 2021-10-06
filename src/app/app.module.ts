@@ -25,6 +25,8 @@ import { TokenInterceptor } from './services/tokenInterceptor';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { AgmCoreModule } from '@agm/core';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ChangePasswordModalComponent } from './pages/settings/change-password-modal/change-password-modal.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     DealerLoginComponent,
     DealerForgetPasswordComponent,
     SettingsComponent,
+    ChangePasswordModalComponent,
     //DashboardComponent
   ],
   imports: [
@@ -49,6 +52,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatStepperModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDialogModule,
     NgSelectModule,
     MatTabsModule,
     DefaultModule,

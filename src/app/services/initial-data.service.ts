@@ -76,6 +76,13 @@ export class InitialDataService {
       catchError(this.handleError)
     )
   }
+  updateDealerSettings(data: any){
+    return this.http.post<any>(this.apiUrl + '/dealer/updateDealerSettings', data)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
 
   handleError(error: HttpErrorResponse) {
     let errorMessage = 'Unknown error!';

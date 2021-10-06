@@ -185,8 +185,6 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
     this.alertMsg.message = ''
   }
   submit(){
-    console.log(this.regForm1.value);
-    console.log(this.regForm2.value);
     localStorage.setItem('personalPhone', this.regForm1.value.personalPhone);
     let formObj = {...this.regForm1.value, ...this.regForm3.value};
     formObj.mapLocations = [{lat: this.latitude,lng: this.longitude}];

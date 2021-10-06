@@ -63,17 +63,57 @@ label{
     color:white;
 }
 .btn-save{
-    padding:6px 5rem;
+    padding:6px 2rem;
 }
 .btn{
     text-transform: uppercase;
 }
 .camera-icon{
     position: absolute;
-    right:60px;
-    bottom:40px
+    right:-20px;
+    bottom:-10px;
 }
 .camera-icon img{
     width:50px;
     height: 50px;
+}
+.settingImage{
+    max-width:200px;
+    max-height: 200px;
+}
+.settingImage > img{
+    border: 1px solid #f3f3f3;
+}
+#socilaMediaTable tr{
+    margin-bottom: 2rem;
+}
+#socilaMediaTable td{
+    vertical-align: middle;
+    border-bottom: 0px;
+    padding:3rem 0.5rem;
+}
+#socilaMediaTable img{
+    width:70px;
+
+}
+#socilaMediaTable input{
+    width:100%;
+
+}
+/* .settingImage::after{
+    content: "";
+    width: 30px;
+    height: 30px;
+    background-image: url("/assets/images/camera.png");
+    background-color: red;
+    bottom: -20px;
+    right: 20px;
+    position: absolute;
+    display: inline-block;
+} */
+
+@media only screen and (min-device-width: 768px){
+    .btn-save{
+        padding:6px 5rem;
+    }
 }
