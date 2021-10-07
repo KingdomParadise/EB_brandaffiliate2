@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DefaultComponent } from './layouts/default/default.component';
+import { AffiliatesComponent } from './pages/affiliates/affiliates.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DealerCompleteProfileComponent } from './pages/dealer-complete-profile/dealer-complete-profile.component';
 import { DealerForgetPasswordComponent } from './pages/dealer-forget-password/dealer-forget-password.component';
@@ -27,6 +28,10 @@ const routes: Routes = [
       {
         path: 'settings',
         component: SettingsComponent,
+      },
+      {
+        path: 'affiliates',
+        component: AffiliatesComponent,
       }
     ]
   },

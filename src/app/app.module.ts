@@ -6,9 +6,9 @@ import { VerifyComponent } from './pages/verify/verify.component';
 import { DealerRegistrationComponent } from './pages/dealer-registration/dealer-registration.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -20,13 +20,18 @@ import { DealerLoginComponent } from './pages/dealer-login/dealer-login.componen
 import { DealerForgetPasswordComponent } from './pages/dealer-forget-password/dealer-forget-password.component';
 //import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DefaultModule } from './layouts/default/default.module';
-import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertModule, NgbDropdown, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { TokenInterceptor } from './services/tokenInterceptor';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { AgmCoreModule } from '@agm/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ChangePasswordModalComponent } from './pages/settings/change-password-modal/change-password-modal.component';
+import { AffiliatesComponent } from './pages/affiliates/affiliates.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @NgModule({
   declarations: [
@@ -40,6 +45,7 @@ import { ChangePasswordModalComponent } from './pages/settings/change-password-m
     DealerForgetPasswordComponent,
     SettingsComponent,
     ChangePasswordModalComponent,
+    AffiliatesComponent,
     //DashboardComponent
   ],
   imports: [
@@ -56,12 +62,16 @@ import { ChangePasswordModalComponent } from './pages/settings/change-password-m
     NgSelectModule,
     MatTabsModule,
     DefaultModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatIconModule,
     NgbAlertModule,
+    NgbDropdownModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAhWahf8oOXf9UyFu8W_iCE8HChcbgOVbQ',
       libraries: ['places']
     })
-    
+
   ],
   providers: [
     {

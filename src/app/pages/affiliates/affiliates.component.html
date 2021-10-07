@@ -1,0 +1,117 @@
+<div class="page-container">
+    <div class="row">
+        <div class="col-md-12 p-0">
+            <h1 class="page-heading">Affiliates</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-4 p-0">
+                    <!-- <label>Sort By:</label> -->
+                    <div ngbDropdown>
+                        <button class="btn btn-primary" id="gfg" ngbDropdownToggle>Sort By:</button>
+                        <div ngbDropdownMenu="gfg">
+                            
+                            <button ngbDropdownItem>Angular10</button>
+                            <button ngbDropdownItem>ng bootstrap</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 d-flex justify-content-end align-items-center">
+                    <div class="table-icon" style="border-bottom: 1px solid gray;">
+                        <mat-icon>search</mat-icon>
+                        <input type="text">
+                    </div>
+                   
+                    <div class="table-icon">
+                        <mat-icon>refresh</mat-icon>
+                    </div>
+                    <div class="table-icon">
+                        <mat-icon>add</mat-icon>
+                    </div>
+                    <div class="table-icon">
+                        <mat-icon>delete</mat-icon>
+                    </div>
+                    <div class="table-icon">
+                        <mat-icon>email</mat-icon>
+                    </div>
+                    <div class="table-icon">
+                        <mat-icon>download</mat-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 p-0">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mt-3">
+
+                <!-- Checkbox Column -->
+                <ng-container matColumnDef="select">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <mat-checkbox (change)="$event ? masterToggle() : null"
+                            [checked]="selection.hasValue() && isAllSelected()"
+                            [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                        </mat-checkbox>
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        <mat-checkbox (click)="$event.stopPropagation()"
+                            (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+                            [aria-label]="checkboxLabel(row)">
+                        </mat-checkbox>
+                    </td>
+                </ng-container>
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef> Id </th>
+                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                </ng-container>
+
+                <!-- Status Column -->
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef> Status </th>
+                    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+
+                <!-- Email Column -->
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef> Email </th>
+                    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                </ng-container>
+
+                <!-- Phone Column -->
+                <ng-container matColumnDef="phone">
+                    <th mat-header-cell *matHeaderCellDef> Phone </th>
+                    <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="dateAdded">
+                    <th mat-header-cell *matHeaderCellDef> Date Added </th>
+                    <td mat-cell *matCellDef="let element"> {{element.dateAdded}} </td>
+                </ng-container>
+
+                <!-- Action -->
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef>  </th>
+                    <td mat-cell *matCellDef="let element"> 
+                        <mat-icon>settings</mat-icon>    
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
+                 [ngClass]="{ 'selected': selection.isSelected(row)}"
+                    (click)="selection.toggle(row)">
+                </tr>
+            </table>
+
+        </div>
+    </div>
+</div>
