@@ -25,8 +25,8 @@ export class SettingsComponent implements OnInit {
   instaLink:string;
   selectedCompanyLogo: File;
   selectedUserImg: File;
-  selectedCompanyLogoPath:any;
-  selectedUserImgPath:any;
+  selectedCompanyLogoPath:any = 'assets/images/profile-pic.png';
+  selectedUserImgPath:any = 'assets/images/profile-pic.png';
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -100,9 +100,15 @@ export class SettingsComponent implements OnInit {
     this.alertMsg.message = ''
   }
   openChangePasswordDialog(){
+    let size = ['375px','375'];
+    if(window.innerWidth > 786){
+      size = ['475px','400px'];
+    }else{
+      size = ['350px','400px'];
+    }
     const dialogRef = this.dialog.open(ChangePasswordModalComponent, {
-      maxWidth: '450px',
-      maxHeight: '400px',
+      maxWidth: size[0],
+      maxHeight: size[1],
       height: '100%',
       width: '100%',
       data: "h",

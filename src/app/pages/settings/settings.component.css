@@ -1,5 +1,5 @@
 .page-container{
-    padding:1rem 3rem;
+    padding:1.5rem;
 }
 .page-heading{
     font-weight: 500;
@@ -63,7 +63,7 @@ label{
     color:white;
 }
 .btn-save{
-    padding:6px 2rem;
+    padding:6px 3rem;
 }
 .btn{
     text-transform: uppercase;
@@ -78,8 +78,13 @@ label{
     height: 50px;
 }
 .settingImage{
+    min-width: 120px;
+    min-height: 120px;
     max-width:200px;
     max-height: 200px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .settingImage > img{
     border: 1px solid #f3f3f3;
@@ -115,5 +120,27 @@ label{
 @media only screen and (min-device-width: 768px){
     .btn-save{
         padding:6px 5rem;
+    }
+    .page-container{
+        padding:1rem 3rem;
+    }
+    .settingImage{
+        min-width: 180px;
+        min-height: 180px;
+    }
+}
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+    
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+    
+}
+/* XXX-Large devices (larger desktops, 1800px and up) */
+@media (min-width: 1800px) {
+    .page-container{
+        padding:3rem 6rem;
     }
 }

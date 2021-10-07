@@ -1,15 +1,16 @@
 <div class="page-container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 p-0">
             <h1 class="page-heading">Settings</h1>
         </div>
-        <div class="col-md-4">
-            <div class="d-flex flex-column">
-                <div class="bg-white px-3 py-5 text-center mb-3">
+        <div class="col-md-4 p-0 pe-md-3 pe-lg-3">
+            <div class="d-flex flex-md-column">
+                <div class="bg-white flex-grow-1 px-4 py-2 py-md-5 text-center mb-3 me-2 mx-md-3">
                     <h4 class="text-uppercase text-muted">User Photo</h4>
-                    <div class="position-relative m-auto settingImage mb-3">
-                        <img [src]="selectedUserImgPath ? selectedUserImgPath :'assets/images/profile-pic.png'" alt=""
-                            class="img-fluid">
+                    <div class="position-relative m-auto settingImage mb-3"
+                        [ngStyle]="{'background-image': 'url(' + selectedUserImgPath + ')'}">
+                        <!-- <img [src]="selectedUserImgPath ? selectedUserImgPath :'assets/images/profile-pic.png'" alt=""
+                            class="img-fluid"> -->
                         <input #userLogo type="file" id="companyLogoUpload" (change)="onFileChanged($event,'user')"
                             style="display:none" accept="image/*" />
                         <div class="camera-icon">
@@ -17,11 +18,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-white px-3 py-5 text-center mb-3">
+                <div class="bg-white flex-grow-1 px-4 py-2 py-md-5 text-center mb-3 mx-md-3">
                     <h4 class="text-uppercase text-muted">Company Photo</h4>
-                    <div class="position-relative m-auto settingImage mb-3">
-                        <img [src]="selectedCompanyLogoPath ? selectedCompanyLogoPath :'assets/images/profile-pic.png'"
-                            alt="" class="img-fluid">
+                    <div class="position-relative m-auto settingImage mb-3"
+                        [ngStyle]="{'background-image': 'url(' + selectedCompanyLogoPath + ')'}">>
+                        <!-- <img [src]="selectedCompanyLogoPath ? selectedCompanyLogoPath :'assets/images/profile-pic.png'"
+                            alt="" class="img-fluid"> -->
                         <input #companyLogo type="file" id="companyLogoUpload" style="display:none" accept="image/*"
                             (change)="onFileChanged($event,'company')">
                         <div class="camera-icon">
@@ -96,7 +98,7 @@
                                     placeholder="User Phone" formControlName="personalPhone">
                             </div>
                         </div>
-                        <div class="form-group d-flex">
+                        <div class="form-group d-flex my-5">
                             <div class="col-4">
                                 <input matInput type="text" class="form-control" [value]="userData.password"
                                     id="password" placeholder="password" readonly
