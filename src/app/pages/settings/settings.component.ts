@@ -148,14 +148,17 @@ export class SettingsComponent implements OnInit {
       formData.append('userPhoto', this.selectedUserImg);
       formData.append('companyLogo', this.selectedCompanyLogo);
       this.dataService.updateDealerSettings(formData).subscribe( res =>{
+        console.log(res);
         if (res.responseCode == -1) {
           this.alertMsg.type = 'danger';
           this.alertMsg.message = res.errorMsg
           //this.router.navigateByUrl('/review', { state: { msg: res.successMsg } });
-        }else if(res.responseCode == 0){
+        } else if (res.responseCode == 0) {
           this.alertMsg.type = 'success';
-          this.alertMsg.message = res.successMsg
-        }else{
+          this.profileForm.patchValue(res.response);
+          localStorage.setItem('userData', JSON.stringify(res.response));
+          this.alertMsg.message = res.successMsg;
+        } else {
           this.alertMsg.type = 'danger';
           this.alertMsg.message = "Server error"
         }
