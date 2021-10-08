@@ -10,34 +10,36 @@
                 <div class="col-md-4 p-0">
                     <!-- <label>Sort By:</label> -->
                     <div ngbDropdown>
-                        <button class="btn btn-primary" id="gfg" ngbDropdownToggle>Sort By:</button>
+                        <button class="btn btn-sort" id="gfg" ngbDropdownToggle>Sort By:</button>
                         <div ngbDropdownMenu="gfg">
                             
-                            <button ngbDropdownItem>Angular10</button>
-                            <button ngbDropdownItem>ng bootstrap</button>
+                            <button ngbDropdownItem>Alphabatical</button>
+                            <button ngbDropdownItem>Date Added</button>
+                            <button ngbDropdownItem>Verified</button>
+                            <button ngbDropdownItem>Unverified</button>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-8 d-flex justify-content-end align-items-center">
                     <div class="table-icon" style="border-bottom: 1px solid gray;">
                         <mat-icon>search</mat-icon>
-                        <input type="text">
+                        <input type="text" (keyup)="applyFilter($event)">
                     </div>
                    
                     <div class="table-icon">
                         <mat-icon>refresh</mat-icon>
                     </div>
-                    <div class="table-icon">
+                    <div class="table-icon" (click)="openAddDialog()">
                         <mat-icon>add</mat-icon>
                     </div>
                     <div class="table-icon">
-                        <mat-icon>delete</mat-icon>
+                        <mat-icon>delete_outline</mat-icon>
                     </div>
                     <div class="table-icon">
-                        <mat-icon>email</mat-icon>
+                        <mat-icon>mail_outline</mat-icon>
                     </div>
                     <div class="table-icon">
-                        <mat-icon>download</mat-icon>
+                        <mat-icon>file_download</mat-icon>
                     </div>
                 </div>
             </div>
@@ -49,12 +51,14 @@
                 <ng-container matColumnDef="select">
                     <th mat-header-cell *matHeaderCellDef>
                         <mat-checkbox (change)="$event ? masterToggle() : null"
+                            color='white'
                             [checked]="selection.hasValue() && isAllSelected()"
                             [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
                         </mat-checkbox>
                     </th>
                     <td mat-cell *matCellDef="let row">
                         <mat-checkbox (click)="$event.stopPropagation()"
+                            color="white"
                             (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
                             [aria-label]="checkboxLabel(row)">
                         </mat-checkbox>
@@ -62,53 +66,73 @@
                 </ng-container>
 
                 <!-- Position Column -->
-                <ng-container matColumnDef="id">
+                <ng-container matColumnDef="customerId">
                     <th mat-header-cell *matHeaderCellDef> Id </th>
-                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.customerId}} </td>
                 </ng-container>
 
                 <!-- Status Column -->
-                <ng-container matColumnDef="status">
+                <ng-container matColumnDef="verified">
                     <th mat-header-cell *matHeaderCellDef> Status </th>
-                    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.verified}} </td>
                 </ng-container>
 
                 <!-- Name Column -->
-                <ng-container matColumnDef="name">
+                <ng-container matColumnDef="firstName">
                     <th mat-header-cell *matHeaderCellDef> Name </th>
-                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
                 </ng-container>
 
                 <!-- Email Column -->
-                <ng-container matColumnDef="email">
+                <ng-container matColumnDef="customerEmailId">
                     <th mat-header-cell *matHeaderCellDef> Email </th>
-                    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.customerEmailId}} </td>
                 </ng-container>
 
                 <!-- Phone Column -->
-                <ng-container matColumnDef="phone">
+                <ng-container matColumnDef="customerPhoneNumber">
                     <th mat-header-cell *matHeaderCellDef> Phone </th>
-                    <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.customerPhoneNumber}} </td>
                 </ng-container>
 
                 <!-- Symbol Column -->
-                <ng-container matColumnDef="dateAdded">
+                <!-- <ng-container matColumnDef="dateAdded">
                     <th mat-header-cell *matHeaderCellDef> Date Added </th>
                     <td mat-cell *matCellDef="let element"> {{element.dateAdded}} </td>
-                </ng-container>
+                </ng-container> -->
 
                 <!-- Action -->
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef>  </th>
                     <td mat-cell *matCellDef="let element"> 
-                        <mat-icon>settings</mat-icon>    
+                        <button mat-icon-button 
+                            [ngStyle]="{ 'color': selection.isSelected(element)?'white':'#2c2c2c'}"
+                            class="btn btn-default btn-gear" [matMenuTriggerFor]="adminActions">
+                            <mat-icon>settings</mat-icon>
+                        </button>
+    
+                        <mat-menu #adminActions="matMenu">
+                            <button mat-menu-item>
+                                <mat-icon>edit</mat-icon>
+                                <span>Edit Details</span>
+                            </button>
+                            <button mat-menu-item (click)="openSendMsgDialog()">
+                                <mat-icon>mail_outline</mat-icon>
+                                <span>Send Message</span>
+                            </button>
+                            <button mat-menu-item>
+                                <mat-icon>delete</mat-icon>
+                                <span>Delete</span>
+                            </button>
+                        </mat-menu>
+                        <!-- <mat-icon>settings</mat-icon>     -->
                     </td>
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
                  [ngClass]="{ 'selected': selection.isSelected(row)}"
-                    (click)="selection.toggle(row)">
+                    >
                 </tr>
             </table>
 

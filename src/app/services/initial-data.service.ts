@@ -83,7 +83,38 @@ export class InitialDataService {
       catchError(this.handleError)
     )
   }
+  // ---------------affiliates code starts-------------- //
+  getAllAffiliate(data:any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + '/dealer/getAllCustomer/page/0/size/100', data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+  addAffiliate(data: any){
+    return this.http.post<any>(this.apiUrl + '/dealer/addCustomer', data)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+  updateAffiliate(data: any){
+    return this.http.post<any>(this.apiUrl + '/dealer/updateCustomer', data)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+  deleteAffiliate(data: any){
+    return this.http.post<any>(this.apiUrl + '/dealer/deleteCustomer', data)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+  
 
+  // ---------------affiliates code ends-------------- //
   handleError(error: HttpErrorResponse) {
     let errorMessage = 'Unknown error!';
     if (error.error instanceof ErrorEvent) {

@@ -31,7 +31,9 @@ import { AffiliatesComponent } from './pages/affiliates/affiliates.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MatMenuModule } from '@angular/material/menu';
+import { SendMessageModalComponent } from './pages/affiliates/send-message-modal/send-message-modal.component';
+import { AddAffiliatesModalComponent } from './pages/affiliates/add-affiliates-modal/add-affiliates-modal.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { MatIconModule } from '@angular/material/icon';
     SettingsComponent,
     ChangePasswordModalComponent,
     AffiliatesComponent,
+    SendMessageModalComponent,
+    AddAffiliatesModalComponent,
     //DashboardComponent
   ],
   imports: [
@@ -65,6 +69,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatTableModule,
     MatCheckboxModule,
     MatIconModule,
+    MatMenuModule,
     NgbAlertModule,
     NgbDropdownModule,
     AgmCoreModule.forRoot({

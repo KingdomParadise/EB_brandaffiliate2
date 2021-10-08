@@ -17,6 +17,7 @@ input{
     color: black;
     font-size: 12px;
     background: transparent;
+    padding:4px;
 }
 input:focus{
     background-color: transparent;
@@ -81,8 +82,24 @@ table {
     background-color: #a63da1;
     color: white;
 }
+.btn-sort{
+    background-color: #a63da1;
+    color:white;
+}
 .selected td{
     color: white;
+    border:none
+}
+.btn-gear:focus{
+    outline: none;
+    box-shadow: none;
+}
+button.mat-menu-item:hover{
+    background-color: #a63da1;
+    color:white;
+}
+button.mat-menu-item:hover .mat-icon{
+    color:white;
 }
 ::ng-deep .mat-checkbox-background {
     background-color: #dbdbdb;

@@ -8,12 +8,14 @@ import { Component, OnInit,Output, EventEmitter, Input } from '@angular/core';
 export class SidebarComponent implements OnInit {
   date1 = new Date();
   userPhotoUrl: any = '';
+  userData:any;
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
   @Input() isPartialClose: boolean;
   //isExpanded = false;
   constructor() {
-    let userData = JSON.parse(localStorage.getItem('userData') || '{}');
-    this.userPhotoUrl = userData.userPhotoUrl;
+    this.userData = JSON.parse(localStorage.getItem('userData') || '{}');
+    this.userPhotoUrl = this.userData.userPhotoUrl;
+    console.log(this.userData);
   }
 
   ngOnInit(): void {
