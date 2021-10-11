@@ -10,6 +10,9 @@ import { InitialDataService } from 'src/app/services/initial-data.service';
 })
 export class SendMessageModalComponent implements OnInit {
   messageForm: FormGroup;
+  customers = [];
+  customerNames:any;
+  customerIds:any;
   alertMsg: any = {
     type: '',
     message: ''
@@ -22,6 +25,9 @@ export class SendMessageModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
+    this.customers = this.data;
+    this.customerNames = this.customers.map(customer => {return customer['firstName']});
+    this.customerIds = this.customers.map(customer => {return customer['customerId']});
     this.messageForm = this._formBuilder.group({
       msg: ['', Validators.required],
     });
@@ -31,7 +37,23 @@ export class SendMessageModalComponent implements OnInit {
   }
   submit(type:string) {
     if (this.messageForm.valid) {
-      this.dataService.updateDealerPassword(this.messageForm.value).subscribe(res => {
+      let payload = {
+        customerIdList: this.customerIds,
+        sendSms:0,
+        sendEmail:0,
+        msg: this.messageForm.value.msg
+      }
+      if(type == 'sms'){
+        payload.sendSms = 1;
+        payload.sendEmail = 0;
+      }else if(type == 'email'){
+        payload.sendSms = 0;
+        payload.sendEmail = 1;
+      }else if(type == 'both'){
+        payload.sendSms = 1;
+        payload.sendEmail = 1;
+      }
+      this.dataService.sendCustomerMessage(payload).subscribe(res => {
         if (res.responseCode == 0) {
           this.alertMsg.type = 'succsess';
           this.alertMsg.message = res.successMsg

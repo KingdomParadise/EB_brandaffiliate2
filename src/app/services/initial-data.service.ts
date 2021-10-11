@@ -106,14 +106,28 @@ export class InitialDataService {
     )
   }
   deleteAffiliate(data: any){
+    console.log(data);
     return this.http.post<any>(this.apiUrl + '/dealer/deleteCustomer', data)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
   }
-  
+  deleteCustomerList(data:any){
+    return this.http.post<any>(this.apiUrl + '/dealer/deleteCustomerList', data)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
 
+  sendCustomerMessage(data:any){
+    return this.http.post<any>(this.apiUrl + '/dealer/sendCustomerMessage', data)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
   // ---------------affiliates code ends-------------- //
   handleError(error: HttpErrorResponse) {
     let errorMessage = 'Unknown error!';

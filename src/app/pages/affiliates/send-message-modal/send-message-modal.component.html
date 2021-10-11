@@ -2,14 +2,14 @@
     <h3>Send Message</h3>
     <form [formGroup]="messageForm" class="m-0 p-0" style="width:97%">
         <div class="form-group mt-md-3">
-            <label>Affiliate name</label>
+            <span class="me-1">To:</span> <label>{{customerNames}}</label>
         </div>
         <div class="form-group mt-3">
-            <label class="text-muted text-uppercase" for="exampleFormControlTextarea1">Message</label>
+            <label class="text-muted text-uppercase mb-1" for="exampleFormControlTextarea1">Message</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" formControlName="msg"></textarea>
           </div>
         
-        <div class="d-flex justify-content-between mt-3">
+        <div class="d-flex justify-content-between mt-4">
             <button mat-button class="btn mb-5 mb-md-0 btn-color" (click)="submit('sms')" [disabled]="!messageForm.valid">Send Sms</button>
             <button mat-button class="btn mb-5 mb-md-0 btn-color" (click)="submit('email')" [disabled]="!messageForm.valid">Send Email</button>
             <button mat-button class="btn mb-5 mb-md-0 btn-dark" (click)="submit('both')" [disabled]="!messageForm.valid">Email & SMS</button>

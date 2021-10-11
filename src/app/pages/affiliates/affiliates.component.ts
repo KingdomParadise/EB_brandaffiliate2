@@ -6,9 +6,14 @@ import { InitialDataService } from 'src/app/services/initial-data.service';
 import { AddAffiliatesModalComponent } from './add-affiliates-modal/add-affiliates-modal.component';
 import { SendMessageModalComponent } from './send-message-modal/send-message-modal.component';
 
+import * as FileSaver from 'file-saver';
+const EXCEL_EXTENSION = '.xlsx';
+const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+import * as XLSX from 'xlsx';
+import { MatSort } from '@angular/material/sort';
 export interface PeriodicElement {
-  customerId:number,
-  verified:string,
+  customerId: number,
+  verified: string,
   firstName: string;
   customerEmailId: string;
   customerPhoneNumber: string;
@@ -28,7 +33,11 @@ export class AffiliatesComponent implements OnInit {
   displayedColumns: string[] = ['select', 'customerId', 'verified', 'firstName', 'customerEmailId', 'customerPhoneNumber', 'action'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
-
+  alertMsg: any = {
+    type: '',
+    message: ''
+  };
+  filterText = '';
   constructor(
     public dialog: MatDialog,
     private dataService: InitialDataService,
@@ -36,11 +45,11 @@ export class AffiliatesComponent implements OnInit {
 
   ngOnInit(): void {
     let query = {
-      type:'all',
-      sort:'',
-      searchString:'',
+      type: 'all',
+      sort: '',
+      searchString: '',
     }
-    this.dataService.getAllAffiliate(query).subscribe( res =>{
+    this.dataService.getAllAffiliate(query).subscribe(res => {
       this.dataSource.data = res.response.customerList;
     });
   }
@@ -70,59 +79,187 @@ export class AffiliatesComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.customerId + 1}`;
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  applyFilter() {
+    this.dataSource.filter = this.filterText.trim().toLowerCase();
   }
 
-  openSendMsgDialog(){
-    let size = ['375px','375'];
-    if(window.innerWidth > 786){
-      size = ['475px','350px'];
-    }else{
-      size = ['350px','400px'];
+  openSendMsgDialog(customer: any, mode: string) {
+    let openDialog = true;
+    let customers: any = [];
+    if (mode == 'single') {
+      customers.push(customer);
+    } else {
+      if (this.selection.selected.length == 0) {
+        alert("Select atleast one value");
+        openDialog = false;
+      } else {
+        customers = this.selection.selected;
+      }
     }
-    const dialogRef = this.dialog.open(SendMessageModalComponent, {
-      maxWidth: size[0],
-      maxHeight: size[1],
-      height: '100%',
-      width: '100%',
-      data: "h",
-      disableClose: false
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
-      //this.animal = result;
-    });
+    let size = ['375px', '375'];
+    if (window.innerWidth > 786) {
+      size = ['475px', '400px'];
+    } else {
+      size = ['350px', '400px'];
+    }
+    if (openDialog) {
+      const dialogRef = this.dialog.open(SendMessageModalComponent, {
+        maxWidth: size[0],
+        maxHeight: size[1],
+        height: '100%',
+        width: '100%',
+        data: customers,
+        disableClose: false
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed', result);
+      });
+    }
   }
-  openAddDialog(){
-    let size = ['675px','475px'];
-    if(window.innerWidth > 786){
-      size = ['675px','420px'];
-    }else{
-      size = ['350px','400px'];
+  openAddDialog() {
+    let size = ['675px', '475px'];
+    if (window.innerWidth > 786) {
+      size = ['675px', '420px'];
+    } else {
+      size = ['350px', '400px'];
     }
     const dialogRef = this.dialog.open(AddAffiliatesModalComponent, {
       maxWidth: size[0],
       maxHeight: size[1],
       height: '100%',
       width: '100%',
-      data: "h",
+      data: { customer: {}, mode: 'add' },
       disableClose: false
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);
-      //this.animal = result;
       let query = {
-        type:'all',
-        sort:'',
-        searchString:'',
+        type: 'all',
+        sort: '',
+        searchString: '',
       }
-      this.dataService.getAllAffiliate(query).subscribe( res =>{
+      this.dataService.getAllAffiliate(query).subscribe(res => {
         this.dataSource.data = res.response.customerList;
       })
     });
+  }
+  editAffiliate(customer: any) {
+    let size = ['675px', '475px'];
+    if (window.innerWidth > 786) {
+      size = ['675px', '420px'];
+    } else {
+      size = ['350px', '400px'];
+    }
+    const dialogRef = this.dialog.open(AddAffiliatesModalComponent, {
+      maxWidth: size[0],
+      maxHeight: size[1],
+      height: '100%',
+      width: '100%',
+      data: { customer: customer, mode: 'edit' },
+      disableClose: false
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+      let query = {
+        type: 'all',
+        sort: '',
+        searchString: '',
+      }
+      this.dataService.getAllAffiliate(query).subscribe(res => {
+        this.dataSource.data = res.response.customerList;
+      });
+    });
+  }
+  deleteAffiliate(customerId: number, index: number) {
+    this.dataService.deleteAffiliate({ customerId: customerId }).subscribe(res => {
+      console.log(res.responseCode);
+      if (res.responseCode == 0) {
+        this.dataSource.data.splice(index, 1);
+        this.dataSource._updateChangeSubscription();
+      } else if (res.responseCode == -1) {
+        this.alertMsg.type = 'danger';
+        this.alertMsg.message = res.errorMsg
+      } else {
+        this.alertMsg.type = 'danger';
+        this.alertMsg.message = "Server error"
+      }
+    });
+  }
+  sortTable(prop: any) {
+    //this.dataSource = new MatTableDataSource<PeriodicElement>(dynamicSort(prop));
+  }
+
+  clearSearch() {
+    this.filterText = '';
+    this.applyFilter();
+  }
+  close() {
+    this.alertMsg.message = ''
+  }
+  deleteMultipleRecords() {
+    if (this.selection.selected.length == 0) {
+      alert("Select atleast one value");
+    } else {
+      let payload = {
+        customerIdList: this.selection.selected.map(customer => { return customer.customerId })
+      }
+      this.dataService.deleteCustomerList(payload).subscribe(res => {
+        if (res.responseCode == 0) {
+          this.alertMsg.type = 'success';
+          this.alertMsg.message = res.successMsg;
+          this.selection.selected.forEach(item => {
+            let index: number = this.dataSource.data.findIndex(d => d === item);
+            console.log(this.dataSource.data.findIndex(d => d === item));
+            this.dataSource.data.splice(index, 1)
+            //this.dataSource = new MatTableDataSource<Element>(this.data);
+          });
+          this.dataSource._updateChangeSubscription();
+          this.selection = new SelectionModel<PeriodicElement>(true, []);
+        } else if (res.responseCode == -1) {
+          this.alertMsg.type = 'danger';
+          this.alertMsg.message = res.errorMsg
+        } else {
+          this.alertMsg.type = 'danger';
+          this.alertMsg.message = "Server error"
+        }
+      });
+    }
+    console.log(this.selection.selected);
+  }
+
+  public downloadExcel(): void {
+    let ls = this.dataSource.data;
+    let excelFileName: string ="affiliates";
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(ls);
+    const workbook: XLSX.WorkBook = { Sheets: { 'Sheet1': worksheet }, SheetNames: ['Sheet1'] };
+    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    this.saveAsExcelFile(excelBuffer, excelFileName);
+  }
+
+  private saveAsExcelFile(buffer: any, fileName: string): void {
+    const data: Blob = new Blob([buffer], {
+      type: EXCEL_TYPE
+    });
+    FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+  }
+}
+
+
+function dynamicSort(property:any) {
+  var sortOrder = 1;
+  if(property[0] === "-") {
+      sortOrder = -1;
+      property = property.substr(1);
+  }
+  return  (a:string,b:string) => {
+      /* next line works with strings and numbers, 
+       * and you may want to customize it to your needs
+       */
+      var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+      return result * sortOrder;
   }
 }
