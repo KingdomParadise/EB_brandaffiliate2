@@ -35,6 +35,9 @@ export class SendMessageModalComponent implements OnInit {
   close() {
     this.alertMsg.message = ''
   }
+  closeModal(){
+    this.dialog.closeAll();
+  }
   submit(type:string) {
     if (this.messageForm.valid) {
       let payload = {

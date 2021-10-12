@@ -17,7 +17,7 @@ export interface PeriodicElement {
   firstName: string;
   customerEmailId: string;
   customerPhoneNumber: string;
-  //dateAdded: string;
+  createTs: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
@@ -30,7 +30,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class AffiliatesComponent implements OnInit {
 
-  displayedColumns: string[] = ['select', 'customerId', 'verified', 'firstName', 'customerEmailId', 'customerPhoneNumber', 'action'];
+  displayedColumns: string[] = ['select', 'customerId', 'verified', 'firstName', 'customerEmailId', 'customerPhoneNumber','createTs', 'action'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
   alertMsg: any = {
@@ -52,6 +52,9 @@ export class AffiliatesComponent implements OnInit {
     this.dataService.getAllAffiliate(query).subscribe(res => {
       this.dataSource.data = res.response.customerList;
     });
+    if(window.innerWidth < 786){
+      this.displayedColumns= ['select','firstName', 'customerEmailId', 'customerPhoneNumber','customerId', 'verified', 'createTs', 'action'];
+    }
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -190,7 +193,7 @@ export class AffiliatesComponent implements OnInit {
     });
   }
   sortTable(prop: any) {
-    //this.dataSource = new MatTableDataSource<PeriodicElement>(dynamicSort(prop));
+    this.dataSource.data = this.dataSource.data.sort(dynamicSort(prop));
   }
 
   clearSearch() {
@@ -255,10 +258,11 @@ function dynamicSort(property:any) {
       sortOrder = -1;
       property = property.substr(1);
   }
-  return  (a:string,b:string) => {
+  return (a:any, b:any) => {
       /* next line works with strings and numbers, 
        * and you may want to customize it to your needs
        */
+      // x = a[property]
       var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
       return result * sortOrder;
   }

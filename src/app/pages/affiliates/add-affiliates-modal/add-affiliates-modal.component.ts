@@ -37,6 +37,9 @@ export class AddAffiliatesModalComponent implements OnInit {
   close() {
     this.alertMsg.message = ''
   }
+  closeModal(){
+    this.dialog.closeAll();
+  }
   submit() {
     if (this.customerForm.valid) {
       if (this.data.mode == 'edit') {

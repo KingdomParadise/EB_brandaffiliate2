@@ -72,12 +72,21 @@ label{
 }
 table {
     width: 100%;
+    overflow-x: auto;
 }
 .table-icon{
     display: flex;
     margin:4px 8px;
     cursor: pointer;
 }
+th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
+    padding-left: 12px;
+}
+th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type {
+    padding-right: 6px;
+}
+
+
 .selected{
     background-color: #a63da1;
     color: white;
@@ -120,6 +129,12 @@ button.mat-menu-item:hover .mat-icon{
     }
     .page-container{
         padding:1rem 3rem;
+    }
+    th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
+        padding-left: 24px;
+    }
+    th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type {
+        padding-right: 24px;
     }
 }
 /* X-Large devices (large desktops, 1200px and up) */

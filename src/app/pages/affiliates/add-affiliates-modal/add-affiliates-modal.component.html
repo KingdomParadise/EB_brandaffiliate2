@@ -1,7 +1,10 @@
 <div class="px-2 py-2">
     <div class="row">
-        <div class="col-md-12 ps-4">
+        <div class="col-md-12 ps-4 d-flex justify-content-between">
             <h2 class="font-weight-bolder">Add Affiliate</h2>
+            <button class="btn btn-close" (click)="closeModal()">
+            </button>
+            
         </div>
     </div>
     
@@ -28,14 +31,14 @@
             </div>
         </div>
 
-        <div class="col-md-12 mt-5">
-            <div class="d-grid">
-                <button mat-button class="btn btn-dark mb-5 mb-md-0 pwdSaveBtn" (click)="submit()"
+        <div class="col-md-12 mt-5 text-center">
+            
+                <button mat-button class="btn mb-5 mb-md-0 addBtn" (click)="submit()"
                     [disabled]="!customerForm.valid">
-                    <span *ngIf="data.mode =='add'">Save</span>
+                    <span *ngIf="data.mode =='add'">Add</span>
                     <span *ngIf="data.mode =='edit'">Update</span>
                 </button>
-            </div>
+            
 
         </div>
         <div class="col-md-12">

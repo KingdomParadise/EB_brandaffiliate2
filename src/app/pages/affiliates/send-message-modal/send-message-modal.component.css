@@ -2,3 +2,47 @@
     background-color: #a63da1;
     color:white
 }
+.alert{
+    position: absolute;
+    width:395px;
+}
+input{
+    margin:0 auto;
+    border:none;
+    border-bottom: 1px solid gray;
+    outline: none;
+    border-radius: 0;
+    color: black;
+    text-align: center;
+    font-size: 12px;
+}
+
+input:focus{
+    background-color: transparent;
+    border:none;
+    box-shadow: none;
+    border-bottom: 1px solid gray;
+}
+input:focus::placeholder {
+    color: transparent;
+}
+input::placeholder {
+    color: #040404;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-align: center;
+    font-size: 12px;
+}
+.addBtn{
+    background-color: #a63da1;
+    color: white;
+    padding-right: 60px;
+    padding-left: 60px;
+    margin-top:20px;
+    box-shadow: none;
+}
+.btn-close{
+    background-color: transparent;
+    border:none;
+    box-shadow: none;
+}
