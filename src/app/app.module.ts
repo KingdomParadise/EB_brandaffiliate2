@@ -34,6 +34,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { SendMessageModalComponent } from './pages/affiliates/send-message-modal/send-message-modal.component';
 import { AddAffiliatesModalComponent } from './pages/affiliates/add-affiliates-modal/add-affiliates-modal.component';
+import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { AddAffiliatesModalComponent } from './pages/affiliates/add-affiliates-m
     AffiliatesComponent,
     SendMessageModalComponent,
     AddAffiliatesModalComponent,
+    ContactUsComponent,
     //DashboardComponent
   ],
   imports: [

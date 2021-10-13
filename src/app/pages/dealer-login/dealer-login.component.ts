@@ -14,6 +14,7 @@ export class DealerLoginComponent implements OnInit {
     type: '',
     message: ''
   };
+  hide = true;
   constructor(
     private router: Router,
     private _formBuilder: FormBuilder,
