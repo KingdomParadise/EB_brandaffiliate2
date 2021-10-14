@@ -42,3 +42,9 @@ input::placeholder {
     position: absolute;
     width:590px;
 }
+.ng-dirty.ng-invalid {
+    border-color: red;
+}
+.ng-touched.ng-invalid {
+    border-color: red !important;
+}

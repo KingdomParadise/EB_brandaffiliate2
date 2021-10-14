@@ -4,10 +4,10 @@
             <h2 class="font-weight-bolder">Add Affiliate</h2>
             <button class="btn btn-close" (click)="closeModal()">
             </button>
-            
+
         </div>
     </div>
-    
+
     <form [formGroup]="customerForm" class="row m-0 p-0" style="width:100%">
         <div class="col-md-12 mb-4">
             <div class="form-group">
@@ -26,30 +26,35 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <input type="tel" matInput class="form-control" formControlName="customerPhoneNumber"
-                    placeholder="Phone">
+                <input type="number" class="form-control"
+                    formControlName="customerPhoneNumber" placeholder="Phone">
+                <div *ngIf="f.customerPhoneNumber.touched && f.customerPhoneNumber.invalid" class="">
+                    <div *ngIf="f.customerPhoneNumber.errors?.required">Mobile Number is required.</div>
+                    <div *ngIf="f.customerPhoneNumber.errors?.pattern">Please, Enter 10 digit Mobile Number.</div>
+                </div>
             </div>
         </div>
 
         <div class="col-md-12 mt-5 text-center">
-            
-                <button mat-button class="btn mb-5 mb-md-0 addBtn" (click)="submit()"
-                    [disabled]="!customerForm.valid">
-                    <span *ngIf="data.mode =='add'">Add</span>
-                    <span *ngIf="data.mode =='edit'">Update</span>
-                </button>
-            
+
+            <button mat-button class="btn mb-5 mb-md-0 addBtn" (click)="submit()" [disabled]="!customerForm.valid">
+                <span *ngIf="data.mode =='add'">Add</span>
+                <span *ngIf="data.mode =='edit'">Update</span>
+            </button>
+
 
         </div>
         <div class="col-md-12">
-            <div *ngIf="alertMsg.message" class="alert fade show d-flex justify-content-between align-items-center mt-2 p-2"
+            <div *ngIf="alertMsg.message"
+                class="alert fade show d-flex justify-content-between align-items-center mt-2 p-2"
                 [ngClass]="(alertMsg.type == 'danger')?'alert-danger': 'alert-success'" role="alert">
                 <span>{{alertMsg.message}}</span>
-                <button type="button" class="btn btn-default close" (click)="close()" data-dismiss="alert" aria-label="Close">
+                <button type="button" class="btn btn-default close" (click)="close()" data-dismiss="alert"
+                    aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
         </div>
-        
+
     </form>
 </div>

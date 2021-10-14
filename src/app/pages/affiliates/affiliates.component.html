@@ -26,7 +26,7 @@
 
                             <button ngbDropdownItem class="btn btn-default"
                                 (click)="sortTable('firstName')">Alphabatical</button>
-                            <button ngbDropdownItem class="btn btn-default" (click)="sortTable('date_added')">Date
+                            <button ngbDropdownItem class="btn btn-default" (click)="sortTable('createTs')">Date
                                 Added</button>
                             <button ngbDropdownItem class="btn btn-default" (click)="sortTable('-verified')">
                                 Verified</button>
@@ -113,7 +113,7 @@
                 <!-- Symbol Column -->
                 <ng-container matColumnDef="createTs">
                     <th mat-header-cell *matHeaderCellDef> Date Added </th>
-                    <td mat-cell *matCellDef="let element"> {{element.createTs}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.createTs | date: 'short'}} </td>
                 </ng-container>
 
                 <!-- Action -->

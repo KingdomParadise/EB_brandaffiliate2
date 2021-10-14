@@ -28,17 +28,28 @@ export class AddAffiliatesModalComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       customerEmailId: ['', Validators.required],
-      customerPhoneNumber: ['', Validators.required],
+      customerPhoneNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]]  
     });
     if (this.data.mode == 'edit') {
       this.customerForm.patchValue(this.data.customer);
     }
   }
+  get f(){  
+    return this.customerForm.controls;  
+  }  
   close() {
     this.alertMsg.message = ''
   }
   closeModal(){
     this.dialog.closeAll();
+  }
+  validatePhone(eve:any){
+    console.log(eve.target.value.length);
+    if(eve.target.value.length > 10){
+      return false;
+    }else{
+      return true;
+    }
   }
   submit() {
     if (this.customerForm.valid) {
@@ -47,7 +58,8 @@ export class AddAffiliatesModalComponent implements OnInit {
         this.dataService.updateAffiliate(this.customerForm.value).subscribe(res => {
           if (res.responseCode == 0) {
             this.alertMsg.type = 'succsess';
-            this.alertMsg.message = res.successMsg
+            this.alertMsg.message = res.successMsg;
+            this.dialogRef.close();
           } else if (res.responseCode == -1) {
             this.alertMsg.type = 'danger';
             this.alertMsg.message = res.errorMsg

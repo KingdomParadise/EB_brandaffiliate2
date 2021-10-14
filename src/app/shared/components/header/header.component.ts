@@ -12,11 +12,12 @@ import { ContactUsComponent } from 'src/app/pages/contact-us/contact-us.componen
 export class HeaderComponent implements OnInit {
   isExpanded: boolean = true;
   userPhotoUrl: any;
+  userData:any;
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
   constructor(public dialog: MatDialog,) {
-    
-    let userData = JSON.parse(localStorage.getItem('userData') || '{}');
-    this.userPhotoUrl = userData.userPhotoUrl;
+    this.userData = JSON.parse(localStorage.getItem('userData') || '{}');
+    this.userPhotoUrl = this.userData.userPhotoUrl;
+    console.log(this.userData);
   }
   selected: any = '0';
   ngOnInit(): void {
@@ -29,11 +30,12 @@ export class HeaderComponent implements OnInit {
   openContactUs(){
     const dialogRef = this.dialog.open(ContactUsComponent, {
       maxWidth: '600px',
-      maxHeight: '400px',
+      maxHeight: '430px',
       height: '100%',
       width: '100%',
       data: {},
-      disableClose: false
+      disableClose: false,
+      panelClass:'contact-dialog'
     });
 
     dialogRef.afterClosed().subscribe(result => {

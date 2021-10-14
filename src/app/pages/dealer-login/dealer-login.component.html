@@ -40,11 +40,11 @@
                                 formControlName="emailId"
                                 placeholder="Email">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group position-relative">
                             <input  [type]="hide ? 'password' : 'text'" matInput class="form-control" id="exampleFormControlInput1"
                                 formControlName="password"
                                 placeholder="Password">
-                                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                <mat-icon style="position: absolute;right: 4px;top:2px" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </div>
     
                         <div class="d-grid mt-5">

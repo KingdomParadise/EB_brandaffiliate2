@@ -59,7 +59,11 @@ export class SendMessageModalComponent implements OnInit {
       this.dataService.sendCustomerMessage(payload).subscribe(res => {
         if (res.responseCode == 0) {
           this.alertMsg.type = 'succsess';
-          this.alertMsg.message = res.successMsg
+          this.alertMsg.message = res.successMsg;
+          setTimeout(()=>{
+            this.dialogRef.close();
+          },100)
+          
         } else if (res.responseCode == -1) {
           this.alertMsg.type = 'danger';
           this.alertMsg.message = res.errorMsg

@@ -49,8 +49,12 @@
                         <button class="btn btn-link headerLink my-auto" (click)="openContactUs()">Contact Us</button>
                         <button class="btn btn-link headerLink">Support</button>
                         <div class="my-auto">
-                            <img src="assets/images/fb-dark.png" alt="fb" class="headerIcon">
-                            <img src="assets/images/linkedIn-dark.png" alt="linkedIn" class="headerIcon">
+                            <a [href]="userData?.facebookLink" target="_blank">
+                                <img src="assets/images/fb-dark.png" alt="fb" class="headerIcon">
+                            </a>
+                            <a [href]="userData?.linkedinLink" target="_blank">
+                                <img src="assets/images/linkedIn-dark.png" alt="linkedIn" class="headerIcon">
+                            </a>
                         </div>
                         
                         <div id="headerProfileImg">

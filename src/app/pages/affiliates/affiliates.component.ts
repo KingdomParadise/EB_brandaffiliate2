@@ -102,7 +102,7 @@ export class AffiliatesComponent implements OnInit {
 
     let size = ['375px', '375'];
     if (window.innerWidth > 786) {
-      size = ['475px', '400px'];
+      size = ['475px', '430px'];
     } else {
       size = ['350px', '400px'];
     }
@@ -178,19 +178,24 @@ export class AffiliatesComponent implements OnInit {
     });
   }
   deleteAffiliate(customerId: number, index: number) {
-    this.dataService.deleteAffiliate({ customerId: customerId }).subscribe(res => {
-      console.log(res.responseCode);
-      if (res.responseCode == 0) {
-        this.dataSource.data.splice(index, 1);
-        this.dataSource._updateChangeSubscription();
-      } else if (res.responseCode == -1) {
-        this.alertMsg.type = 'danger';
-        this.alertMsg.message = res.errorMsg
-      } else {
-        this.alertMsg.type = 'danger';
-        this.alertMsg.message = "Server error"
-      }
-    });
+    if(confirm('Want to delete?')){
+      this.dataService.deleteAffiliate({ customerId: customerId }).subscribe(res => {
+        console.log(res.responseCode);
+        if (res.responseCode == 0) {
+          this.dataSource.data.splice(index, 1);
+          this.dataSource._updateChangeSubscription();
+        } else if (res.responseCode == -1) {
+          this.alertMsg.type = 'danger';
+          this.alertMsg.message = res.errorMsg
+        } else {
+          this.alertMsg.type = 'danger';
+          this.alertMsg.message = "Server error"
+        }
+      });
+    }else{
+
+    }
+    
   }
   sortTable(prop: any) {
     this.dataSource.data = this.dataSource.data.sort(dynamicSort(prop));
@@ -206,7 +211,7 @@ export class AffiliatesComponent implements OnInit {
   deleteMultipleRecords() {
     if (this.selection.selected.length == 0) {
       alert("Select atleast one value");
-    } else {
+    } else if(confirm('Want to delete?')){
       let payload = {
         customerIdList: this.selection.selected.map(customer => { return customer.customerId })
       }
@@ -253,6 +258,7 @@ export class AffiliatesComponent implements OnInit {
 
 
 function dynamicSort(property:any) {
+  console.log(property);
   var sortOrder = 1;
   if(property[0] === "-") {
       sortOrder = -1;
@@ -263,7 +269,12 @@ function dynamicSort(property:any) {
        * and you may want to customize it to your needs
        */
       // x = a[property]
-      var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+      if(property == 'createTs'){
+        var result = (new Date(a[property]) < new Date(b[property])) ? -1 : (new Date(a[property]) > new Date(b[property])) ? 1 : 0;
+      }else{
+        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+      }
+      
       return result * sortOrder;
   }
 }
