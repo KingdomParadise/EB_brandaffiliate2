@@ -236,7 +236,9 @@
                     [ngClass]="{ 'selected': selection.isSelected(row)}">
                 </tr>
             </table>
-
+            <mat-paginator [pageSizeOptions]="[10, 15, 20, 30]" [length]="pagination.length"
+                showFirstLastButtons (page)="pageChanged($event)">
+            </mat-paginator>
         </div>
     </div>
 </div>

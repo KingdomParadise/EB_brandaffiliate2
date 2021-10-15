@@ -1,5 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { InitialDataService } from 'src/app/services/initial-data.service';
@@ -11,6 +11,7 @@ const EXCEL_EXTENSION = '.xlsx';
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 import * as XLSX from 'xlsx';
 import { MatSort } from '@angular/material/sort';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 export interface PeriodicElement {
   customerId: number,
   verified: string,
@@ -38,6 +39,14 @@ export class AffiliatesComponent implements OnInit {
     message: ''
   };
   filterText = '';
+  pagination = {
+    pageSize:0,
+    length:10,
+  }
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+  pageEvent: PageEvent;
+  customers:any = [];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(
     public dialog: MatDialog,
     private dataService: InitialDataService,
@@ -49,9 +58,11 @@ export class AffiliatesComponent implements OnInit {
       sort: '',
       searchString: '',
     }
-    this.dataService.getAllAffiliate(query).subscribe(res => {
-      this.dataSource.data = res.response.customerList;
-    });
+    this.getNextData(query, this.pagination.pageSize, this.pagination.length);
+    // this.dataService.getAllAffiliate(query,0,2).subscribe(res => {
+    //   this.dataSource.data = res.response.customerList;
+    //   this.dataSource.paginator = this.paginator;
+    // });
     if(window.innerWidth < 786){
       this.displayedColumns= ['select','firstName', 'customerEmailId', 'customerPhoneNumber','customerId', 'verified', 'createTs', 'action'];
     }
@@ -121,6 +132,35 @@ export class AffiliatesComponent implements OnInit {
       });
     }
   }
+  getNextData(query:any, page:any, size:any){
+
+    this.dataService.getAllAffiliate(query,page,size).subscribe(res => {
+      // this.customers.length = this.pagination.length;
+      
+      // this.customers.push(...res.response.customerList);
+      // this.customers.length = res.response.totalItems;
+      this.pagination.length = res.response.totalItems;
+      this.dataSource = new MatTableDataSource<PeriodicElement>(res.response.customerList);
+      this.dataSource._updateChangeSubscription();
+
+      this.dataSource.paginator = this.paginator;
+    });
+  }
+  pageChanged(event:any){
+
+    let pageIndex = event.pageIndex;
+    let pageSize = event.pageSize;
+
+    let previousIndex = event.previousPageIndex;
+
+    let previousSize = pageSize * pageIndex;
+    let query = {
+      type: 'all',
+      sort: '',
+      searchString: '',
+    }
+    this.getNextData(query, pageIndex.toString(), 10);
+  }
   openAddDialog() {
     let size = ['675px', '475px'];
     if (window.innerWidth > 786) {
@@ -144,7 +184,7 @@ export class AffiliatesComponent implements OnInit {
         sort: '',
         searchString: '',
       }
-      this.dataService.getAllAffiliate(query).subscribe(res => {
+      this.dataService.getAllAffiliate(query, 0, 2).subscribe(res => {
         this.dataSource.data = res.response.customerList;
       })
     });
@@ -172,7 +212,7 @@ export class AffiliatesComponent implements OnInit {
         sort: '',
         searchString: '',
       }
-      this.dataService.getAllAffiliate(query).subscribe(res => {
+      this.dataService.getAllAffiliate(query,0,10).subscribe(res => {
         this.dataSource.data = res.response.customerList;
       });
     });

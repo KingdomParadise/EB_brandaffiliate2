@@ -63,70 +63,78 @@ export class InitialDataService {
 
   updateDealerPassword(data: any) {
     return this.http.post<any>(this.apiUrl + '/dealer/updateDealerPassword', data)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
-  }
-
-  updateDealerSocialInfo(data: any){
-    return this.http.post<any>(this.apiUrl + '/dealer/updateDealerSocialInfo', data)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
-  }
-  updateDealerSettings(data: any){
-    return this.http.post<any>(this.apiUrl + '/dealer/updateDealerSettings', data)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
-  }
-  // ---------------affiliates code starts-------------- //
-  getAllAffiliate(data:any): Observable<any> {
-    return this.http.post<any>(this.apiUrl + '/dealer/getAllCustomer/page/0/size/100', data)
       .pipe(
         retry(1),
         catchError(this.handleError)
       )
   }
-  addAffiliate(data: any){
+
+  updateDealerSocialInfo(data: any) {
+    return this.http.post<any>(this.apiUrl + '/dealer/updateDealerSocialInfo', data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+  updateDealerSettings(data: any) {
+    return this.http.post<any>(this.apiUrl + '/dealer/updateDealerSettings', data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+  // ---------------affiliates code starts-------------- //
+  getAllAffiliate(data: any, page:any ,size:any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + '/dealer/getAllCustomer/page/'+page+'/size/'+size, data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+  addAffiliate(data: any) {
     return this.http.post<any>(this.apiUrl + '/dealer/addCustomer', data)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
   }
-  updateAffiliate(data: any){
+  updateAffiliate(data: any) {
     return this.http.post<any>(this.apiUrl + '/dealer/updateCustomer', data)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
   }
-  deleteAffiliate(data: any){
+  deleteAffiliate(data: any) {
     console.log(data);
     return this.http.post<any>(this.apiUrl + '/dealer/deleteCustomer', data)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
   }
-  deleteCustomerList(data:any){
+  deleteCustomerList(data: any) {
     return this.http.post<any>(this.apiUrl + '/dealer/deleteCustomerList', data)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
   }
 
-  sendCustomerMessage(data:any){
+  sendCustomerMessage(data: any) {
     return this.http.post<any>(this.apiUrl + '/dealer/sendCustomerMessage', data)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+
+  contactUs(data: any) {
+    return this.http.post<any>(this.apiUrl + '/dealer/contactUs', data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
   }
   // ---------------affiliates code ends-------------- //
   handleError(error: HttpErrorResponse) {

@@ -47,13 +47,23 @@
             <mat-icon>settings</mat-icon>
             <span *ngIf="!isPartialClose">Settings</span>
         </a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+            <mat-icon >logout</mat-icon>
+            <span *ngIf="!isPartialClose" class="me-3">Log Out</span>
+        </a>
+        <a mat-list-item (click)="openContactUs()" class="d-md-none">
+            <span *ngIf="!isPartialClose" class="me-3 footer-link">Contact Us</span>
+        </a>
+        <a mat-list-item class="d-md-none">
+            <span *ngIf="!isPartialClose" class="me-3 footer-link">Terms and Condition</span>
+        </a>
     </div>
     <div>
-        <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+        <!-- <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
 
             <span *ngIf="!isPartialClose" class="me-3">Log Out</span>
             <mat-icon >logout</mat-icon>
-        </a>
+        </a> -->
     </div>
 
 

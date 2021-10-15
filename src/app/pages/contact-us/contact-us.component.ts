@@ -1,8 +1,9 @@
 import { Component, Inject, NgZone, OnInit, Optional } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {} from 'googlemaps';
+import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { InitialDataService } from 'src/app/services/initial-data.service';
 
 @Component({
   selector: 'app-contact-us',
@@ -16,17 +17,18 @@ export class ContactUsComponent implements OnInit {
     message: ''
   };
   selectedFile: File;
-  selectedFilePath:any = 'assets/images/file-upload-logo.png';
+  selectedFilePath: any = 'assets/images/file-upload-logo.png';
   latitude: number;
   longitude: number;
   zoom: number;
   address: string;
-  private geoCoder:any;
+  private geoCoder: any;
   map: google.maps.Map;
-  
+
   constructor(
     private _formBuilder: FormBuilder,
     public dialog: MatDialog,
+    private dataService: InitialDataService,
     @Optional() public dialogRef: MatDialogRef<ContactUsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
@@ -34,7 +36,7 @@ export class ContactUsComponent implements OnInit {
     this.contactForm = this._formBuilder.group({
       subject: ['', Validators.required],
       msg: ['', Validators.required],
-      fileUpload: ['', Validators.required],
+      fileUpload: [''],
     });
   }
   close() {
@@ -48,10 +50,28 @@ export class ContactUsComponent implements OnInit {
       this.selectedFilePath = reader.result;
     }
   }
-  submit(){
+  submit() {
+    if (this.contactForm.valid) {
+      let formData = new FormData();
+      formData.append('data', JSON.stringify(this.contactForm.value));
+      formData.append('uploadedFile', this.selectedFile);
 
+      this.dataService.contactUs(formData).subscribe(res => {
+        if (res.responseCode == 0) {
+          this.alertMsg.type = 'succsess';
+          this.alertMsg.message = res.successMsg;
+          //this.dialogRef.close();
+        } else if (res.responseCode == -1) {
+          this.alertMsg.type = 'danger';
+          this.alertMsg.message = res.errorMsg
+        } else {
+          this.alertMsg.type = 'danger';
+          this.alertMsg.message = "Server error"
+        }
+      });
+    }
   }
-  closeModal(){
+  closeModal() {
     this.dialogRef.close();
   }
 }

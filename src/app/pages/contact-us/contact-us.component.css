@@ -28,6 +28,11 @@ input::placeholder {
     text-align: left;
     font-size: 12px;
 }
+textarea{
+    color: black;
+    text-align: left;
+    font-size: 12px;
+}
 textarea::placeholder {
     color: #040404;
     text-transform: uppercase;
@@ -53,9 +58,11 @@ textarea::placeholder {
     background-color: black;
     color:white;
     text-align: right;
-    top: 53px;
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 ::ng-deep .contact-dialog .mat-dialog-container{
     padding:0 !important;
+    position: relative;
 }

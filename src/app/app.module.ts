@@ -35,6 +35,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { SendMessageModalComponent } from './pages/affiliates/send-message-modal/send-message-modal.component';
 import { AddAffiliatesModalComponent } from './pages/affiliates/add-affiliates-modal/add-affiliates-modal.component';
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { ContactUsComponent } from './pages/contact-us/contact-us.component';
     MatTabsModule,
     DefaultModule,
     MatTableModule,
+    MatPaginatorModule,
     MatCheckboxModule,
     MatIconModule,
     MatMenuModule,

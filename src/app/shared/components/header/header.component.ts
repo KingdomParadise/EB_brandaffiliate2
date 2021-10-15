@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   userPhotoUrl: any;
   userData:any;
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
-  constructor(public dialog: MatDialog,) {
+  constructor(public dialog: MatDialog) {
     this.userData = JSON.parse(localStorage.getItem('userData') || '{}');
     this.userPhotoUrl = this.userData.userPhotoUrl;
     console.log(this.userData);
@@ -28,11 +28,15 @@ export class HeaderComponent implements OnInit {
     this.isExpanded = !this.isExpanded
   }
   openContactUs(){
+    let size = ['675px', '475px'];
+    if (window.innerWidth > 786) {
+      size = ['675px', '420px'];
+    } else {
+      size = ['96%', '500px'];
+    }
     const dialogRef = this.dialog.open(ContactUsComponent, {
-      maxWidth: '600px',
-      maxHeight: '430px',
-      height: '100%',
-      width: '100%',
+      width: size[0],
+      height: size[1],
       data: {},
       disableClose: false,
       panelClass:'contact-dialog'
