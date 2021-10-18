@@ -12,6 +12,7 @@ const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.
 import * as XLSX from 'xlsx';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+
 export interface PeriodicElement {
   customerId: number,
   verified: string,
@@ -33,6 +34,7 @@ export class AffiliatesComponent implements OnInit {
 
   displayedColumns: string[] = ['select', 'customerId', 'verified', 'firstName', 'customerEmailId', 'customerPhoneNumber','createTs', 'action'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  customers: any[] = [];
   selection = new SelectionModel<PeriodicElement>(true, []);
   alertMsg: any = {
     type: '',
@@ -41,11 +43,11 @@ export class AffiliatesComponent implements OnInit {
   filterText = '';
   pagination = {
     pageSize:0,
-    length:10,
+    length:5,
   }
+  loading:boolean =  true;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   pageEvent: PageEvent;
-  customers:any = [];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(
     public dialog: MatDialog,
@@ -58,7 +60,7 @@ export class AffiliatesComponent implements OnInit {
       sort: '',
       searchString: '',
     }
-    this.getNextData(query, this.pagination.pageSize, this.pagination.length);
+    this.getNextData(query, this.pagination.pageSize, this.pagination.length, 0);
     // this.dataService.getAllAffiliate(query,0,2).subscribe(res => {
     //   this.dataSource.data = res.response.customerList;
     //   this.dataSource.paginator = this.paginator;
@@ -94,7 +96,13 @@ export class AffiliatesComponent implements OnInit {
   }
 
   applyFilter() {
-    this.dataSource.filter = this.filterText.trim().toLowerCase();
+    let query = {
+      type: "all",
+      sort: "dateAdded",
+      searchString: this.filterText
+    }
+    this.getNextData(query, this.pagination.pageSize, this.pagination.length, 0);
+    //this.dataSource.filter = this.filterText.trim().toLowerCase();
   }
 
   openSendMsgDialog(customer: any, mode: string) {
@@ -132,18 +140,17 @@ export class AffiliatesComponent implements OnInit {
       });
     }
   }
-  getNextData(query:any, page:any, size:any){
-
+  getNextData(query:any, page:any, size:any, previousSize?:any){
+    this.loading = true;
     this.dataService.getAllAffiliate(query,page,size).subscribe(res => {
-      // this.customers.length = this.pagination.length;
-      
-      // this.customers.push(...res.response.customerList);
-      // this.customers.length = res.response.totalItems;
-      this.pagination.length = res.response.totalItems;
-      this.dataSource = new MatTableDataSource<PeriodicElement>(res.response.customerList);
+      this.customers.length = previousSize;
+      this.customers.push(...res.response.customerList);
+      this.customers.length = res.response.totalItems;
+      this.dataSource = new MatTableDataSource<PeriodicElement>(this.customers);
       this.dataSource._updateChangeSubscription();
-
+      console.log(this.customers);
       this.dataSource.paginator = this.paginator;
+      this.loading = false;
     });
   }
   pageChanged(event:any){
@@ -159,7 +166,7 @@ export class AffiliatesComponent implements OnInit {
       sort: '',
       searchString: '',
     }
-    this.getNextData(query, pageIndex.toString(), 10);
+    this.getNextData(query, pageIndex.toString(), pageSize, previousSize);
   }
   openAddDialog() {
     let size = ['675px', '475px'];
@@ -184,9 +191,10 @@ export class AffiliatesComponent implements OnInit {
         sort: '',
         searchString: '',
       }
-      this.dataService.getAllAffiliate(query, 0, 2).subscribe(res => {
-        this.dataSource.data = res.response.customerList;
-      })
+      // this.dataService.getAllAffiliate(query, 0, 2).subscribe(res => {
+      //   this.dataSource.data = res.response.customerList;
+      // })
+      this.getNextData(query, this.pagination.pageSize, this.pagination.length, 0);
     });
   }
   editAffiliate(customer: any) {
@@ -238,7 +246,35 @@ export class AffiliatesComponent implements OnInit {
     
   }
   sortTable(prop: any) {
-    this.dataSource.data = this.dataSource.data.sort(dynamicSort(prop));
+    let query;
+    if (prop == 'dateAdded') {
+      query = {
+        type: "all",
+        sort: "dateAdded",
+        searchString: ""
+      }
+    }else if(prop == 'alpha'){
+      query = {
+        type: "all",
+        sort: "dateAdded",
+        searchString: "alpha"
+      }
+    }else if(prop == 'verified'){
+      query = {
+        type: "verified",
+        sort: "dateAdded",
+        searchString: ""
+      }
+    }else if(prop == 'unverified'){
+      query = {
+        type: "unverified",
+        sort: "dateAdded",
+        searchString: ""
+      }
+    }
+    this.getNextData(query, this.pagination.pageSize, this.pagination.length, 0);
+    //the below code is for client side sorting
+    //this.dataSource.data = this.dataSource.data.sort(dynamicSort(prop));
   }
 
   clearSearch() {
@@ -263,7 +299,6 @@ export class AffiliatesComponent implements OnInit {
             let index: number = this.dataSource.data.findIndex(d => d === item);
             console.log(this.dataSource.data.findIndex(d => d === item));
             this.dataSource.data.splice(index, 1)
-            //this.dataSource = new MatTableDataSource<Element>(this.data);
           });
           this.dataSource._updateChangeSubscription();
           this.selection = new SelectionModel<PeriodicElement>(true, []);

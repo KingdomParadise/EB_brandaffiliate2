@@ -187,6 +187,8 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
   submit(){
     localStorage.setItem('personalPhone', this.regForm1.value.personalPhone);
     let formObj = {...this.regForm1.value, ...this.regForm3.value};
+    formObj.companyEmail = this.regForm1.value.personalEmail;
+    formObj.companyPhone = this.regForm1.value.personalPhone;
     formObj.mapLocations = [{lat: this.latitude,lng: this.longitude}];
     if(this.regForm3.valid){
       let formData = new FormData();

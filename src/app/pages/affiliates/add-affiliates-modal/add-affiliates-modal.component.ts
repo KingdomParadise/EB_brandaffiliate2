@@ -72,7 +72,8 @@ export class AddAffiliatesModalComponent implements OnInit {
         this.dataService.addAffiliate(this.customerForm.value).subscribe(res => {
           if (res.responseCode == 0) {
             this.alertMsg.type = 'succsess';
-            this.alertMsg.message = res.successMsg
+            this.alertMsg.message = res.successMsg;
+            this.dialogRef.close();
           } else if (res.responseCode == -1) {
             this.alertMsg.type = 'danger';
             this.alertMsg.message = res.errorMsg

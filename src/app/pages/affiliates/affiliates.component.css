@@ -129,6 +129,9 @@ button.mat-menu-item:hover .mat-icon{
     text-transform: uppercase;
     font-size: 12px;
 }
+mat-spinner{
+    margin:auto;
+}
 @media only screen and (min-device-width: 768px){
     .btn-save{
         padding:6px 5rem;

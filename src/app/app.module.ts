@@ -36,6 +36,7 @@ import { SendMessageModalComponent } from './pages/affiliates/send-message-modal
 import { AddAffiliatesModalComponent } from './pages/affiliates/add-affiliates-modal/add-affiliates-modal.component';
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatPaginatorModule,
     MatCheckboxModule,
     MatIconModule,
+    MatProgressSpinnerModule,
     MatMenuModule,
     NgbAlertModule,
     NgbDropdownModule,
