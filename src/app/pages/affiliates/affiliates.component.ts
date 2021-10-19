@@ -44,7 +44,12 @@ export class AffiliatesComponent implements OnInit {
   pagination = {
     pageSize:0,
     length:5,
-  }
+  };
+  currentQuery:any = {
+    type: 'all',
+    sort: '',
+    searchString: '',
+  };
   loading:boolean =  true;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   pageEvent: PageEvent;
@@ -55,12 +60,8 @@ export class AffiliatesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    let query = {
-      type: 'all',
-      sort: '',
-      searchString: '',
-    }
-    this.getNextData(query, this.pagination.pageSize, this.pagination.length, 0);
+    
+    this.getNextData(this.currentQuery, this.pagination.pageSize, this.pagination.length, 0);
     // this.dataService.getAllAffiliate(query,0,2).subscribe(res => {
     //   this.dataSource.data = res.response.customerList;
     //   this.dataSource.paginator = this.paginator;
@@ -96,12 +97,12 @@ export class AffiliatesComponent implements OnInit {
   }
 
   applyFilter() {
-    let query = {
+    this.currentQuery = {
       type: "all",
       sort: "dateAdded",
       searchString: this.filterText
     }
-    this.getNextData(query, this.pagination.pageSize, this.pagination.length, 0);
+    this.getNextData(this.currentQuery, this.pagination.pageSize, this.pagination.length, 0);
     //this.dataSource.filter = this.filterText.trim().toLowerCase();
   }
 
@@ -157,16 +158,17 @@ export class AffiliatesComponent implements OnInit {
 
     let pageIndex = event.pageIndex;
     let pageSize = event.pageSize;
-
+    this.pagination.pageSize = pageIndex;
+    this.pagination.length = pageSize;
     let previousIndex = event.previousPageIndex;
 
     let previousSize = pageSize * pageIndex;
-    let query = {
-      type: 'all',
-      sort: '',
-      searchString: '',
-    }
-    this.getNextData(query, pageIndex.toString(), pageSize, previousSize);
+    // let query = {
+    //   type: 'all',
+    //   sort: '',
+    //   searchString: '',
+    // }
+    this.getNextData(this.currentQuery, pageIndex.toString(), pageSize, previousSize);
   }
   openAddDialog() {
     let size = ['675px', '475px'];
@@ -246,33 +248,32 @@ export class AffiliatesComponent implements OnInit {
     
   }
   sortTable(prop: any) {
-    let query;
     if (prop == 'dateAdded') {
-      query = {
+      this.currentQuery = {
         type: "all",
         sort: "dateAdded",
         searchString: ""
       }
     }else if(prop == 'alpha'){
-      query = {
+      this.currentQuery  = {
         type: "all",
-        sort: "dateAdded",
-        searchString: "alpha"
+        sort: "alpha",
+        searchString: ""
       }
     }else if(prop == 'verified'){
-      query = {
+      this.currentQuery  = {
         type: "verified",
         sort: "dateAdded",
         searchString: ""
       }
     }else if(prop == 'unverified'){
-      query = {
+      this.currentQuery  = {
         type: "unverified",
         sort: "dateAdded",
         searchString: ""
       }
     }
-    this.getNextData(query, this.pagination.pageSize, this.pagination.length, 0);
+    this.getNextData(this.currentQuery, this.pagination.pageSize, this.pagination.length, 0);
     //the below code is for client side sorting
     //this.dataSource.data = this.dataSource.data.sort(dynamicSort(prop));
   }

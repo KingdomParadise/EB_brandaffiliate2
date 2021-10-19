@@ -60,7 +60,9 @@ export class ContactUsComponent implements OnInit {
         if (res.responseCode == 0) {
           this.alertMsg.type = 'succsess';
           this.alertMsg.message = res.successMsg;
-          //this.dialogRef.close();
+          setTimeout(()=>{
+            this.dialogRef.close();
+          },1000)
         } else if (res.responseCode == -1) {
           this.alertMsg.type = 'danger';
           this.alertMsg.message = res.errorMsg

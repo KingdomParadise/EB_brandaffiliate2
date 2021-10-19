@@ -8,6 +8,7 @@ import { DealerForgetPasswordComponent } from './pages/dealer-forget-password/de
 import { DealerLoginComponent } from './pages/dealer-login/dealer-login.component';
 import { DealerPackageComponent } from './pages/dealer-package/dealer-package.component';
 import { DealerRegistrationComponent } from './pages/dealer-registration/dealer-registration.component';
+import { PackagesComponent } from './pages/packages/packages.component';
 import { ReviewDealerComponent } from './pages/review-dealer/review-dealer.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { VerifyComponent } from './pages/verify/verify.component';
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path: 'affiliates',
         component: AffiliatesComponent,
+      },
+      {
+        path: 'packages',
+        component: PackagesComponent,
       }
     ]
   },

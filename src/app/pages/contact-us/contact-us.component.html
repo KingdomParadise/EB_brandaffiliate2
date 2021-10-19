@@ -25,8 +25,11 @@
                         <div style="max-height: 360px;overflow: hidden;">
                             <input #fileUpload type="file" formControlName="fileUpload" id="fileUpload"
                                 style="display:none" (change)="onFileChanged($event,'company')" />
-                            <img [src]="selectedFilePath ? selectedFilePath : 'assets/images/file-upload-logo.png'"
-                                class="img-fluid uploadIcon" alt="file-logo" (click)="fileUpload.click()">
+                                <div class="settingImage" [ngStyle]="{'background-image': 'url(' + selectedFilePath + ')'}" (click)="fileUpload.click()">
+
+                                </div>
+                            <!-- <img [src]="selectedFilePath ? selectedFilePath : 'assets/images/file-upload-logo.png'"
+                                class="img-fluid uploadIcon" alt="file-logo" (click)="fileUpload.click()"> -->
                         </div>
                     </div>
                 </div>

@@ -62,6 +62,15 @@ textarea::placeholder {
     bottom: 0;
     width: 100%;
 }
+.settingImage{
+    min-width: 120px;
+    min-height: 120px;
+    max-width:200px;
+    max-height: 200px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 ::ng-deep .contact-dialog .mat-dialog-container{
     padding:0 !important;
     position: relative;

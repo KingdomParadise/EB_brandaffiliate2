@@ -37,6 +37,7 @@ import { AddAffiliatesModalComponent } from './pages/affiliates/add-affiliates-m
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { PackagesComponent } from './pages/packages/packages.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     SendMessageModalComponent,
     AddAffiliatesModalComponent,
     ContactUsComponent,
+    PackagesComponent,
     //DashboardComponent
   ],
   imports: [
