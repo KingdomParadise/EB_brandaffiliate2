@@ -6,20 +6,20 @@
         <div class="col-md-12 bg-white shadow">
             <div>
                 <h3 class="text-center text-muted text-uppercase position-relative" style="top:50px">Your Current Package</h3>
-                <div id="currentPackage" class="row py-3">
-                    <div class="col-md-6 d-flex justify-content-center align-items-center" style="border-right: 1px solid #adadad;">
+                <div id="currentPackage" class="row p-3">
+                    <div class="col-md-6 d-flex justify-content-center align-items-center separator">
                         <div class="text-center p-3" >
-                            <h3 class="text-uppercase app-text-color font-weight-bold">Basic</h3>
-                            <p class="amount"><span style="font-size: 32px;margin-right: 2px;"> $</span>400</p>
-                            <p>Lorem ipsum dolor<br/> sit amet</p>
+                            <h3 class="text-uppercase app-text-color font-weight-bold">{{currentPackage?.packageName}}</h3>
+                            <p class="amount"><span style="font-size: 32px;margin-right: 2px;"> $</span>{{currentPackage?.packagePrice}}</p>
+                            <p>{{currentPackage?.packageDescription}}</p>
                         </div>
                     </div>
                     <div class="col-md-6 d-flex justify-content-center align-items-center">
                         <div class="text-center p-3">
-                            <p class="mb-1">2 compaign content</p>
-                            <p class="mb-1">$75/ additional content</p>
-                            <p class="mb-1">1 ad banners</p>
-                            <p class="mb-1">$150/ additional banner</p>
+                            <p class="mb-1"><span>{{currentPackage?.noOfContent}}</span> compaign content</p>
+                            <p class="mb-1">${{currentPackage?.additionalPricePerContent}}/ additional content</p>
+                            <p class="mb-1">{{currentPackage?.noOfBanners}} ad banners</p>
+                            <p class="mb-1">${{currentPackage?.additionalPricePerBanner}}/ additional banner</p>
                         </div>
                     </div>
                 </div>
@@ -30,11 +30,11 @@
         </div>
         <div class="col-md-12 bg-white shadow py-4">
             <div class="d-flex justify-content-between align-items-center">
-               <span>1/2 Campaigns used</span>
+               <span><label class="bold">1</label>/2 Campaigns used</span>
                <button class="btn btn-add">Add</button>
             </div>
             <div class="d-flex justify-content-between align-items-center mt-3">
-                <span>1/2 Campaigns used</span>
+                <span><span class="bold">1</span>/2 Campaigns used</span>
                 <button class="btn btn-add">Add</button>
             </div>
         </div>
@@ -47,19 +47,19 @@
             </p>
             <div class="card-container">
                 <div class="card me-3 shadow">
-                    <h3 class="text-uppercase app-text-color font-weight-bold">Silver</h3>
-                    <p class="amount"><span style="font-size: 32px;margin-right: 2px;"> $</span>400</p>
-                    <p>Lorem ipsum dolor sit amet<br/> consectetur adipiscing elit</p>
+                    <h3 class="text-uppercase app-text-color font-weight-bold">{{additionalPackage?.packageName}}</h3>
+                    <p class="amount"><span style="font-size:32px;margin-right: 2px;"> $</span>{{additionalPackage?.packagePrice}}</p>
+                    <p>{{additionalPackage?.packageDescription}}</p>
                     <hr/>
                     <div class="text-center p-3">
-                        <p class="mb-1">2 compaign content</p>
-                        <p class="mb-1">$75/ additional content</p>
-                        <p class="mb-1">1 ad banners</p>
+                        <p class="mb-1"><span>{{additionalPackage?.noOfContent}}</span> compaign content</p>
+                        <p class="mb-1">${{additionalPackage?.additionalPricePerContent}}/ additional content</p>
+                        <p class="mb-1">{{additionalPackage?.noOfBanners}} ad banners</p>
                         <p class="mb-1">$150/ additional banner</p>
                     </div>
                 </div>
                 <div class="card shadow">
-                    <h3 class="text-uppercase app-text-color font-weight-bold">Silver</h3>
+                    <h3 class="text-uppercase app-text-color font-weight-bold">Gold</h3>
                     <p class="amount"><span style="font-size: 32px;margin-right: 2px;"> $</span>400</p>
                     <p>Lorem ipsum dolor sit amet<br/> consectetur adipiscing elit</p>
                     <hr/>
@@ -73,7 +73,7 @@
             </div>
         </div>
         <div class="col-md-12 btn-bottom">
-            <button class="btn btn-dark px-5">Next</button>
+            <button class="btn btn-dark px-5" (click)="makePayment(100)">Next</button>
         </div>
     </div>
 </div>
