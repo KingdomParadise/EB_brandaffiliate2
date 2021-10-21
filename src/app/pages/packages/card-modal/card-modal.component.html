@@ -1,0 +1,63 @@
+<div class="px-2 py-2">
+    <div class="row">
+        <div class="col-md-12 ps-4 d-flex justify-content-between">
+            <h2 class="font-weight-bolder">Payment Options</h2>
+            <button class="btn btn-close" (click)="closeModal()">
+            </button>
+
+        </div>
+    </div>
+
+    <form [formGroup]="customerForm" class="row m-0 p-0" style="width:100%">
+        <div class="col-md-12 mb-4">
+            <div class="form-group">
+                <input type="text" matInput class="form-control" formControlName="firstName"
+                    placeholder="Card holder name">
+            </div>
+        </div>
+        <div class="col-md-12 mb-4">
+            <div class="form-group">
+
+                <input type="text" matInput class="form-control" formControlName="lastName" placeholder="Card Number">
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="form-group d-flex">
+                <span class="py-2 me-2">Valid thru</span>
+                <div class="d-flex py-2">
+                    <input type="email" class="shortWidth" matInput formControlName="month" placeholder="MM">
+                    <span>/</span>
+                    <input type="email" matInput class="shortWidth" formControlName="year" placeholder="YY">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="number" class="form-control" formControlName="cvv" placeholder="CVV">
+
+            </div>
+        </div>
+
+        <div class="col-md-12 mt-5 text-center">
+            <div class="d-grid">
+                <button mat-button class="btn mb-5 mb-md-0 addBtn">
+                    back
+                </button>
+                <button mat-button class="btn mb-5 mb-md-0 addBtn">
+                    submit
+                </button>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div *ngIf="alertMsg.message"
+                class="alert fade show d-flex justify-content-between align-items-center mt-2 p-2"
+                [ngClass]="(alertMsg.type == 'danger')?'alert-danger': 'alert-success'" role="alert">
+                <span>{{alertMsg.message}}</span>
+                <button type="button" class="btn btn-default close" (click)="close()" data-dismiss="alert"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

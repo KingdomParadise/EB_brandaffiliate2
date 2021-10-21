@@ -38,6 +38,7 @@ import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { PackagesComponent } from './pages/packages/packages.component';
+import { CardModalComponent } from './pages/packages/card-modal/card-modal.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { PackagesComponent } from './pages/packages/packages.component';
     AddAffiliatesModalComponent,
     ContactUsComponent,
     PackagesComponent,
+    CardModalComponent,
     //DashboardComponent
   ],
   imports: [
