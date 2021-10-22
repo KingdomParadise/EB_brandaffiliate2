@@ -13,6 +13,8 @@ export class PackagesComponent implements OnInit {
   currentPackage: any;
   additionalPackage: any;
   paymentHandler:any = null;
+  cardActive = 1;
+  packs:any =[];
   constructor(private dataService: InitialDataService,public dialog: MatDialog,) { }
 
   ngOnInit(): void {
@@ -20,12 +22,16 @@ export class PackagesComponent implements OnInit {
       console.log(res);
       if (res.response) {
         this.currentPackage = res.response.currentPackage;
+        this.packs = res.response.upgradePackageList;
+        //this.packs[1] = this.packs[0];
         this.additionalPackage = res.response.upgradePackageList[0];
       }
     });
     this.invokeStripe();
   }
-
+  makeActiveCard(num :number){
+    this.cardActive = num;
+  }
   makePayment(amount:number) {
     const paymentHandler = (<any>window).StripeCheckout.configure({
       key: 'pk_test_51Jm51vDpsbIh6JAxazfuiFNvW7GgfGKCfWzDQ7CQMnDESBJVspoeOTdC6mHaQKDQndr0xcrYHF72D39WUIzncGul001m4w72fh',

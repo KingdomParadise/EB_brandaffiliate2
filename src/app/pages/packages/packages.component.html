@@ -6,7 +6,7 @@
         <div class="col-md-12 bg-white shadow">
             <div>
                 <h3 class="text-center text-muted text-uppercase position-relative" style="top:50px">Your Current Package</h3>
-                <div id="currentPackage" class="row p-3">
+                <div id="currentPackage" class="row p-3"  [ngClass]="(cardActive == 1)?'activePack': ''" (click)="makeActiveCard(1)">
                     <div class="col-md-6 d-flex justify-content-center align-items-center separator">
                         <div class="text-center p-3" >
                             <h3 class="text-uppercase app-text-color font-weight-bold">{{currentPackage?.packageName}}</h3>
@@ -46,19 +46,19 @@
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
             <div class="card-container">
-                <div class="card me-3 shadow">
-                    <h3 class="text-uppercase app-text-color font-weight-bold">{{additionalPackage?.packageName}}</h3>
-                    <p class="amount"><span style="font-size:32px;margin-right: 2px;"> $</span>{{additionalPackage?.packagePrice}}</p>
-                    <p>{{additionalPackage?.packageDescription}}</p>
+                <div *ngFor="let pack of packs" class="card me-3 shadow" [ngClass]="(cardActive == 2)?'activePack': ''" (click)="makeActiveCard(2)">
+                    <h3 class="text-uppercase app-text-color font-weight-bold">{{pack?.packageName}}</h3>
+                    <p class="amount"><span style="font-size:32px;margin-right: 2px;"> $</span>{{pack?.packagePrice}}</p>
+                    <p>{{pack?.packageDescription}}</p>
                     <hr/>
                     <div class="text-center p-3">
-                        <p class="mb-1"><span>{{additionalPackage?.noOfContent}}</span> compaign content</p>
-                        <p class="mb-1">${{additionalPackage?.additionalPricePerContent}}/ additional content</p>
-                        <p class="mb-1">{{additionalPackage?.noOfBanners}} ad banners</p>
+                        <p class="mb-1"><span>{{pack?.noOfContent}}</span> compaign content</p>
+                        <p class="mb-1">${{pack?.additionalPricePerContent}}/ additional content</p>
+                        <p class="mb-1">{{pack?.noOfBanners}} ad banners</p>
                         <p class="mb-1">$150/ additional banner</p>
                     </div>
                 </div>
-                <div class="card shadow">
+                <!-- <div class="card shadow" [ngClass]="(cardActive == 3)?'activePack': ''" (click)="makeActiveCard(3)" >
                     <h3 class="text-uppercase app-text-color font-weight-bold">Gold</h3>
                     <p class="amount"><span style="font-size: 32px;margin-right: 2px;"> $</span>400</p>
                     <p>Lorem ipsum dolor sit amet<br/> consectetur adipiscing elit</p>
@@ -69,7 +69,7 @@
                         <p class="mb-1">1 ad banners</p>
                         <p class="mb-1">$150/ additional banner</p>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="col-md-12 btn-bottom">

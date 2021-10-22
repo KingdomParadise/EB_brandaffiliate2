@@ -12,7 +12,7 @@
     text-transform: uppercase;
 }
 #currentPackage {
-    border:3px solid purple;
+    
     height:auto;
     width: 90%;
     display: flex;
@@ -26,6 +26,9 @@
 }
 .separator{
     border-bottom: 1px solid #adadad;
+}
+.activePack{
+    border:3px solid purple;
 }
 .shadow{
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -54,8 +57,10 @@
     font-weight: bold;
 }
 .card-container .card{
+    width: 240px;
     text-align: center;
     padding:1rem .3rem;
+    cursor: pointer;
 }
 .app-text-color{
     color: #a63da1;
