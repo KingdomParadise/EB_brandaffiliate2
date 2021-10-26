@@ -1,0 +1,21 @@
+.amount{
+    font-size: 42px;
+    font-weight: bold;
+}
+.card{
+    width:240px;
+    padding-top: 24px;
+}
+.app-text-color{
+    color: #a63da1;
+}
+.app-color{
+    background-color: #a63da1;
+    color: white;
+}
+.activePack{
+    border:3px solid purple;
+}
+#submitBtn{
+    padding:.4rem 3rem;
+}

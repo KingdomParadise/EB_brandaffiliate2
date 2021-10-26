@@ -10,6 +10,7 @@ import { DealerPackageComponent } from './pages/dealer-package/dealer-package.co
 import { DealerRegistrationComponent } from './pages/dealer-registration/dealer-registration.component';
 import { PackagesComponent } from './pages/packages/packages.component';
 import { ReviewDealerComponent } from './pages/review-dealer/review-dealer.component';
+import { SelectPackageModalComponent } from './pages/select-package-modal/select-package-modal.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { VerifyComponent } from './pages/verify/verify.component';
 
@@ -37,6 +38,10 @@ const routes: Routes = [
       {
         path: 'packages',
         component: PackagesComponent,
+      },
+      {
+        path: 'packages/add',
+        component: SelectPackageModalComponent,
       }
     ]
   },

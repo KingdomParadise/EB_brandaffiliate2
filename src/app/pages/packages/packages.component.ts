@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { InitialDataService } from 'src/app/services/initial-data.service';
+import { AddModalComponent } from './add-modal/add-modal.component';
 import { CardModalComponent } from './card-modal/card-modal.component';
 
 
@@ -11,9 +12,8 @@ import { CardModalComponent } from './card-modal/card-modal.component';
 })
 export class PackagesComponent implements OnInit {
   currentPackage: any;
-  additionalPackage: any;
   paymentHandler:any = null;
-  cardActive = 1;
+  cardActive = 0;
   packs:any =[];
   constructor(private dataService: InitialDataService,public dialog: MatDialog,) { }
 
@@ -24,7 +24,6 @@ export class PackagesComponent implements OnInit {
         this.currentPackage = res.response.currentPackage;
         this.packs = res.response.upgradePackageList;
         //this.packs[1] = this.packs[0];
-        this.additionalPackage = res.response.upgradePackageList[0];
       }
     });
     this.invokeStripe();
@@ -78,12 +77,33 @@ export class PackagesComponent implements OnInit {
     } else {
       size = ['350px', '400px'];
     }
+    console.log(this.packs)
     const dialogRef = this.dialog.open(CardModalComponent, {
       maxWidth: size[0],
       maxHeight: size[1],
       height: '100%',
       width: '100%',
-      data: { customer: {}, mode: 'add' },
+      data: { packageId: this.packs[this.cardActive].packageId, mode: 'add' },
+      disableClose: false
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      
+    });
+  }
+  addContent(type:string){
+    let size = ['675px', '475px'];
+    if (window.innerWidth > 786) {
+      size = ['495px', '260px'];
+    } else {
+      size = ['350px', '400px'];
+    }
+    const dialogRef = this.dialog.open(AddModalComponent, {
+      maxWidth: size[0],
+      maxHeight: size[1],
+      height: '100%',
+      width: '100%',
+      data: { type: type},
       disableClose: false
     });
 

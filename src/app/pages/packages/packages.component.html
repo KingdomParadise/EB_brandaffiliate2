@@ -6,7 +6,7 @@
         <div class="col-md-12 bg-white shadow">
             <div>
                 <h3 class="text-center text-muted text-uppercase position-relative" style="top:50px">Your Current Package</h3>
-                <div id="currentPackage" class="row p-3"  [ngClass]="(cardActive == 1)?'activePack': ''" (click)="makeActiveCard(1)">
+                <div id="currentPackage" class="row p-3 activeCard" >
                     <div class="col-md-6 d-flex justify-content-center align-items-center separator">
                         <div class="text-center p-3" >
                             <h3 class="text-uppercase app-text-color font-weight-bold">{{currentPackage?.packageName}}</h3>
@@ -30,12 +30,12 @@
         </div>
         <div class="col-md-12 bg-white shadow py-4">
             <div class="d-flex justify-content-between align-items-center">
-               <span><label class="bold">1</label>/2 Campaigns used</span>
-               <button class="btn btn-add">Add</button>
+               <span><label class="bold">{{currentPackage?.consumedCampaign}}</label>/{{currentPackage?.totalContentPurchased}} Campaigns used</span>
+               <button class="btn btn-add" (click)="addContent('campaign')">Add</button>
             </div>
             <div class="d-flex justify-content-between align-items-center mt-3">
-                <span><span class="bold">1</span>/2 Campaigns used</span>
-                <button class="btn btn-add">Add</button>
+                <span><span class="bold">{{currentPackage?.consumedBanner}}</span>/{{currentPackage?.totalBannerPurchased}} Ad banners used</span>
+                <button class="btn btn-add" (click)="addContent('banner')">Add</button>
             </div>
         </div>
         <div class="col-md-12">
@@ -46,7 +46,7 @@
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
             <div class="card-container">
-                <div *ngFor="let pack of packs" class="card me-3 shadow" [ngClass]="(cardActive == 2)?'activePack': ''" (click)="makeActiveCard(2)">
+                <div *ngFor="let pack of packs;let i = index" class="card me-3 shadow" [class.activePack]="cardActive === i" (click)="makeActiveCard(i)">
                     <h3 class="text-uppercase app-text-color font-weight-bold">{{pack?.packageName}}</h3>
                     <p class="amount"><span style="font-size:32px;margin-right: 2px;"> $</span>{{pack?.packagePrice}}</p>
                     <p>{{pack?.packageDescription}}</p>

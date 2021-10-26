@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
   openContactUs(){
     let size = ['675px', '475px'];
     if (window.innerWidth > 786) {
-      size = ['675px', '420px'];
+      size = ['675px', '430px'];
     } else {
       size = ['96%', '500px'];
     }

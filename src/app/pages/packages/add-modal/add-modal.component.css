@@ -1,0 +1,15 @@
+.btn-add{
+    background-color: #8c37a3;
+    color: white;
+    padding: .25rem 2rem;
+}
+.input-group-text{
+    background-color: white;
+    border:none;
+    cursor: pointer;
+}
+input{
+    border:none;
+    outline: 0;
+    text-align: center;
+}

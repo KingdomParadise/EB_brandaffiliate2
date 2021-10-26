@@ -11,14 +11,14 @@
     <form [formGroup]="customerForm" class="row m-0 p-0" style="width:100%">
         <div class="col-md-12 mb-4">
             <div class="form-group">
-                <input type="text" matInput class="form-control" formControlName="firstName"
+                <input type="text" matInput class="form-control" formControlName="name"
                     placeholder="Card holder name">
             </div>
         </div>
         <div class="col-md-12 mb-4">
             <div class="form-group">
 
-                <input type="text" matInput class="form-control" formControlName="lastName" placeholder="Card Number">
+                <input type="text" matInput class="form-control" formControlName="cardNumber" placeholder="Card Number">
             </div>
         </div>
         <div class="col-md-8">
@@ -42,7 +42,7 @@
                 <button mat-button class="btn mb-5 mb-md-0 btn-back">
                     back
                 </button>
-                <button mat-button class="btn mb-5 mb-md-0 btn-add">
+                <button mat-button class="btn mb-5 mb-md-0 btn-add" (click)="purchasePackage()">
                     submit
                 </button>
         </div>
