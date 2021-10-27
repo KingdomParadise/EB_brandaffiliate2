@@ -158,6 +158,22 @@ export class InitialDataService {
         catchError(this.handleError)
       )
   }
+  // users apis ----- //
+  
+  getAllUser(data: any, page:any ,size:any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + '/dealer/getAllUser/page/'+page+'/size/'+size, data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+  addUser(data: any) {
+    return this.http.post<any>(this.apiUrl + '/dealer/addUser', data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
   handleError(error: HttpErrorResponse) {
     let errorMessage = 'Unknown error!';
     if (error.error instanceof ErrorEvent) {

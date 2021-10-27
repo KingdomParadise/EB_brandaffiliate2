@@ -1,0 +1,91 @@
+<div class="px-2 py-2">
+    <div class="row">
+        <div class="col-md-12 ps-4 d-flex justify-content-between">
+            <h2 class="font-weight-bolder">Add Affiliate</h2>
+            <button class="btn btn-close" (click)="closeModal()">
+            </button>
+
+        </div>
+    </div>
+
+    <form [formGroup]="customerForm" class="row m-0 p-0" style="width:100%">
+        <div class="col-md-8 p-0">
+            <div class="col-md-12 mb-4">
+                <div class="form-group">
+                    <input type="text" matInput class="form-control" formControlName="firstName"
+                        placeholder="First Name">
+                </div>
+            </div>
+            <div class="col-md-12 mb-4">
+                <div class="form-group">
+                    <input type="text" matInput class="form-control" formControlName="lastName" placeholder="Last Name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="email" matInput class="form-control" formControlName="emailId" placeholder="Email">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="number" matInput class="form-control" formControlName="phoneNumber"
+                            placeholder="Phone">
+                        <div *ngIf="f.phoneNumber.touched && f.phoneNumber.invalid" class="">
+                            <div *ngIf="f.phoneNumber.errors?.required">Mobile Number is required.</div>
+                            <div *ngIf="f.phoneNumber.errors?.pattern">Please, Enter 10 digit Mobile Number.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <select name="usertype"  id="usertype" formControlName="userType">
+                        <option value="">Account</option>
+                        <option value="admin">Admin</option>
+                        <option value="user">User</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <div class="col-md-12 mb-4">
+                <div class="form-group">
+                    <div class="card">
+                        <div style="max-height: 360px;overflow: hidden;">
+                            <input #fileUpload type="file" id="fileUpload"
+                                style="display:none" (change)="onFileChanged($event,'company')" />
+                            <div class="settingImage" [ngStyle]="{'background-image': 'url(' + selectedFilePath + ')'}"
+                                (click)="fileUpload.click()">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 mt-5 text-center">
+
+            <button mat-button class="btn mb-5 mb-md-0 addBtn" (click)="submit()" [disabled]="!customerForm.valid">
+                <span *ngIf="data.mode =='add'">Add</span>
+                <span *ngIf="data.mode =='edit'">Update</span>
+            </button>
+
+
+        </div>
+        <div class="col-md-12">
+            <div *ngIf="alertMsg.message"
+                class="alert fade show d-flex justify-content-between align-items-center mt-2 p-2"
+                [ngClass]="(alertMsg.type == 'danger')?'alert-danger': 'alert-success'" role="alert">
+                <span>{{alertMsg.message}}</span>
+                <button type="button" class="btn btn-default close" (click)="close()" data-dismiss="alert"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

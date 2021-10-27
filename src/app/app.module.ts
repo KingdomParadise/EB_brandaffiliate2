@@ -41,6 +41,8 @@ import { PackagesComponent } from './pages/packages/packages.component';
 import { CardModalComponent } from './pages/packages/card-modal/card-modal.component';
 import { AddModalComponent } from './pages/packages/add-modal/add-modal.component';
 import { SelectPackageModalComponent } from './pages/select-package-modal/select-package-modal.component';
+import { UsersComponent } from './pages/users/users.component';
+import { AddUserModalComponent } from './pages/users/add-user-modal/add-user-modal.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,9 @@ import { SelectPackageModalComponent } from './pages/select-package-modal/select
     PackagesComponent,
     CardModalComponent,
     AddModalComponent,
-    SelectPackageModalComponent
+    SelectPackageModalComponent,
+    UsersComponent,
+    AddUserModalComponent
     //DashboardComponent
   ],
   imports: [

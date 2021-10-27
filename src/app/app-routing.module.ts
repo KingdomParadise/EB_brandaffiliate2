@@ -12,6 +12,7 @@ import { PackagesComponent } from './pages/packages/packages.component';
 import { ReviewDealerComponent } from './pages/review-dealer/review-dealer.component';
 import { SelectPackageModalComponent } from './pages/select-package-modal/select-package-modal.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { UsersComponent } from './pages/users/users.component';
 import { VerifyComponent } from './pages/verify/verify.component';
 
 const routes: Routes = [
@@ -42,6 +43,10 @@ const routes: Routes = [
       {
         path: 'packages/add',
         component: SelectPackageModalComponent,
+      },
+      {
+        path: 'users',
+        component: UsersComponent
       }
     ]
   },

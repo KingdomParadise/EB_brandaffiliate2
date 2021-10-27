@@ -30,6 +30,10 @@
             <mat-icon>extension</mat-icon>
             <span *ngIf="!isPartialClose">Prospects</span>
         </a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/users">
+            <mat-icon>person</mat-icon>
+            <span *ngIf="!isPartialClose">Users</span>
+        </a>
         <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
             <mat-icon>request_quote</mat-icon>
             <span *ngIf="!isPartialClose">Commission Payments</span>
