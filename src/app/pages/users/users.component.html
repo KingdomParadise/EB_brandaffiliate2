@@ -1,7 +1,7 @@
 <div class="page-container">
     <div class="row">
         <div class="col-md-12 p-0">
-            <h1 class="page-heading">Affiliates</h1>
+            <h1 class="page-heading">Users</h1>
         </div>
         <div class="col-md-12 p-0">
             <div *ngIf="alertMsg.message"
@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-md-4 p-0">
                     <!-- <label>Sort By:</label> -->
-                    <div ngbDropdown>
+                    <!-- <div ngbDropdown>
                         <button class="btn btn-sort" id="gfg" ngbDropdownToggle>Sort By:</button>
                         <div ngbDropdownMenu="gfg">
                             <button ngbDropdownItem class="btn btn-default"
@@ -32,7 +32,7 @@
                             <button ngbDropdownItem class="btn btn-default"
                                 (click)="sortTable('unverified')">Unverified</button>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="col-md-8 d-flex justify-content-between p-0 justify-content-md-end align-items-center">
                     <div class="table-icon" style="border-bottom: 1px solid gray;">
@@ -93,7 +93,7 @@
                     <ng-container matColumnDef="status">
                         <th mat-header-cell *matHeaderCellDef> Status </th>
                         <td mat-cell *matCellDef="let element">
-                             <span class="verifiedTag" [ngStyle]="{'background-color':element?.status?'#4db050':'#bbbbbb','padding':element?.status?'2px 17px':'2px 4px'}">{{element?.status == 'active' ?'Enabled':'Disabled'}} </span>
+                             <span class="verifiedTag px-2" [ngStyle]="{'background-color':element?.status =='active'?'#4db050':'#bbbbbb'}">{{element?.status == 'active' ?'Enabled':'Disabled'}} </span>
                         </td>
                     </ng-container>
     
@@ -132,11 +132,12 @@
                                     <mat-icon>edit</mat-icon>
                                     <span>Edit</span>
                                 </button>
-                                <button mat-menu-item (click)="openSendMsgDialog(element, 'single')">
+                                <button mat-menu-item (click)="toggleUserStatus(element)">
                                     <mat-icon>wb_sunny</mat-icon>
-                                    <span>Enable</span>
+                                    <span *ngIf="element?.status != 'active'">Enable</span>
+                                    <span *ngIf="element?.status == 'active'">Disable</span>
                                 </button>
-                                <button mat-menu-item (click)="deleteAffiliate(element.customerId, i)">
+                                <button mat-menu-item (click)="deleteUser(element.id, i)">
                                     <mat-icon>delete</mat-icon>
                                     <span>Delete</span>
                                 </button>
@@ -228,7 +229,7 @@
                                     <mat-icon>mail_outline</mat-icon>
                                     <span>Send Message</span>
                                 </button>
-                                <button mat-menu-item (click)="deleteAffiliate(element.customerId, i)">
+                                <button mat-menu-item (click)="deleteUser(element.customerId, i)">
                                     <mat-icon>delete</mat-icon>
                                     <span>Delete</span>
                                 </button>

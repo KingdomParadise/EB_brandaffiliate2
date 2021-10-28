@@ -35,6 +35,10 @@ export class AddUserModalComponent implements OnInit {
     });
     if (this.data.mode == 'edit') {
       this.customerForm.patchValue(this.data.customer);
+      this.selectedFilePath = this.data.customer.userPhotoUrl;
+      this.customerForm.patchValue({
+        userType: this.data.customer.admin ? 'user':'admin'
+      });
     }
   }
   get f(){  

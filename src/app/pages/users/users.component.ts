@@ -43,7 +43,7 @@ export class UsersComponent implements OnInit {
   filterText = '';
   pagination = {
     pageSize:0,
-    length:5,
+    length:1000,
   };
   currentQuery:any = {
     type: 'all',
@@ -61,7 +61,7 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.getNextData(this.currentQuery, this.pagination.pageSize, this.pagination.length, 0);
+    this.getNextData({}, this.pagination.pageSize, this.pagination.length, 0);
     // this.dataService.getAllAffiliate(query,0,2).subscribe(res => {
     //   this.dataSource.data = res.response.customerList;
     //   this.dataSource.paginator = this.paginator;
@@ -227,7 +227,7 @@ export class UsersComponent implements OnInit {
       });
     });
   }
-  deleteAffiliate(customerId: number, index: number) {
+  deleteUser(customerId: number, index: number) {
     if(confirm('Want to delete?')){
       this.dataService.deleteAffiliate({ customerId: customerId }).subscribe(res => {
         console.log(res.responseCode);
@@ -244,6 +244,20 @@ export class UsersComponent implements OnInit {
       });
     }else{
 
+    }
+    
+  }
+  toggleUserStatus(user:any){
+    if(user.status == 'active'){
+      this.dataService.disableUser({userId: user.userId}).subscribe( res  =>{
+        console.log(res);
+        this.getNextData({}, this.pagination.pageSize, this.pagination.length, 0);
+      })
+    }else{
+      this.dataService.enableUser({userId: user.userId}).subscribe( res  =>{
+        console.log(res);
+        this.getNextData({}, this.pagination.pageSize, this.pagination.length, 0);
+      })
     }
     
   }
