@@ -37,17 +37,17 @@ export class AddUserModalComponent implements OnInit {
       this.customerForm.patchValue(this.data.customer);
       this.selectedFilePath = this.data.customer.userPhotoUrl;
       this.customerForm.patchValue({
-        userType: this.data.customer.admin ? 'user':'admin'
+        userType: this.data.customer.admin ? 'user' : 'admin'
       });
     }
   }
-  get f(){  
-    return this.customerForm.controls;  
-  }  
+  get f() {
+    return this.customerForm.controls;
+  }
   close() {
     this.alertMsg.message = ''
   }
-  closeModal(){
+  closeModal() {
     this.dialog.closeAll();
   }
   onFileChanged(event: any, type: string) {
@@ -58,22 +58,24 @@ export class AddUserModalComponent implements OnInit {
       this.selectedFilePath = reader.result;
     }
   }
-  validatePhone(eve:any){
+  validatePhone(eve: any) {
     console.log(eve.target.value.length);
-    if(eve.target.value.length > 10){
+    if (eve.target.value.length > 10) {
       return false;
-    }else{
+    } else {
       return true;
     }
   }
   submit() {
     if (this.customerForm.valid) {
+
       let formData = new FormData();
-      formData.append('data', JSON.stringify(this.customerForm.value));
-      formData.append('userPhoto', this.selectedFile);
+
       if (this.data.mode == 'edit') {
-        this.customerForm.value.customerId = this.data.customer.customerId;
-        this.dataService.updateAffiliate(formData).subscribe(res => {
+        this.customerForm.value.userId = this.data.customer.userId;
+        formData.append('data', JSON.stringify(this.customerForm.value));
+        formData.append('userPhoto', this.selectedFile);
+        this.dataService.updateUser(formData).subscribe(res => {
           if (res.responseCode == 0) {
             this.alertMsg.type = 'succsess';
             this.alertMsg.message = res.successMsg;
@@ -87,6 +89,8 @@ export class AddUserModalComponent implements OnInit {
           }
         })
       } else {
+        formData.append('data', JSON.stringify(this.customerForm.value));
+        formData.append('userPhoto', this.selectedFile);
         this.dataService.addUser(formData).subscribe(res => {
           if (res.responseCode == 0) {
             this.alertMsg.type = 'succsess';

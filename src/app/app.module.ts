@@ -43,6 +43,7 @@ import { AddModalComponent } from './pages/packages/add-modal/add-modal.componen
 import { SelectPackageModalComponent } from './pages/select-package-modal/select-package-modal.component';
 import { UsersComponent } from './pages/users/users.component';
 import { AddUserModalComponent } from './pages/users/add-user-modal/add-user-modal.component';
+import { PromotionsComponent } from './pages/promotions/promotions.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { AddUserModalComponent } from './pages/users/add-user-modal/add-user-mod
     AddModalComponent,
     SelectPackageModalComponent,
     UsersComponent,
-    AddUserModalComponent
+    AddUserModalComponent,
+    PromotionsComponent
     //DashboardComponent
   ],
   imports: [

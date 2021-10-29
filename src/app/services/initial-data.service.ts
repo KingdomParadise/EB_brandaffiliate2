@@ -174,6 +174,13 @@ export class InitialDataService {
         catchError(this.handleError)
       )
   }
+  updateUser(data: any){
+    return this.http.post<any>(this.apiUrl + '/dealer/updateUser', data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
   disableUser(data: any){
     return this.http.post<any>(this.apiUrl + '/dealer/disableUser', data)
     .pipe(
@@ -190,6 +197,13 @@ export class InitialDataService {
   }
   deleteUser(data: any){
     return this.http.post<any>(this.apiUrl + '/dealer/deleteUser', data)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+  deleteUserList(data: any){
+    return this.http.post<any>(this.apiUrl + '/dealer/deleteUserList', data)
     .pipe(
       retry(1),
       catchError(this.handleError)

@@ -97,13 +97,13 @@ export class UsersComponent implements OnInit {
   }
 
   applyFilter() {
-    this.currentQuery = {
-      type: "all",
-      sort: "dateAdded",
-      searchString: this.filterText
-    }
-    this.getNextData(this.currentQuery, this.pagination.pageSize, this.pagination.length, 0);
-    //this.dataSource.filter = this.filterText.trim().toLowerCase();
+    // this.currentQuery = {
+    //   type: "all",
+    //   sort: "dateAdded",
+    //   searchString: this.filterText
+    // }
+    // this.getNextData(this.currentQuery, this.pagination.pageSize, this.pagination.length, 0);
+    this.dataSource.filter = this.filterText.trim().toLowerCase();
   }
 
   openSendMsgDialog(customer: any, mode: string) {
@@ -304,9 +304,9 @@ export class UsersComponent implements OnInit {
       alert("Select atleast one value");
     } else if(confirm('Want to delete?')){
       let payload = {
-        customerIdList: this.selection.selected.map(customer => { return customer.userId })
+        userIdList: this.selection.selected.map(customer => { return customer.userId })
       }
-      this.dataService.deleteCustomerList(payload).subscribe(res => {
+      this.dataService.deleteUserList(payload).subscribe(res => {
         if (res.responseCode == 0) {
           this.alertMsg.type = 'success';
           this.alertMsg.message = res.successMsg;

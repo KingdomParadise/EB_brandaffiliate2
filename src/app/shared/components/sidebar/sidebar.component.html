@@ -18,7 +18,7 @@
             <mat-icon>home</mat-icon>
             <span *ngIf="!isPartialClose">Home</span>
         </a>
-        <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/promotions">
             <mat-icon>local_offer</mat-icon>
             <span *ngIf="!isPartialClose">Promotions</span>
         </a>
@@ -34,14 +34,14 @@
             <mat-icon>person</mat-icon>
             <span *ngIf="!isPartialClose">Users</span>
         </a>
-        <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+        <!-- <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
             <mat-icon>request_quote</mat-icon>
             <span *ngIf="!isPartialClose">Commission Payments</span>
-        </a>
-        <a mat-list-item routerLinkActive="list-item-active" routerLink="/payment-pages">
+        </a> -->
+        <!-- <a mat-list-item routerLinkActive="list-item-active" routerLink="/payment-pages">
             <mat-icon> perm_media</mat-icon>
             <span *ngIf="!isPartialClose"> Upload Assets</span>
-        </a>
+        </a> -->
         <a mat-list-item (click)="goToPackagePage()">
             <mat-icon> local_atm</mat-icon>
             <span *ngIf="!isPartialClose">Packages</span>

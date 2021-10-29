@@ -9,6 +9,7 @@ import { DealerLoginComponent } from './pages/dealer-login/dealer-login.componen
 import { DealerPackageComponent } from './pages/dealer-package/dealer-package.component';
 import { DealerRegistrationComponent } from './pages/dealer-registration/dealer-registration.component';
 import { PackagesComponent } from './pages/packages/packages.component';
+import { PromotionsComponent } from './pages/promotions/promotions.component';
 import { ReviewDealerComponent } from './pages/review-dealer/review-dealer.component';
 import { SelectPackageModalComponent } from './pages/select-package-modal/select-package-modal.component';
 import { SettingsComponent } from './pages/settings/settings.component';
@@ -47,6 +48,10 @@ const routes: Routes = [
       {
         path: 'users',
         component: UsersComponent
+      },
+      {
+        path: 'promotions',
+        component: PromotionsComponent
       }
     ]
   },

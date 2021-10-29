@@ -1,0 +1,82 @@
+<div class="page-container">
+    <div class="row">
+        <div class="col-md-12 p-0">
+            <h1 class="page-heading">Promotions</h1>
+        </div>
+        <div class="col-md-12 p-0">
+            <div *ngIf="alertMsg.message"
+                class="alert fade show d-flex justify-content-between align-items-center mt-2 p-2"
+                [ngClass]="(alertMsg.type == 'danger')?'alert-danger': 'alert-success'" role="alert">
+                <span>{{alertMsg.message}}</span>
+                <button type="button" class="btn btn-default close" (click)="close()" data-dismiss="alert"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="com-md-12 position-relative">
+            <mat-tab-group>
+                <mat-tab label="Campaigns">
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                        <ng-container matColumnDef="duration">
+                            <th mat-header-cell *matHeaderCellDef> Duration </th>
+                            <td mat-cell *matCellDef="let element"> {{element.duration}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="title">
+                            <th mat-header-cell *matHeaderCellDef> Title </th>
+                            <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="url">
+                            <th mat-header-cell *matHeaderCellDef> URL </th>
+                            <td mat-cell *matCellDef="let element"> {{element.url}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="image">
+                            <th mat-header-cell *matHeaderCellDef> </th>
+                            <td mat-cell *matCellDef="let element">
+                                <img [src]="element.image" alt="">
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="status">
+                            <th mat-header-cell *matHeaderCellDef> Status </th>
+                            <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="action">
+                            <th mat-header-cell *matHeaderCellDef> </th>
+                            <td mat-cell *matCellDef="let element">
+                                <button class="btn btn-dark">Share</button>
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+
+                </mat-tab>
+                <mat-tab label="Banners">
+                    Banners
+                </mat-tab>
+                <span>jijij</span>
+            </mat-tab-group>
+            <div class="d-flex justify-content-between p-0 justify-content-md-end align-items-center" id="searchBook">
+                <div class="table-icon" style="border-bottom: 1px solid gray;">
+                    <mat-icon>search</mat-icon>
+                    <input type="text" (keyup)="applyFilter()">
+                </div>
+
+                <div class="table-icon" (click)="clearSearch()">
+                    <mat-icon>refresh</mat-icon>
+                </div>
+                <div class="table-icon" (click)="openAddDialog()">
+                    <mat-icon class="app-color">add</mat-icon>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

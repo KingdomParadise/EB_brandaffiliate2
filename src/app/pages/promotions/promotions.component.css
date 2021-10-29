@@ -1,0 +1,56 @@
+.page-container{
+    padding:1.5rem;
+}
+.page-heading{
+    font-weight: 500;
+}
+.bg-white{
+    background-color: white;
+}
+.table-icon{
+    display: flex;
+    margin:4px 8px;
+    cursor: pointer;
+}
+#searchBook{
+    position: absolute;
+    top:0px;
+    right: 0px;
+    width: 200px;
+    float: right;
+    z-index: 10;
+}
+table{
+    width: 100%;
+}
+.app-color{
+    background-color: #622da6;
+    color: white;
+}
+input{
+    padding-left: 10px;
+    margin:0 auto;
+    border:none;
+    border:none;
+    outline: none;
+    border-radius: 0;
+    color: black;
+    font-size: 12px;
+    background: transparent;
+    padding:4px;
+}
+input:focus{
+    background-color: transparent;
+    border:none;
+    box-shadow: none;
+    border:none
+}
+input:focus::placeholder {
+    color: transparent;
+}
+input::placeholder {
+    color: #040404;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 12px;
+}

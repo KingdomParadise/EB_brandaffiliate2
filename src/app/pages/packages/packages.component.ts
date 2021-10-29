@@ -108,7 +108,14 @@ export class PackagesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      
+      this.dataService.packageDetails().subscribe((res: any) => {
+        console.log(res);
+        if (res.response) {
+          this.currentPackage = res.response.currentPackage;
+          this.packs = res.response.upgradePackageList;
+          //this.packs[1] = this.packs[0];
+        }
+      });
     });
   }
 }
