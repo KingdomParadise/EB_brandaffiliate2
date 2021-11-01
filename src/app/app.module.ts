@@ -44,6 +44,8 @@ import { SelectPackageModalComponent } from './pages/select-package-modal/select
 import { UsersComponent } from './pages/users/users.component';
 import { AddUserModalComponent } from './pages/users/add-user-modal/add-user-modal.component';
 import { PromotionsComponent } from './pages/promotions/promotions.component';
+import { AddBannerModalComponent } from './pages/promotions/add-banner-modal/add-banner-modal.component';
+import { AddCampaignModalComponent } from './pages/promotions/add-campaign-modal/add-campaign-modal.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,9 @@ import { PromotionsComponent } from './pages/promotions/promotions.component';
     SelectPackageModalComponent,
     UsersComponent,
     AddUserModalComponent,
-    PromotionsComponent
+    PromotionsComponent,
+    AddBannerModalComponent,
+    AddCampaignModalComponent
     //DashboardComponent
   ],
   imports: [

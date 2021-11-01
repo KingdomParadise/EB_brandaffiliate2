@@ -1,0 +1,77 @@
+.bg-white{
+    background-color: white;
+}
+input{
+    margin:0 auto;
+    border:none;
+    border-bottom: 1px solid gray;
+    outline: none;
+    border-radius: 0;
+    color: black;
+    text-align: left;
+    font-size: 12px;
+}
+
+input:focus{
+    background-color: transparent;
+    border:none;
+    box-shadow: none;
+    border-bottom: 1px solid gray;
+}
+input:focus::placeholder {
+    color: transparent;
+}
+input::placeholder {
+    color: #040404;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-align: left;
+    font-size: 12px;
+}
+textarea{
+    color: black;
+    text-align: left;
+    font-size: 12px;
+}
+textarea::placeholder {
+    color: #040404;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-align: left;
+    font-size: 12px;
+}
+.uploadIcon{
+    max-width: 180px;
+    width: 180px;
+}
+.app-btn{
+    background-color: #a63da1;
+    color:white;
+    text-transform: uppercase;
+    padding-right: 4rem;
+    padding-left: 4rem;
+}
+.btn-close{
+    box-shadow: none;
+}
+.modal-footer{
+    background-color: black;
+    color:white;
+    text-align: right;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.settingImage{
+    min-width: 120px;
+    min-height: 120px;
+    max-width:200px;
+    max-height: 200px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+::ng-deep .contact-dialog .mat-dialog-container{
+    padding:0 !important;
+    position: relative;
+}

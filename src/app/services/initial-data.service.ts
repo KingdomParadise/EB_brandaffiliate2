@@ -209,6 +209,44 @@ export class InitialDataService {
       catchError(this.handleError)
     )
   }
+  // ---------------promotions code starts-------------- //
+  addBanner(data:any){
+    return this.http.post<any>(this.apiUrl + '/dealer/addBanner', data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+  enableBanner(data:any){
+    return this.http.post<any>(this.apiUrl + '/dealer/enableBanner', data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+  disableBanner(data:any){
+    return this.http.post<any>(this.apiUrl + '/dealer/disableBanner', data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+  getAllBanner(data: any, page:any ,size:any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + '/dealer/getAllBanner/page/'+page+'/size/'+size, data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+  deleteBanner(data: any){
+    return this.http.post<any>(this.apiUrl + '/dealer/deleteBanner', data)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+  
+  // ---------------promotions code ends-------------- //
   handleError(error: HttpErrorResponse) {
     let errorMessage = 'Unknown error!';
     if (error.error instanceof ErrorEvent) {
