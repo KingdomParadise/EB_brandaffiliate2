@@ -17,17 +17,18 @@
         </div>
         <div class="col-md-12 mb-4">
             <div class="form-group">
-
-                <input type="text" matInput class="form-control" formControlName="cardNumber" placeholder="Card Number">
+                <input type="text" matInput class="form-control" card formControlName="cardNumber" placeholder="Card Number">
             </div>
         </div>
         <div class="col-md-8">
             <div class="form-group d-flex">
                 <span class="py-2 me-2">Valid thru</span>
                 <div class="d-flex py-2">
-                    <input type="email" class="shortWidth" matInput formControlName="month" placeholder="MM">
+                    <input type="number" class="shortWidth" matInput
+                    onkeypress="return /0[1-9]|1[0-2]/i.test(event.key)"
+                     formControlName="month" placeholder="MM">
                     <span>/</span>
-                    <input type="email" matInput class="shortWidth" formControlName="year" placeholder="YY">
+                    <input type="number" matInput class="shortWidth" formControlName="year" placeholder="YY">
                 </div>
             </div>
         </div>

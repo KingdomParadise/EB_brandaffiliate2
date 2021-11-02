@@ -28,8 +28,8 @@ export class CardModalComponent implements OnInit {
     this.customerForm = this._formBuilder.group({
       name: ['', Validators.required],
       cardNumber: ['', Validators.required],
-      month: ['', Validators.required],
-      year: [''],
+      month: ['', [Validators.required, Validators.max(12)]],
+      year: ['',[Validators.required, Validators.max(99)]],
       cvv: ['']  
     });
     if (this.data.mode == 'edit') {

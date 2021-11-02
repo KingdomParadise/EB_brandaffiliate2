@@ -46,6 +46,7 @@ import { AddUserModalComponent } from './pages/users/add-user-modal/add-user-mod
 import { PromotionsComponent } from './pages/promotions/promotions.component';
 import { AddBannerModalComponent } from './pages/promotions/add-banner-modal/add-banner-modal.component';
 import { AddCampaignModalComponent } from './pages/promotions/add-campaign-modal/add-campaign-modal.component';
+import { CreditCardDirective } from './helper/card.directive';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { AddCampaignModalComponent } from './pages/promotions/add-campaign-modal
     AddUserModalComponent,
     PromotionsComponent,
     AddBannerModalComponent,
-    AddCampaignModalComponent
+    AddCampaignModalComponent,
+    CreditCardDirective
     //DashboardComponent
   ],
   imports: [

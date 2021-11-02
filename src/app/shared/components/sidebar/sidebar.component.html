@@ -51,7 +51,7 @@
             <mat-icon>settings</mat-icon>
             <span *ngIf="!isPartialClose">Settings</span>
         </a>
-        <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+        <a mat-list-item (click)="logout()">
             <mat-icon >logout</mat-icon>
             <span *ngIf="!isPartialClose" class="me-3">Log Out</span>
         </a>

@@ -15,6 +15,7 @@ import { SelectPackageModalComponent } from './pages/select-package-modal/select
 import { SettingsComponent } from './pages/settings/settings.component';
 import { UsersComponent } from './pages/users/users.component';
 import { VerifyComponent } from './pages/verify/verify.component';
+import { AuthGuard } from './services/auth.gaurds';
 
 const routes: Routes = [
   {
@@ -27,31 +28,38 @@ const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'settings',
         component: SettingsComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'affiliates',
         component: AffiliatesComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'packages',
         component: PackagesComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'packages/add',
         component: SelectPackageModalComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'users',
-        component: UsersComponent
+        component: UsersComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'promotions',
-        component: PromotionsComponent
+        component: PromotionsComponent,
+        canActivate: [AuthGuard]
       }
     ]
   },
@@ -85,6 +93,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule { }

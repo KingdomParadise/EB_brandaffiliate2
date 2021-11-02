@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { atLeastOne } from 'src/app/services/eitherOne-validation';
 import { InitialDataService } from 'src/app/services/initial-data.service';
 
 @Component({
@@ -27,12 +28,16 @@ export class AddAffiliatesModalComponent implements OnInit {
     this.customerForm = this._formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      customerEmailId: ['', Validators.required],
-      customerPhoneNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]]  
-    });
+      customerEmailId: ['', [ Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      customerPhoneNumber: ['', [Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]]  
+    },{ validator: atLeastOne(Validators.required, ['customerEmailId','customerPhoneNumber']) });
     if (this.data.mode == 'edit') {
       this.customerForm.patchValue(this.data.customer);
     }
+  }
+  customValidationFunction(formGroup:any): any {
+    let nameField = formGroup.controls['name'].value; //access any of your form fields like this
+    return (nameField.length < 5) ? { nameLengthFive: true } : null;
   }
   get f(){  
     return this.customerForm.controls;  
