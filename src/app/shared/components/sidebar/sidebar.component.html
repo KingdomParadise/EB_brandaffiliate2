@@ -26,10 +26,10 @@
             <mat-icon>person</mat-icon>
             <span *ngIf="!isPartialClose">Affiliates</span>
         </a>
-        <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+        <!-- <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
             <mat-icon>extension</mat-icon>
             <span *ngIf="!isPartialClose">Prospects</span>
-        </a>
+        </a> -->
         <a mat-list-item routerLinkAsctive="list-item-active" routerLink="/users">
             <mat-icon>person</mat-icon>
             <span *ngIf="!isPartialClose">Users</span>
@@ -51,7 +51,7 @@
             <mat-icon>settings</mat-icon>
             <span *ngIf="!isPartialClose">Settings</span>
         </a>
-        <a mat-list-item (click)="logout()">
+        <a mat-list-item (click)="logout()" class="d-block d-md-none">
             <mat-icon >logout</mat-icon>
             <span *ngIf="!isPartialClose" class="me-3">Log Out</span>
         </a>
@@ -63,11 +63,11 @@
         </a>
     </div>
     <div>
-        <!-- <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+        <a mat-list-item (click)="logout()" class="d-none d-md-block">
 
             <span *ngIf="!isPartialClose" class="me-3">Log Out</span>
             <mat-icon >logout</mat-icon>
-        </a> -->
+        </a>
     </div>
 
 

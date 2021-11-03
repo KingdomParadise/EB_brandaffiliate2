@@ -54,14 +54,7 @@ textarea::placeholder {
 .btn-close{
     box-shadow: none;
 }
-.modal-footer{
-    background-color: black;
-    color:white;
-    text-align: right;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
+
 .settingImage{
     min-width: 120px;
     min-height: 120px;

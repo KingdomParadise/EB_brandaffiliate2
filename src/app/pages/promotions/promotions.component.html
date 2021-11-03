@@ -17,7 +17,7 @@
     </div>
     <div class="row">
         <div class="com-md-12 position-relative">
-            <mat-tab-group>
+            <mat-tab-group #tabGroup (selectedIndexChange)="tabChanged($event)">
                 <mat-tab label="Campaigns">
                     <table mat-table [dataSource]="dataSourceBanner" class="mat-elevation-z8">
 

@@ -1,8 +1,12 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 import { InitialDataService } from 'src/app/services/initial-data.service';
+import { AddBannerModalComponent } from './add-banner-modal/add-banner-modal.component';
+import { AddCampaignModalComponent } from './add-campaign-modal/add-campaign-modal.component';
 
 export interface Banner {
   duration: string;
@@ -30,18 +34,21 @@ export class PromotionsComponent implements OnInit {
     pageSize: 0,
     length: 5,
   };
+  currentTabIndex = 0;
   banners: any[] = [];
   selection = new SelectionModel<Banner>(true, []);
   loading: boolean = true;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   pageEvent: PageEvent;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('tabGroup') tabGroup:any;
   currentQuery: any = {
     searchString: '',
   };
   displayedColumns: string[] = ['duration', 'title', 'image', 'status', 'action'];
   dataSourceBanner = new MatTableDataSource<Banner>([]);
   constructor(
+    public dialog: MatDialog,
     private dataService: InitialDataService
   ) { }
 
@@ -71,7 +78,36 @@ export class PromotionsComponent implements OnInit {
 
   }
   openAddDialog() {
-    
+    let size = ['675px', '475px'];
+    if (window.innerWidth > 786) {
+      size = ['795px', '500px'];
+    } else {
+      size = ['350px', '400px'];
+    }
+    if(this.currentTabIndex == 0){
+     
+      
+      const dialogRef1 = this.dialog.open(AddCampaignModalComponent, {
+        maxWidth: size[0],
+        maxHeight: size[1],
+        height: '100%',
+        width: '100%',
+        data: {},
+        disableClose: false
+      });
+    }else if(this.currentTabIndex == 1){
+      const dialogRef2 = this.dialog.open(AddBannerModalComponent, {
+        maxWidth: size[0],
+        maxHeight: size[1],
+        height: '100%',
+        width: '100%',
+        data: {},
+        disableClose: false
+      });
+    }
+  }
+  tabChanged(index: number): void {
+    this.currentTabIndex = index;
   }
   deleteMultipleRecords() {
 
