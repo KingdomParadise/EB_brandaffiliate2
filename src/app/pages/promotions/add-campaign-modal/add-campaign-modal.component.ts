@@ -13,9 +13,11 @@ export class AddCampaignModalComponent implements OnInit {
     type: '',
     message: ''
   };
+  isEditable = true;
   selectedFile: File;
   selectedFilePath: any = 'assets/images/file-upload-logo.png';
   addCampaignForm:FormGroup;
+  addCampaignForm2:FormGroup;
   industries:any[] = [];
   constructor(
     private _formBuilder: FormBuilder,
@@ -29,14 +31,17 @@ export class AddCampaignModalComponent implements OnInit {
       this.industries = data.response.industryList;
     });
     this.addCampaignForm = this._formBuilder.group({
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
+      campaignStartDate: ['', Validators.required],
+      campaignEndDate: ['', Validators.required],
       campaignName: [''],
       campaignDescription: [''],
-      campaignURL: [''],
+
       hashTag: [''],
-      campaignType: [''],
-      intrestIdList: [null]
+      campaignType: ['image'],
+    });
+    this.addCampaignForm2 = this._formBuilder.group({
+      campaignURL: [''],
+      intrestIdList: [null],
     });
   }
   onFileChanged(event: any, type: string) {
