@@ -34,27 +34,29 @@
                 </div>
                 <div class="form-group mt-5">
                     <textarea class="form-control" rows="5" placeholder="Campaign Description"
-                        formControlName="campaignDescription"></textarea>
+                        formControlName="campaignDescription">
+                    </textarea>
                 </div>
             </div>
             <div class="">
                 <div class="form-group ms-3">
                     <div class="col text-center pb-2 pb-md-0">
                         <div style="max-height: 360px;overflow: hidden;">
-                            <input #fileUpload type="file" id="fileUpload"
-                                style="display:none" (change)="onFileChanged($event,'company')" />
-                                <div class="settingImage" [ngStyle]="{'background-image': 'url(' + selectedFilePath + ')'}" (click)="fileUpload.click()">
+                            <input #fileUpload type="file" id="fileUpload" style="display:none"
+                                (change)="onFileChanged($event,'company')" />
+                            <div class="settingImage" [ngStyle]="{'background-image': 'url(' + selectedFilePath + ')'}"
+                                (click)="fileUpload.click()">
 
-                                </div>
+                            </div>
                         </div>
                         <div class="form-group mt-md-3">
                             <ng-select [items]="industries" bindLabel="industryName" placeholder="Interest"
-                                    formControlName="intrestIdList"
-                                    bindValue="intrestIdList">
-                                </ng-select>
+                                formControlName="intrestIdList" bindValue="intrestIdList">
+                            </ng-select>
                         </div>
                         <div class="form-group mt-md-3">
-                            <input class="form-control" type="text" formControlName="campaignURL" placeholder="Hash Tag">
+                            <input class="form-control" type="text" formControlName="campaignURL"
+                                placeholder="Campaign url">
                         </div>
                     </div>
                 </div>
@@ -63,7 +65,7 @@
 
 
         <div class="d-flex justify-content-center mt-4">
-            <button mat-button class="btn mb-5 mb-md-0 app-btn" (click)="submit()"
+            <button mat-button class="btn mb-5 mb-md-0 app-btn" (click)="addNewCampaign()"
                 [disabled]="!addCampaignForm.valid">Send Message</button>
         </div>
         <div *ngIf="alertMsg.message" class="alert fade show d-flex justify-content-between align-items-center mt-2 p-2"

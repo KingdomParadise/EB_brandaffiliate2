@@ -245,7 +245,13 @@ export class InitialDataService {
       catchError(this.handleError)
     )
   }
-  
+  addCampaign(data: any) {
+    return this.http.post<any>(this.apiUrl + '/dealer/addCampaign', data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
   // ---------------promotions code ends-------------- //
   handleError(error: HttpErrorResponse) {
     let errorMessage = 'Unknown error!';

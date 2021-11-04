@@ -8,7 +8,7 @@ input{
     outline: none;
     border-radius: 0;
     color: black;
-    text-align: left;
+    text-align: center;
     font-size: 12px;
 }
 
@@ -25,7 +25,7 @@ input::placeholder {
     color: #040404;
     text-transform: uppercase;
     font-weight: 500;
-    text-align: left;
+    text-align: center;
     font-size: 12px;
 }
 textarea{
@@ -37,7 +37,7 @@ textarea::placeholder {
     color: #040404;
     text-transform: uppercase;
     font-weight: 500;
-    text-align: left;
+    text-align: center;
     font-size: 12px;
 }
 .uploadIcon{
@@ -86,4 +86,13 @@ textarea::placeholder {
     font-weight: 500;
     font-size: 1rem;
     font-size: 12px;
+}
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex{
+    background-color: white !important;
+}
+::ng-deep .mat-form-field-infix{
+    text-align: center !important;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #050505;
 }

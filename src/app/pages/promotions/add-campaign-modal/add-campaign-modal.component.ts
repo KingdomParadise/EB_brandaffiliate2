@@ -57,4 +57,12 @@ export class AddCampaignModalComponent implements OnInit {
   closeModal() {
     this.dialogRef.close();
   }
+  addNewCampaign(){
+    let formData = new FormData();
+    formData.append('data', JSON.stringify(this.addCampaignForm.value));
+    formData.append('image', this.selectedFile);
+    this.dataService.addCampaign(formData).subscribe(res => {
+      console.log(res);
+    })
+  }
 }
