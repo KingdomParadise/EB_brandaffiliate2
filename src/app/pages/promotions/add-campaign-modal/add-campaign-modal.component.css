@@ -51,6 +51,10 @@ textarea::placeholder {
     padding-right: 4rem;
     padding-left: 4rem;
 }
+.btn-reset{
+    background-color: #cccccc;
+    color: white;
+}
 .btn-close{
     box-shadow: none;
 }
@@ -63,6 +67,12 @@ textarea::placeholder {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+.ng-dirty.ng-invalid {
+    border-color: red;
+}
+.ng-touched.ng-invalid {
+    border-color: red !important;
 }
 ::ng-deep .contact-dialog .mat-dialog-container{
     padding:0 !important;

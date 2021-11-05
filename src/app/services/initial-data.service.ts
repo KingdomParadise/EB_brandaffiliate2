@@ -252,6 +252,14 @@ export class InitialDataService {
         catchError(this.handleError)
       )
   }
+  
+  getAllCampaign(data: any, page:any ,size:any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + '/dealer/getAllCampaign/page/'+page+'/size/'+size, data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
   // ---------------promotions code ends-------------- //
   handleError(error: HttpErrorResponse) {
     let errorMessage = 'Unknown error!';

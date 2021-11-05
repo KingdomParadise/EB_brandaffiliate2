@@ -49,6 +49,7 @@ import { AddCampaignModalComponent } from './pages/promotions/add-campaign-modal
 import { CreditCardDirective } from './helper/card.directive';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatRadioModule} from '@angular/material/radio';
 @NgModule({
   declarations: [
     AppComponent,
@@ -101,6 +102,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     NgbDropdownModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatRadioModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAhWahf8oOXf9UyFu8W_iCE8HChcbgOVbQ',
       libraries: ['places']

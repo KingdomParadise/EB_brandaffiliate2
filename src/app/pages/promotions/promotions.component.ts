@@ -36,6 +36,7 @@ export class PromotionsComponent implements OnInit {
   };
   currentTabIndex = 0;
   banners: any[] = [];
+  campaigns:any[] = [];
   selection = new SelectionModel<Banner>(true, []);
   loading: boolean = true;
   pageSizeOptions: number[] = [5, 10, 25, 100];
@@ -47,6 +48,7 @@ export class PromotionsComponent implements OnInit {
   };
   displayedColumns: string[] = ['duration', 'title', 'image', 'status', 'action'];
   dataSourceBanner = new MatTableDataSource<Banner>([]);
+  dataSourceCampaign = new MatTableDataSource<Banner>([]);
   constructor(
     public dialog: MatDialog,
     private dataService: InitialDataService
@@ -54,6 +56,8 @@ export class PromotionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBannerData(this.currentQuery, this.pagination.pageSize, this.pagination.length);
+    this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length);
+    
   }
   getBannerData(query: any, page: any, size: any, previousSize?: any) {
     this.loading = true;
@@ -65,6 +69,19 @@ export class PromotionsComponent implements OnInit {
       this.dataSourceBanner._updateChangeSubscription();
       console.log(this.banners);
       this.dataSourceBanner.paginator = this.paginator;
+      this.loading = false;
+    });
+  }
+  getCampaignData(query: any, page: any, size: any, previousSize?: any) {
+    this.loading = true;
+    this.dataService.getAllCampaign(query, page, size).subscribe(res => {
+      this.campaigns.length = 0 // previousSize;
+      this.campaigns.push(...res.response.campaignList);
+      this.campaigns.length = res.response.campaignList.length //res.response.totalItems;
+      this.dataSourceCampaign = new MatTableDataSource<Banner>(this.campaigns);
+      this.dataSourceCampaign._updateChangeSubscription();
+      console.log(this.campaigns);
+      this.dataSourceCampaign.paginator = this.paginator;
       this.loading = false;
     });
   }
@@ -80,7 +97,7 @@ export class PromotionsComponent implements OnInit {
   openAddDialog() {
     let size = ['675px', '475px'];
     if (window.innerWidth > 786) {
-      size = ['795px', '500px'];
+      size = ['695px', '500px'];
     } else {
       size = ['350px', '400px'];
     }
@@ -94,6 +111,10 @@ export class PromotionsComponent implements OnInit {
         width: '100%',
         data: {},
         disableClose: false
+      });
+      dialogRef1.afterClosed().subscribe(result => {
+        console.log('The dialog was closed', result);
+        this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length);
       });
     }else if(this.currentTabIndex == 1){
       const dialogRef2 = this.dialog.open(AddBannerModalComponent, {

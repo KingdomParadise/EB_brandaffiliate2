@@ -12,26 +12,30 @@
             <form [formGroup]="addCampaignForm" class="m-0 p-0" style="width:100%">
                 <div class="d-flex flex-column flex-md-row">
                     <div class="my-auto flex-grow-1">
-                        <div class="form-group d-flex">
-                            <mat-form-field appearance="fill" class="me-2">
+                        <div class="form-group d-flex justify-content-between">
+                            <mat-form-field appearance="fill">
                                 <mat-label>Start date</mat-label>
-                                <input matInput [matDatepicker]="picker" formControlName="campaignStartDate" class="border-0">
+                                <input matInput [matDatepicker]="picker" formControlName="campaignStartDate"
+                                    class="border-0">
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
                             </mat-form-field>
-        
-                            <mat-form-field appearance="fill" class="ms-2">
+
+                            <mat-form-field appearance="fill">
                                 <mat-label>End date</mat-label>
-                                <input matInput [matDatepicker]="picker2" formControlName="campaignEndDate" class="border-0">
+                                <input matInput [matDatepicker]="picker2" formControlName="campaignEndDate"
+                                    class="border-0">
                                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                                 <mat-datepicker #picker2></mat-datepicker>
                             </mat-form-field>
                         </div>
                         <div class="form-group mt-md-3">
-                            <input class="form-control" type="text" formControlName="campaignName" placeholder="Campaign Name">
+                            <input class="form-control" matInput type="text" formControlName="campaignName"
+                                placeholder="Campaign Name">
                         </div>
                         <div class="form-group mt-md-3">
-                            <input class="form-control" type="text" formControlName="hashTag" placeholder="Hash Tag">
+                            <input class="form-control" type="text" formControlName="campaignURL"
+                                placeholder="Campaign URL">
                         </div>
                         <div class="form-group mt-5">
                             <textarea class="form-control" rows="5" placeholder="Campaign Description"
@@ -39,7 +43,7 @@
                             </textarea>
                         </div>
                     </div>
-                    <div class="">
+                    <!-- <div class="">
                         <div class="form-group ms-3">
                             <div class="col text-center pb-2 pb-md-0">
                                 <div style="max-height: 360px;overflow: hidden;">
@@ -53,15 +57,17 @@
                                 
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
-        
-        
+
+
                 <div class="d-flex justify-content-center mt-4">
-                    <button mat-button class="btn mb-5 mb-md-0 app-btn" matStepperNext (click)="addNewCampaign()"
-                        [disabled]="!addCampaignForm.valid">Next</button>
+                    <button mat-button class="btn btn-reset px-md-5 me-3" (click)="stepper.reset()">Reset</button>
+                    <button mat-button class="btn mb-5 mb-md-0 btn-dark px-md-5" matStepperNext
+                         [disabled]="!addCampaignForm.valid">Next</button>
                 </div>
-                <div *ngIf="alertMsg.message" class="alert fade show d-flex justify-content-between align-items-center mt-2 p-2"
+                <div *ngIf="alertMsg.message"
+                    class="alert fade show d-flex justify-content-between align-items-center mt-2 p-2"
                     [ngClass]="(alertMsg.type == 'danger')?'alert-danger': 'alert-success'" role="alert">
                     <span>{{alertMsg.message}}</span>
                     <button type="button" class="btn btn-default close" (click)="close()" data-dismiss="alert"
@@ -70,34 +76,50 @@
                     </button>
                 </div>
             </form>
-           
+
         </mat-step>
         <mat-step [stepControl]="addCampaignForm2" [editable]="isEditable">
             <form [formGroup]="addCampaignForm2">
                 <div class="form-group mt-md-3">
-                    <ng-select [items]="industries" [multiple]="true" bindLabel="industryName"
-                        placeholder="Interest" formControlName="intrestIdList" bindValue="industryId">
+                    <ng-select [items]="industries" [multiple]="true" bindLabel="industryName" placeholder="Interest"
+                        formControlName="intrestIdList" bindValue="industryId">
                     </ng-select>
                 </div>
                 <div class="form-group mt-md-3">
-                    <input class="form-control" type="text" formControlName="campaignURL"
-                        placeholder="Campaign url">
+                    <input class="form-control" type="text" formControlName="hashTag" placeholder="HashTags">
                 </div>
-             
-                <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext>Next</button>
+                <div class="form-group text-center">
+                    <p class="text-dark text-uppercase mt-3">Asset</p>
+                    <mat-radio-group aria-label="Select an option" [(ngModel)]="campaignType"
+                        [ngModelOptions]="{standalone: true}" (change)="fileUpload.click()">
+                        <mat-radio-button value="image">Image</mat-radio-button>
+                        <mat-radio-button value="video">Video</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div class="">
+                    <div class="form-group ms-3">
+                        <div class="col text-center pb-2 pb-md-0">
+                            <div style="max-height: 360px;overflow: hidden;">
+                                <input #fileUpload type="file" id="fileUpload" style="display:none"
+                                [accept]="campaignType=='image'?'video/*':'image/*'"
+                                    (change)="onFileChanged($event,campaignType)" />
+                                <div class="settingImage"
+                                    [ngStyle]="{'background-image': 'url(' + selectedFilePath + ')'}"
+                                    (click)="fileUpload.click()">
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button mat-button matStepperPrevious class="btn px-md-5 btn-reset me-3">Back</button>
+                    <button mat-button matStepperNext class="btn btn-dark px-md-5" (click)="addNewCampaign()">Submit</button>
                 </div>
             </form>
         </mat-step>
-        <mat-step>
-            <ng-template matStepLabel>Done</ng-template>
-            <p>You are now done.</p>
-            <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button (click)="stepper.reset()">Reset</button>
-            </div>
-        </mat-step>
     </mat-stepper>
-    
+
 </div>

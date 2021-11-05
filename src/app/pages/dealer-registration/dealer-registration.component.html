@@ -73,12 +73,20 @@
                             </div>
                             <div class="form-group d-flex flex-column flex-md-row">
                                 <div class="col me-md-2">
-                                    <input type="text" class="form-control mb-3 mb-md-0 mb-lg-2 me-md-2" id="personalEmail" placeholder="Email"
+                                    <input type="email" class="form-control mb-3 mb-md-0 mb-lg-2 me-md-2" id="personalEmail" placeholder="Email"
                                      formControlName="personalEmail">
+                                     <div *ngIf="f1.personalEmail.touched && f1.personalEmail.invalid" class="text-danger">
+                                        <div *ngIf="f1.personalEmail.errors?.required">Email is required.</div>
+                                        <div *ngIf="f1.personalEmail.errors?.pattern">Please Enter valid email.</div>
+                                    </div>
                                 </div>
                                 <div class="col ms-md-2">
-                                    <input matInput type="number" class="form-control" id="personalPhone" placeholder=" Phone"
+                                    <input matInput type="number" class="form-control mb-md-0 mb-lg-2 me-md-2" id="personalPhone" placeholder=" Phone"
                                      formControlName="personalPhone">
+                                     <div *ngIf="f1.personalPhone.touched && f1.personalPhone.invalid" class="text-danger">
+                                        <div *ngIf="f1.personalPhone.errors?.required">Mobile Number is required.</div>
+                                        <div *ngIf="f1.personalPhone.errors?.pattern">Please, Enter 10 digit Mobile Number.</div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="d-grid mt-4">

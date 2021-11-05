@@ -75,7 +75,7 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
       firstName: ['', Validators.required],
       lastName: [null, Validators.required],
       personalEmail:  ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-      personalPhone: ['', Validators.required],
+      personalPhone: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
     });
     this.regForm2 = this._formBuilder.group({
       companyLogo: [null, Validators.required],
@@ -91,25 +91,7 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
       mapLocations: [null]
     });
 
-    this.mapsAPILoader.load().then(() => {
-      this.setCurrentLocation();
-      this.geoCoder = new google.maps.Geocoder;
-  
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
-      autocomplete.addListener("place_changed", () => {
-        this.ngZone.run(() => {
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-  
-          if (place.geometry === undefined || place.geometry === null) {
-            return;
-          }
-  
-          this.latitude = place.geometry.location.lat();
-          this.longitude = place.geometry.location.lng();
-          this.zoom = 12;
-        });
-      });
-    });
+    
     // this.secondFormGroup = this._formBuilder.group({
     //   secondCtrl: ['', Validators.required]
     // });
@@ -120,6 +102,12 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
     // };
     // this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
   }
+  get f1(){  
+    return this.regForm1.controls;  
+  }  
+  get f3(){  
+    return this.regForm3.controls;  
+  } 
   private setCurrentLocation() {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -153,6 +141,27 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
   public onStepChange(event: any): void {
     console.log(event.selectedIndex);
     this.currentStepperImage= this.stepperImages[event.selectedIndex].url;
+    if(event.selectedIndex == 2){
+      this.mapsAPILoader.load().then(() => {
+        this.setCurrentLocation();
+        this.geoCoder = new google.maps.Geocoder;
+    
+        let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
+        autocomplete.addListener("place_changed", () => {
+          this.ngZone.run(() => {
+            let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+    
+            if (place.geometry === undefined || place.geometry === null) {
+              return;
+            }
+    
+            this.latitude = place.geometry.location.lat();
+            this.longitude = place.geometry.location.lng();
+            this.zoom = 12;
+          });
+        });
+      });
+    }
   }
 
   onFileChanged(event: any, type: string) {
