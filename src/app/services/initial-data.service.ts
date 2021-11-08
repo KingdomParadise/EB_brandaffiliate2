@@ -217,6 +217,13 @@ export class InitialDataService {
         catchError(this.handleError)
       )
   }
+  updateBanner(data: any){
+    return this.http.post<any>(this.apiUrl + '/dealer/updateBanner', data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
   enableBanner(data:any){
     return this.http.post<any>(this.apiUrl + '/dealer/enableBanner', data)
       .pipe(
@@ -252,7 +259,27 @@ export class InitialDataService {
         catchError(this.handleError)
       )
   }
-  
+  updateCampaign(data: any){
+    return this.http.post<any>(this.apiUrl + '/dealer/updateCampaign', data)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+  enableCampaign(data:any){
+    return this.http.post<any>(this.apiUrl + '/dealer/enableCampaign', data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+  disableCampaign(data:any){
+    return this.http.post<any>(this.apiUrl + '/dealer/disableCampaign', data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
   getAllCampaign(data: any, page:any ,size:any): Observable<any> {
     return this.http.post<any>(this.apiUrl + '/dealer/getAllCampaign/page/'+page+'/size/'+size, data)
       .pipe(

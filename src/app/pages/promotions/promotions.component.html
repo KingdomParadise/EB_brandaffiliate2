@@ -44,7 +44,7 @@
                         <ng-container matColumnDef="status">
                             <th mat-header-cell *matHeaderCellDef> Status </th>
                             <td mat-cell *matCellDef="let element"> 
-                                <span class="verifiedTag" [ngStyle]="{'background-color':element?.status?'#4db050':'#bbbbbb','padding':element?.status?'2px 17px':'2px 4px'}">{{element?.status == 'active' ?'Enabled':'Disabled'}} </span>    
+                                <span class="verifiedTag" [ngStyle]="{'background-color':element?.status =='active'?'#4db050':'#bbbbbb','padding':element?.status=='active'?'2px 17px':'2px 4px'}">{{element?.status == 'active' ?'Enabled':'Disabled'}} </span>    
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="action">
@@ -56,11 +56,11 @@
                                 </button>
         
                                 <mat-menu #adminActions="matMenu">
-                                    <button mat-menu-item (click)="editBanner(element)">
+                                    <button mat-menu-item (click)="openEditDialog(element)">
                                         <mat-icon>edit</mat-icon>
                                         <span>Edit</span>
                                     </button>
-                                    <button mat-menu-item (click)="toggleBannerStatus(element)">
+                                    <button mat-menu-item (click)="toggleCampaignStatus(element)">
                                         <mat-icon>wb_sunny</mat-icon>
                                         <span *ngIf="element?.status != 'active'">Enable</span>
                                         <span *ngIf="element?.status == 'active'">Disable</span>
@@ -106,7 +106,7 @@
                         <ng-container matColumnDef="status">
                             <th mat-header-cell *matHeaderCellDef> Status </th>
                             <td mat-cell *matCellDef="let element"> 
-                                <span class="verifiedTag" [ngStyle]="{'background-color':element?.status?'#4db050':'#bbbbbb','padding':element?.status?'2px 17px':'2px 4px'}">{{element?.status == 'active' ?'Enabled':'Disabled'}} </span>    
+                                <span class="verifiedTag" [ngStyle]="{'background-color':element?.status=='active'?'#4db050':'#bbbbbb','padding':element?.status=='active'?'2px 17px':'2px 4px'}">{{element?.status == 'active' ?'Enabled':'Disabled'}} </span>    
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="action">
@@ -118,7 +118,7 @@
                                 </button>
         
                                 <mat-menu #adminActions="matMenu">
-                                    <button mat-menu-item (click)="editBanner(element)">
+                                    <button mat-menu-item (click)="openEditDialog(element)">
                                         <mat-icon>edit</mat-icon>
                                         <span>Edit</span>
                                     </button>

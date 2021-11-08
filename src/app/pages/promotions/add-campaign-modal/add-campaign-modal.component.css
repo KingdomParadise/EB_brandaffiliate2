@@ -60,13 +60,13 @@ textarea::placeholder {
 }
 
 .settingImage{
-    min-width: 220px;
     min-height: 220px;
-    max-width:240px;
+    width: 100%;
     max-height: 240px;
+    background-color: #f2f1f3;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
 }
 .ng-dirty.ng-invalid {
     border-color: red;
@@ -105,4 +105,8 @@ textarea::placeholder {
     text-transform: uppercase;
     font-weight: 500;
     color: #050505;
+}
+.btn-color{
+    background-color:#622da6;
+    color:white;
 }

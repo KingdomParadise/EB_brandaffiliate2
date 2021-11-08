@@ -64,7 +64,7 @@
                 <div class="d-flex justify-content-center mt-4">
                     <button mat-button class="btn btn-reset px-md-5 me-3" (click)="stepper.reset()">Reset</button>
                     <button mat-button class="btn mb-5 mb-md-0 btn-dark px-md-5" matStepperNext
-                         [disabled]="!addCampaignForm.valid">Next</button>
+                        [disabled]="!addCampaignForm.valid">Next</button>
                 </div>
                 <div *ngIf="alertMsg.message"
                     class="alert fade show d-flex justify-content-between align-items-center mt-2 p-2"
@@ -81,42 +81,61 @@
         <mat-step [stepControl]="addCampaignForm2" [editable]="isEditable">
             <form [formGroup]="addCampaignForm2">
                 <div class="form-group mt-md-3">
-                    <ng-select [items]="industries" [multiple]="true" bindLabel="industryName" placeholder="Interest"
+                    <ng-select #myInterests [items]="industries" [multiple]="true" bindLabel="industryName" placeholder="Interest"
                         formControlName="intrestIdList" bindValue="industryId">
                     </ng-select>
                 </div>
                 <div class="form-group mt-md-3">
                     <input class="form-control" type="text" formControlName="hashTag" placeholder="HashTags">
                 </div>
-                <div class="form-group text-center">
+                <div class="form-group text-center mb-3">
                     <p class="text-dark text-uppercase mt-3">Asset</p>
                     <mat-radio-group aria-label="Select an option" [(ngModel)]="campaignType"
-                        [ngModelOptions]="{standalone: true}" (change)="fileUpload.click()">
-                        <mat-radio-button value="image">Image</mat-radio-button>
-                        <mat-radio-button value="video">Video</mat-radio-button>
+                        [ngModelOptions]="{standalone: true}">
+                        <mat-radio-button value="image" class="me-2">Image</mat-radio-button>
+                        <mat-radio-button value="video" class="ms-2">Video</mat-radio-button>
                     </mat-radio-group>
                 </div>
-                <div class="">
+                <div class="" *ngIf="campaignType == 'image'">
                     <div class="form-group ms-3">
                         <div class="col text-center pb-2 pb-md-0">
                             <div style="max-height: 360px;overflow: hidden;">
-                                <input #fileUpload type="file" id="fileUpload" style="display:none"
-                                [accept]="campaignType=='image'?'video/*':'image/*'"
+                                <input #fileUpload type="file" id="fileUpload" style="display:none" accept="image/*"
                                     (change)="onFileChanged($event,campaignType)" />
                                 <div class="settingImage"
                                     [ngStyle]="{'background-image': 'url(' + selectedFilePath + ')'}"
                                     (click)="fileUpload.click()">
-
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
+                <div class="form-group text-center d-flex justify-content-center" *ngIf="campaignType == 'video'">
+                    <input #videoUpload type="file" id="videoUpload" style="display:none" accept="video/*"
+                        (change)="onFileChangedVideo($event,campaignType)" />
+                    <input #thumbnailUpload type="file" id="thumbnailUpload" style="display:none" accept="image/*"
+                        (change)="onFileChangedThumbnail($event,campaignType)" />
+                    <div class="d-flex flex-column">
+                        <button class="btn btn-sm px-5 btn-color" (click)="videoUpload.click()">Choose Video</button>
+                        <span class="mt-2">{{selectedVideoFilePath}}</span>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <button class="btn btn-link" (click)="thumbnailUpload.click()">Upload Thumbnail Image</button>
+                        <span>{{selectedThumbnailFilePath}}</span>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <div>
 
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
                 <div class="text-center mt-4">
                     <button mat-button matStepperPrevious class="btn px-md-5 btn-reset me-3">Back</button>
-                    <button mat-button matStepperNext class="btn btn-dark px-md-5" (click)="addNewCampaign()">Submit</button>
+                    <button mat-button matStepperNext class="btn btn-dark px-md-5"
+                        (click)="addNewCampaign()">Submit</button>
                 </div>
             </form>
         </mat-step>

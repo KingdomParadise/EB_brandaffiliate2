@@ -97,13 +97,11 @@ export class PromotionsComponent implements OnInit {
   openAddDialog() {
     let size = ['675px', '475px'];
     if (window.innerWidth > 786) {
-      size = ['695px', '500px'];
+      size = ['695px', '600px'];
     } else {
       size = ['350px', '400px'];
     }
     if(this.currentTabIndex == 0){
-     
-      
       const dialogRef1 = this.dialog.open(AddCampaignModalComponent, {
         maxWidth: size[0],
         maxHeight: size[1],
@@ -125,6 +123,45 @@ export class PromotionsComponent implements OnInit {
         data: {},
         disableClose: false
       });
+      dialogRef2.afterClosed().subscribe(result => {
+        console.log('The dialog was closed', result);
+        this.getBannerData(this.currentQuery, this.pagination.pageSize, this.pagination.length);
+      });
+    }
+  }
+  openEditDialog(data:any) {
+    let size = ['675px', '475px'];
+    if (window.innerWidth > 786) {
+      size = ['695px', '600px'];
+    } else {
+      size = ['350px', '400px'];
+    }
+    if(this.currentTabIndex == 0){
+      const dialogRef1 = this.dialog.open(AddCampaignModalComponent, {
+        maxWidth: size[0],
+        maxHeight: size[1],
+        height: '100%',
+        width: '100%',
+        data: {data},
+        disableClose: false
+      });
+      dialogRef1.afterClosed().subscribe(result => {
+        console.log('The dialog was closed', result);
+        this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length);
+      });
+    }else if(this.currentTabIndex == 1){
+      const dialogRef2 = this.dialog.open(AddBannerModalComponent, {
+        maxWidth: size[0],
+        maxHeight: size[1],
+        height: '100%',
+        width: '100%',
+        data: {data},
+        disableClose: false
+      });
+      dialogRef2.afterClosed().subscribe(result => {
+        console.log('The dialog was closed', result);
+        this.getBannerData(this.currentQuery, this.pagination.pageSize, this.pagination.length);
+      });
     }
   }
   tabChanged(index: number): void {
@@ -136,12 +173,10 @@ export class PromotionsComponent implements OnInit {
   pageChanged(eve: any) {
 
   }
-  editBanner(banner: any) {
-
-  }
+ 
   deleteBanner(bannerId: number, index: number) {
     if(confirm('Want to delete?')){
-      this.dataService.deleteAffiliate({ bannerId: bannerId }).subscribe(res => {
+      this.dataService.deleteBanner({ bannerId: bannerId }).subscribe(res => {
         console.log(res.responseCode);
         if (res.responseCode == 0) {
           this.dataSourceBanner.data.splice(index, 1);
@@ -162,11 +197,28 @@ export class PromotionsComponent implements OnInit {
     if (banner.status == 'active') {
       this.dataService.disableBanner({ bannerId: banner.bannerId }).subscribe(res => {
         console.log(res);
+        this.getBannerData(this.currentQuery, this.pagination.pageSize, this.pagination.length);
         //this.getNextData({}, this.pagination.pageSize, this.pagination.length, 0);
       })
     } else {
       this.dataService.enableBanner({ bannerId: banner.bannerId }).subscribe(res => {
         console.log(res);
+        this.getBannerData(this.currentQuery, this.pagination.pageSize, this.pagination.length);
+        //this.getNextData({}, this.pagination.pageSize, this.pagination.length, 0);
+      })
+    }
+  }
+  toggleCampaignStatus(campaign: any){
+    if (campaign.status == 'active') {
+      this.dataService.disableCampaign({ campaignId: campaign.campaignId }).subscribe(res => {
+        console.log(res);
+        this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length);
+        //this.getNextData({}, this.pagination.pageSize, this.pagination.length, 0);
+      })
+    } else {
+      this.dataService.enableCampaign({ campaignId: campaign.campaignId }).subscribe(res => {
+        console.log(res);
+        this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length);
         //this.getNextData({}, this.pagination.pageSize, this.pagination.length, 0);
       })
     }

@@ -68,9 +68,7 @@ export class AddUserModalComponent implements OnInit {
   }
   submit() {
     if (this.customerForm.valid) {
-
       let formData = new FormData();
-
       if (this.data.mode == 'edit') {
         this.customerForm.value.userId = this.data.customer.userId;
         formData.append('data', JSON.stringify(this.customerForm.value));
