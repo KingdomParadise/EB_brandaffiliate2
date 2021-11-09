@@ -3,6 +3,42 @@
     padding:1.5rem 1.3rem .75rem 1.3rem;
     text-align: center;
 }
+.red-dot{
+    width:10px;
+    height: 10px;
+    border-radius: 4px;
+    background-color: red;
+    position: absolute;
+    right: 12px;
+    top:0
+}
+.timeText{
+    text-align: right;
+    position: relative;
+    top: -2px;
+    margin-bottom: 0;
+}
+::ng-deep .mat-menu-panel{
+    max-width: 320px !important;
+    padding-right: 6px;
+    padding-left:6px;
+}
+.notf-image{
+    width: 50px;
+}
+::ng-deep .mat-menu-content{
+    padding-top: 0 !important;
+    padding-bottom: 0;
+}
+::ng-deep .mat-menu-item{
+    height: unset !important;
+}
+#notificationHead{
+    background-color:#953aa2;
+    color: white;
+    padding:5px 4px;
+    text-align: center;
+}
 #header-logo{
     width:50%;
 }

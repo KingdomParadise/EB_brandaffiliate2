@@ -30,6 +30,7 @@ export class PromotionsComponent implements OnInit {
     type: '',
     message: ''
   };
+  loadingAction = true;
   pagination = {
     pageSize: 0,
     length: 5,
@@ -181,6 +182,25 @@ export class PromotionsComponent implements OnInit {
         if (res.responseCode == 0) {
           this.dataSourceBanner.data.splice(index, 1);
           this.dataSourceBanner._updateChangeSubscription();
+        } else if (res.responseCode == -1) {
+          this.alertMsg.type = 'danger';
+          this.alertMsg.message = res.errorMsg
+        } else {
+          this.alertMsg.type = 'danger';
+          this.alertMsg.message = "Server error"
+        }
+      });
+    }else{
+
+    }
+  }
+  deleteCampaign(campaignId: number, index: number) {
+    if(confirm('Want to delete?')){
+      this.dataService.deleteCampaign({ campaignId: campaignId }).subscribe(res => {
+        console.log(res.responseCode);
+        if (res.responseCode == 0) {
+          this.dataSourceCampaign.data.splice(index, 1);
+          this.dataSourceCampaign._updateChangeSubscription();
         } else if (res.responseCode == -1) {
           this.alertMsg.type = 'danger';
           this.alertMsg.message = res.errorMsg

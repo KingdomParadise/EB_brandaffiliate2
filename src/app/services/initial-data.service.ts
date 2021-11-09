@@ -280,6 +280,13 @@ export class InitialDataService {
         catchError(this.handleError)
       )
   }
+  deleteCampaign(data: any){
+    return this.http.post<any>(this.apiUrl + '/dealer/deleteCampaign', data)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
   getAllCampaign(data: any, page:any ,size:any): Observable<any> {
     return this.http.post<any>(this.apiUrl + '/dealer/getAllCampaign/page/'+page+'/size/'+size, data)
       .pipe(
@@ -288,6 +295,13 @@ export class InitialDataService {
       )
   }
   // ---------------promotions code ends-------------- //
+  getDealerNotification(){
+    return this.http.post<any>(this.apiUrl + '/dealer/getDealerNotification',{})
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
   handleError(error: HttpErrorResponse) {
     let errorMessage = 'Unknown error!';
     if (error.error instanceof ErrorEvent) {

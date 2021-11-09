@@ -55,6 +55,27 @@
                             <a [href]="userData?.linkedinLink" target="_blank">
                                 <img src="assets/images/linkedIn-dark.png" alt="linkedIn" class="headerIcon">
                             </a>
+                            <a style="position: relative;" [matMenuTriggerFor]="adminActions">
+                                <img src="assets/images/Bell.png" alt="linkedIn" class="headerIcon">
+                                <div class="red-dot">
+
+                                </div>
+                            </a>
+    
+                            <mat-menu #adminActions="matMenu" xPosition="before" class="p-0">
+                                <div id="notificationHead">
+                                    <h3 class="mb-0">Notifications</h3>
+                                </div>
+                                <div *ngFor="let notification of notificationList" class="px-2 py-2">
+                                    <div class='d-flex'>
+                                        <img [src]="notification.fromUserImage" alt="user Image" class="notf-image">
+                                        <p class="mb-0">{{notification.message}}</p>
+                                    </div>
+                                    <p class="timeText">{{notification.createTs | date: 'short'}}</p>
+                                    <hr/>
+                                </div>
+                                
+                            </mat-menu>
                         </div>
                         
                         <div id="headerProfileImg">
