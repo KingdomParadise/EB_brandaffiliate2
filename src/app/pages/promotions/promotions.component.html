@@ -154,17 +154,16 @@
                             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                         </table>
-                        <mat-paginator [pageSizeOptions]="[5,10, 15, 20, 30]" [length]="pagination.length"
+                        <mat-paginator [pageSizeOptions]="[5,10, 15, 20, 30]" [length]="paginationBanner.length"
                             showFirstLastButtons (page)="pageChanged($event)">
                         </mat-paginator>
                     </ng-template>
                 </mat-tab>
-                <span>jijij</span>
             </mat-tab-group>
             <div class="d-flex justify-content-between p-0 justify-content-md-end align-items-center" id="searchBook">
                 <div class="table-icon" style="border-bottom: 1px solid gray;">
                     <mat-icon>search</mat-icon>
-                    <input type="text" (keyup)="applyFilter()">
+                    <input type="text" (keyup)="applyFilter()" [(ngModel)]="filterText">
                 </div>
 
                 <div class="table-icon" (click)="clearSearch()">

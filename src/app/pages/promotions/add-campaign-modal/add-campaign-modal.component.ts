@@ -21,7 +21,7 @@ export class AddCampaignModalComponent implements OnInit {
   selectedFilePath: any = 'assets/images/file-upload-logo.png';
 
   selectedVideoFile: File;
-  selectedVideoFilePath: any = '';
+  selectedVideoFilePath: any;
 
   selectedThumbnailFile: File;
   selectedThumbnailFilePath: any = '';
@@ -44,13 +44,14 @@ export class AddCampaignModalComponent implements OnInit {
       // this.addCampaignForm2.patchValue({
       //   intrestIdList: [{industryId:1},{industryId:2}]
       // })
-      this.myInterests.select([{industryId: 1, industryName: "Sports", imageUrl: "http://35.182.216.225:8000/sports.png"}]);
+      //this.myInterests.select([1,2]);
     });
+    const urlRegex = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
     this.addCampaignForm = this._formBuilder.group({
       campaignStartDate: ['', Validators.required],
       campaignEndDate: ['', Validators.required],
       campaignName: ['', Validators.required],
-      campaignURL: ['', Validators.required],
+      campaignURL: ['', [Validators.required, Validators.pattern(urlRegex)]],
       campaignDescription: ['', Validators.required],
     });
     this.addCampaignForm2 = this._formBuilder.group({
@@ -67,7 +68,9 @@ export class AddCampaignModalComponent implements OnInit {
       this.addCampaignForm.patchValue({
         campaignURL: this.data.data.originalUrlLink
       })
-      
+      this.addCampaignForm2.patchValue({
+        intrestIdList: this.data.data.intrestIdList.map(ele => {return ele.intrestId})
+      })
       this.campaignType = this.data.data.campaignType;
       if(this.data.data.campaignType == 'image'){
         this.selectedFilePath = this.data.data.campaignImageLink;
@@ -98,7 +101,7 @@ export class AddCampaignModalComponent implements OnInit {
     if (this.selectedVideoFile) {
       reader.readAsDataURL(this.selectedVideoFile);
       reader.onload = (_event) => {
-        this.selectedVideoFilePath = this.selectedVideoFile.name;
+        this.selectedVideoFilePath = (<FileReader>_event.target).result;
         this.campaignType = type;
       }
     }
@@ -109,7 +112,7 @@ export class AddCampaignModalComponent implements OnInit {
     if (this.selectedThumbnailFile) {
       reader.readAsDataURL(this.selectedThumbnailFile);
       reader.onload = (_event) => {
-        this.selectedThumbnailFilePath = this.selectedThumbnailFile.name;
+        this.selectedThumbnailFilePath = reader.result;
         this.campaignType = type;
       }
     }

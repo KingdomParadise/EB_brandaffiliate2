@@ -84,8 +84,8 @@ export class InitialDataService {
       )
   }
   // ---------------affiliates code starts-------------- //
-  getAllAffiliate(data: any, page:any ,size:any): Observable<any> {
-    return this.http.post<any>(this.apiUrl + '/dealer/getAllCustomer/page/'+page+'/size/'+size, data)
+  getAllAffiliate(data: any, page: any, size: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + '/dealer/getAllCustomer/page/' + page + '/size/' + size, data)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -137,21 +137,21 @@ export class InitialDataService {
       )
   }
   // ---------------affiliates code ends-------------- //
-  packageDetails(){
+  packageDetails() {
     return this.http.post<any>(this.apiUrl + '/dealer/packageDetails', {})
       .pipe(
         retry(1),
         catchError(this.handleError)
       )
   }
-  purchaseContent(data:any){
+  purchaseContent(data: any) {
     return this.http.post<any>(this.apiUrl + '/dealer/purchaseContent', data)
       .pipe(
         retry(1),
         catchError(this.handleError)
       )
   }
-  purchasePackage(data: any){
+  purchasePackage(data: any) {
     return this.http.post<any>(this.apiUrl + '/dealer/purchasePackage', data)
       .pipe(
         retry(1),
@@ -159,9 +159,9 @@ export class InitialDataService {
       )
   }
   // users apis ----- //
-  
-  getAllUser(data: any, page:any ,size:any): Observable<any> {
-    return this.http.post<any>(this.apiUrl + '/dealer/getAllUser/page/'+page+'/size/'+size, data)
+
+  getAllUser(data: any, page: any, size: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + '/dealer/getAllUser/page/' + page + '/size/' + size, data)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -174,83 +174,83 @@ export class InitialDataService {
         catchError(this.handleError)
       )
   }
-  updateUser(data: any){
+  updateUser(data: any) {
     return this.http.post<any>(this.apiUrl + '/dealer/updateUser', data)
       .pipe(
         retry(1),
         catchError(this.handleError)
       )
   }
-  disableUser(data: any){
+  disableUser(data: any) {
     return this.http.post<any>(this.apiUrl + '/dealer/disableUser', data)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
   }
-  enableUser(data: any){
+  enableUser(data: any) {
     return this.http.post<any>(this.apiUrl + '/dealer/enableUser', data)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
   }
-  deleteUser(data: any){
+  deleteUser(data: any) {
     return this.http.post<any>(this.apiUrl + '/dealer/deleteUser', data)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
   }
-  deleteUserList(data: any){
+  deleteUserList(data: any) {
     return this.http.post<any>(this.apiUrl + '/dealer/deleteUserList', data)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
   }
   // ---------------promotions code starts-------------- //
-  addBanner(data:any){
+  addBanner(data: any) {
     return this.http.post<any>(this.apiUrl + '/dealer/addBanner', data)
       .pipe(
         retry(1),
         catchError(this.handleError)
       )
   }
-  updateBanner(data: any){
+  updateBanner(data: any) {
     return this.http.post<any>(this.apiUrl + '/dealer/updateBanner', data)
       .pipe(
         retry(1),
         catchError(this.handleError)
       )
   }
-  enableBanner(data:any){
+  enableBanner(data: any) {
     return this.http.post<any>(this.apiUrl + '/dealer/enableBanner', data)
       .pipe(
         retry(1),
         catchError(this.handleError)
       )
   }
-  disableBanner(data:any){
+  disableBanner(data: any) {
     return this.http.post<any>(this.apiUrl + '/dealer/disableBanner', data)
       .pipe(
         retry(1),
         catchError(this.handleError)
       )
   }
-  getAllBanner(data: any, page:any ,size:any): Observable<any> {
-    return this.http.post<any>(this.apiUrl + '/dealer/getAllBanner/page/'+page+'/size/'+size, data)
+  getAllBanner(data: any, page: any, size: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + '/dealer/getAllBanner/page/' + page + '/size/' + size, data)
       .pipe(
         retry(1),
         catchError(this.handleError)
       )
   }
-  deleteBanner(data: any){
+  deleteBanner(data: any) {
     return this.http.post<any>(this.apiUrl + '/dealer/deleteBanner', data)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
   }
   addCampaign(data: any) {
     return this.http.post<any>(this.apiUrl + '/dealer/addCampaign', data)
@@ -259,44 +259,51 @@ export class InitialDataService {
         catchError(this.handleError)
       )
   }
-  updateCampaign(data: any){
+  updateCampaign(data: any) {
     return this.http.post<any>(this.apiUrl + '/dealer/updateCampaign', data)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
   }
-  enableCampaign(data:any){
+  enableCampaign(data: any) {
     return this.http.post<any>(this.apiUrl + '/dealer/enableCampaign', data)
       .pipe(
         retry(1),
         catchError(this.handleError)
       )
   }
-  disableCampaign(data:any){
+  disableCampaign(data: any) {
     return this.http.post<any>(this.apiUrl + '/dealer/disableCampaign', data)
       .pipe(
         retry(1),
         catchError(this.handleError)
       )
   }
-  deleteCampaign(data: any){
+  deleteCampaign(data: any) {
     return this.http.post<any>(this.apiUrl + '/dealer/deleteCampaign', data)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
   }
-  getAllCampaign(data: any, page:any ,size:any): Observable<any> {
-    return this.http.post<any>(this.apiUrl + '/dealer/getAllCampaign/page/'+page+'/size/'+size, data)
+  getAllCampaign(data: any, page: any, size: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + '/dealer/getAllCampaign/page/' + page + '/size/' + size, data)
       .pipe(
         retry(1),
         catchError(this.handleError)
       )
   }
   // ---------------promotions code ends-------------- //
-  getDealerNotification(){
-    return this.http.post<any>(this.apiUrl + '/dealer/getDealerNotification',{})
+  getDealerNotification() {
+    return this.http.post<any>(this.apiUrl + '/dealer/getDealerNotification', {})
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+  markDealerNotificationRead() {
+    return this.http.post<any>(this.apiUrl + '/dealer/markDealerNotificationRead', {})
       .pipe(
         retry(1),
         catchError(this.handleError)

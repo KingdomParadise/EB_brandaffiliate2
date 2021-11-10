@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ContactUsComponent } from 'src/app/pages/contact-us/contact-us.component';
+import { SupportModalComponent } from 'src/app/pages/support-modal/support-modal.component';
 import { InitialDataService } from 'src/app/services/initial-data.service';
 
 
@@ -12,6 +13,7 @@ import { InitialDataService } from 'src/app/services/initial-data.service';
 
 export class HeaderComponent implements OnInit {
   isExpanded: boolean = true;
+  isNewNotification: boolean = false;
   userPhotoUrl: any;
   userData: any;
   notificationList: any;
@@ -22,9 +24,16 @@ export class HeaderComponent implements OnInit {
     console.log(this.userData);
   }
   selected: any = '0';
+
   ngOnInit(): void {
+    this.getNotifications();
+    setInterval(()=>{this.getNotifications()},30000);
+  }
+
+  getNotifications(){
     this.dataService.getDealerNotification().subscribe(res => {
       this.notificationList = res.response.notificationList;
+      this.isNewNotification = res.response.unReadNotification
     });
   }
 
@@ -54,6 +63,37 @@ export class HeaderComponent implements OnInit {
         sort: '',
         searchString: '',
       }
+    });
+  }
+  openSupport() {
+    let size = ['675px', '475px'];
+    if (window.innerWidth > 786) {
+      size = ['675px', '430px'];
+    } else {
+      size = ['96%', '500px'];
+    }
+    const dialogRef = this.dialog.open(SupportModalComponent, {
+      width: size[0],
+      height: size[1],
+      data: {},
+      disableClose: false,
+      panelClass: 'support-dialog'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+      let query = {
+        type: 'all',
+        sort: '',
+        searchString: '',
+      }
+    });
+  }
+  menuOpened(){
+  }
+  menuClosed(){
+    this.dataService.markDealerNotificationRead().subscribe(res => {
+      //console.log(res);
     });
   }
 }

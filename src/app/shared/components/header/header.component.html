@@ -47,7 +47,7 @@
                    
                     <div class="my-auto d-none d-md-flex">
                         <button class="btn btn-link headerLink my-auto" (click)="openContactUs()">Contact Us</button>
-                        <button class="btn btn-link headerLink">Support</button>
+                        <button class="btn btn-link headerLink" (click)="openSupport()">Support</button>
                         <div class="my-auto">
                             <a [href]="userData?.facebookLink" target="_blank">
                                 <img src="assets/images/fb-dark.png" alt="fb" class="headerIcon">
@@ -55,9 +55,9 @@
                             <a [href]="userData?.linkedinLink" target="_blank">
                                 <img src="assets/images/linkedIn-dark.png" alt="linkedIn" class="headerIcon">
                             </a>
-                            <a style="position: relative;" [matMenuTriggerFor]="adminActions">
+                            <a style="position: relative;" [matMenuTriggerFor]="adminActions" (menuClosed)="menuClosed()" (menuOpened)="menuOpened()">
                                 <img src="assets/images/Bell.png" alt="linkedIn" class="headerIcon">
-                                <div class="red-dot">
+                                <div class="red-dot" *ngIf="isNewNotification">
 
                                 </div>
                             </a>
@@ -74,7 +74,6 @@
                                     <p class="timeText">{{notification.createTs | date: 'short'}}</p>
                                     <hr/>
                                 </div>
-                                
                             </mat-menu>
                         </div>
                         

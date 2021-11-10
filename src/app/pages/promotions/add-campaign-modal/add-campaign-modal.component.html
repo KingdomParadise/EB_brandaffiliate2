@@ -115,13 +115,19 @@
                         (change)="onFileChangedVideo($event,campaignType)" />
                     <input #thumbnailUpload type="file" id="thumbnailUpload" style="display:none" accept="image/*"
                         (change)="onFileChangedThumbnail($event,campaignType)" />
-                    <div class="d-flex flex-column">
+                    <div class="d-flex flex-column me-1">
                         <button class="btn btn-sm px-5 btn-color" (click)="videoUpload.click()">Choose Video</button>
-                        <span class="mt-2">{{selectedVideoFilePath}}</span>
+                        <!-- <span class="mt-2">{{selectedVideoFilePath}}</span> -->
+                        <video controls class="mt-1 limitWidth" *ngIf="selectedVideoFilePath">
+                            <source [src]="selectedVideoFilePath" type="video/mp4">
+                            <source [src]="selectedVideoFilePath" type="video/ogg">
+                            <source [src]="selectedVideoFilePath" type="video/webm">
+                        </video>
                     </div>
-                    <div class="d-flex flex-column">
+                    <div class="d-flex flex-column ms-1">
                         <button class="btn btn-link" (click)="thumbnailUpload.click()">Upload Thumbnail Image</button>
-                        <span>{{selectedThumbnailFilePath}}</span>
+                        <img [src]="selectedThumbnailFilePath" alt="thumbnailFile" class="img-fluid limitWidth">
+                       
                     </div>
                 </div>
                 <div class="d-flex">

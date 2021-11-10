@@ -25,16 +25,16 @@ export class AddBannerModalComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    const urlRegex = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
     this.addBannerForm = this._formBuilder.group({
       bannerStartDate: ['', Validators.required],
       bannerEndDate: ['', Validators.required],
       bannerName: [''],
-      bannerUrlLink: ['']
+      bannerUrlLink: ['', [Validators.required, Validators.pattern(urlRegex)]]
     });
     if (this.data.data) {
       this.addBannerForm.patchValue(this.data.data);
       this.selectedFilePath = this.data.data.bannerImageLink;
-      
     }
   }
 

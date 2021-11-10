@@ -35,6 +35,10 @@ export class PromotionsComponent implements OnInit {
     pageSize: 0,
     length: 5,
   };
+  paginationBanner = {
+    pageSize: 0,
+    length: 5,
+  };
   currentTabIndex = 0;
   banners: any[] = [];
   campaigns:any[] = [];
@@ -47,6 +51,7 @@ export class PromotionsComponent implements OnInit {
   currentQuery: any = {
     searchString: '',
   };
+  filterText = '';
   displayedColumns: string[] = ['duration', 'title', 'image', 'status', 'action'];
   dataSourceBanner = new MatTableDataSource<Banner>([]);
   dataSourceCampaign = new MatTableDataSource<Banner>([]);
@@ -56,7 +61,7 @@ export class PromotionsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getBannerData(this.currentQuery, this.pagination.pageSize, this.pagination.length);
+    this.getBannerData(this.currentQuery, this.paginationBanner.pageSize, this.paginationBanner.length);
     this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length);
     
   }
@@ -89,9 +94,18 @@ export class PromotionsComponent implements OnInit {
   close() {
     this.alertMsg.message = ''
   }
-  applyFilter() {
 
+  applyFilter() {
+    this.currentQuery = {
+      searchString: this.filterText
+    }
+    if (this.currentTabIndex == 0) {
+      this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length);
+    } else {
+      this.getBannerData(this.currentQuery, this.paginationBanner.pageSize, this.paginationBanner.length);
+    }
   }
+
   clearSearch() {
 
   }
@@ -126,7 +140,7 @@ export class PromotionsComponent implements OnInit {
       });
       dialogRef2.afterClosed().subscribe(result => {
         console.log('The dialog was closed', result);
-        this.getBannerData(this.currentQuery, this.pagination.pageSize, this.pagination.length);
+        this.getBannerData(this.currentQuery, this.paginationBanner.pageSize, this.paginationBanner.length);
       });
     }
   }
@@ -161,7 +175,7 @@ export class PromotionsComponent implements OnInit {
       });
       dialogRef2.afterClosed().subscribe(result => {
         console.log('The dialog was closed', result);
-        this.getBannerData(this.currentQuery, this.pagination.pageSize, this.pagination.length);
+        this.getBannerData(this.currentQuery, this.paginationBanner.pageSize, this.paginationBanner.length);
       });
     }
   }
@@ -169,9 +183,6 @@ export class PromotionsComponent implements OnInit {
     this.currentTabIndex = index;
   }
   deleteMultipleRecords() {
-
-  }
-  pageChanged(eve: any) {
 
   }
  
@@ -217,30 +228,49 @@ export class PromotionsComponent implements OnInit {
     if (banner.status == 'active') {
       this.dataService.disableBanner({ bannerId: banner.bannerId }).subscribe(res => {
         console.log(res);
-        this.getBannerData(this.currentQuery, this.pagination.pageSize, this.pagination.length);
-        //this.getNextData({}, this.pagination.pageSize, this.pagination.length, 0);
+        this.getBannerData(this.currentQuery, this.paginationBanner.pageSize, this.paginationBanner.length);
       })
     } else {
       this.dataService.enableBanner({ bannerId: banner.bannerId }).subscribe(res => {
         console.log(res);
-        this.getBannerData(this.currentQuery, this.pagination.pageSize, this.pagination.length);
-        //this.getNextData({}, this.pagination.pageSize, this.pagination.length, 0);
+        this.getBannerData(this.currentQuery, this.paginationBanner.pageSize, this.paginationBanner.length);
       })
     }
   }
   toggleCampaignStatus(campaign: any){
     if (campaign.status == 'active') {
       this.dataService.disableCampaign({ campaignId: campaign.campaignId }).subscribe(res => {
-        console.log(res);
         this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length);
-        //this.getNextData({}, this.pagination.pageSize, this.pagination.length, 0);
       })
     } else {
       this.dataService.enableCampaign({ campaignId: campaign.campaignId }).subscribe(res => {
-        console.log(res);
         this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length);
-        //this.getNextData({}, this.pagination.pageSize, this.pagination.length, 0);
       })
+    }
+  }
+
+  pageChanged(event:any){
+
+    let pageIndex = event.pageIndex;
+    let pageSize = event.pageSize;
+    
+    let previousIndex = event.previousPageIndex;
+
+    let previousSize = pageSize * pageIndex;
+    // let query = {
+    //   type: 'all',
+    //   sort: '',
+    //   searchString: '',
+    // }
+    //this.getNextData(this.currentQuery, pageIndex.toString(), pageSize, previousSize);
+    if (this.currentTabIndex == 0) {
+      this.pagination.pageSize = pageIndex;
+    this.pagination.length = pageSize;
+      this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length);
+    } else {
+      this.paginationBanner.pageSize = pageIndex;
+    this.paginationBanner.length = pageSize;
+      this.getBannerData(this.currentQuery, this.paginationBanner.pageSize, this.paginationBanner.length);
     }
   }
 }

@@ -50,6 +50,7 @@ import { CreditCardDirective } from './helper/card.directive';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatRadioModule} from '@angular/material/radio';
+import { SupportModalComponent } from './pages/support-modal/support-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +76,8 @@ import {MatRadioModule} from '@angular/material/radio';
     PromotionsComponent,
     AddBannerModalComponent,
     AddCampaignModalComponent,
-    CreditCardDirective
+    CreditCardDirective,
+    SupportModalComponent
     //DashboardComponent
   ],
   imports: [
