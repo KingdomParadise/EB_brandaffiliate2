@@ -68,7 +68,7 @@ export class HeaderComponent implements OnInit {
   openSupport() {
     let size = ['675px', '475px'];
     if (window.innerWidth > 786) {
-      size = ['675px', '430px'];
+      size = ['700px', '520px'];
     } else {
       size = ['96%', '500px'];
     }

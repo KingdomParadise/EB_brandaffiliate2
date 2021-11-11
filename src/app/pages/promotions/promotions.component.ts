@@ -61,16 +61,16 @@ export class PromotionsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getBannerData(this.currentQuery, this.paginationBanner.pageSize, this.paginationBanner.length);
-    this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length);
+    this.getBannerData(this.currentQuery, this.paginationBanner.pageSize, this.paginationBanner.length, 0);
+    this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length, 0);
     
   }
   getBannerData(query: any, page: any, size: any, previousSize?: any) {
     this.loading = true;
     this.dataService.getAllBanner(query, page, size).subscribe(res => {
-      this.banners.length = 0 // previousSize;
+      this.banners.length = previousSize;
       this.banners.push(...res.response.bannerList);
-      this.banners.length = res.response.bannerList.length //res.response.totalItems;
+      this.banners.length = res.response.totalItems;
       this.dataSourceBanner = new MatTableDataSource<Banner>(this.banners);
       this.dataSourceBanner._updateChangeSubscription();
       console.log(this.banners);
@@ -81,9 +81,9 @@ export class PromotionsComponent implements OnInit {
   getCampaignData(query: any, page: any, size: any, previousSize?: any) {
     this.loading = true;
     this.dataService.getAllCampaign(query, page, size).subscribe(res => {
-      this.campaigns.length = 0 // previousSize;
+      this.campaigns.length = previousSize;
       this.campaigns.push(...res.response.campaignList);
-      this.campaigns.length = res.response.campaignList.length //res.response.totalItems;
+      this.campaigns.length = res.response.totalItems;
       this.dataSourceCampaign = new MatTableDataSource<Banner>(this.campaigns);
       this.dataSourceCampaign._updateChangeSubscription();
       console.log(this.campaigns);
@@ -100,9 +100,9 @@ export class PromotionsComponent implements OnInit {
       searchString: this.filterText
     }
     if (this.currentTabIndex == 0) {
-      this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length);
+      this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length, 0);
     } else {
-      this.getBannerData(this.currentQuery, this.paginationBanner.pageSize, this.paginationBanner.length);
+      this.getBannerData(this.currentQuery, this.paginationBanner.pageSize, this.paginationBanner.length, 0);
     }
   }
 
@@ -127,7 +127,7 @@ export class PromotionsComponent implements OnInit {
       });
       dialogRef1.afterClosed().subscribe(result => {
         console.log('The dialog was closed', result);
-        this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length);
+        this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length, 0);
       });
     }else if(this.currentTabIndex == 1){
       const dialogRef2 = this.dialog.open(AddBannerModalComponent, {
@@ -162,7 +162,7 @@ export class PromotionsComponent implements OnInit {
       });
       dialogRef1.afterClosed().subscribe(result => {
         console.log('The dialog was closed', result);
-        this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length);
+        this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length, 0);
       });
     }else if(this.currentTabIndex == 1){
       const dialogRef2 = this.dialog.open(AddBannerModalComponent, {
@@ -240,7 +240,7 @@ export class PromotionsComponent implements OnInit {
   toggleCampaignStatus(campaign: any){
     if (campaign.status == 'active') {
       this.dataService.disableCampaign({ campaignId: campaign.campaignId }).subscribe(res => {
-        this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length);
+        this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length, 0);
       })
     } else {
       this.dataService.enableCampaign({ campaignId: campaign.campaignId }).subscribe(res => {
@@ -266,11 +266,11 @@ export class PromotionsComponent implements OnInit {
     if (this.currentTabIndex == 0) {
       this.pagination.pageSize = pageIndex;
     this.pagination.length = pageSize;
-      this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length);
+      this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length, previousSize);
     } else {
       this.paginationBanner.pageSize = pageIndex;
     this.paginationBanner.length = pageSize;
-      this.getBannerData(this.currentQuery, this.paginationBanner.pageSize, this.paginationBanner.length);
+      this.getBannerData(this.currentQuery, this.paginationBanner.pageSize, this.paginationBanner.length, previousSize);
     }
   }
 }

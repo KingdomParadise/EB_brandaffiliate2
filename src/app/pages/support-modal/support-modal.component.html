@@ -1,1 +1,83 @@
-<p>support-modal works!</p>
+<div class="row">
+    <div class="col-md-12 d-flex justify-content-between">
+        <h2 class="font-weight-bolder">Support</h2>
+        <button class="btn btn-close" (click)="closeModal()">
+        </button>
+
+    </div>
+</div>
+
+<mat-tab-group>
+    <mat-tab label="Tutorial">
+        <div class="col-md-12">
+            <div ngbDropdown style="text-align: right;margin-top:3px;margin-right: 2px;" placement="bottom-right">
+                <button class="btn btn-sort" id="gfg" ngbDropdownToggle>Sort By:</button>
+                <div ngbDropdownMenu="gfg">
+                    <button ngbDropdownItem class="btn btn-default">Alphabatical</button>
+                    <button ngbDropdownItem class="btn btn-default">New
+                    </button>
+                    <button ngbDropdownItem class="btn btn-default">Popular</button>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex">
+            <div class="col-md-8 p-0 mt-3">
+                <div class="video">
+                    <video controls #videoPlayer style="width: 100%;">
+                        <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                            type="video/mp4" />
+                        Browser not supported
+                    </video>
+                    <div class="video-share">
+                        <span>What is BRANDFILIATE?</span>
+                        <div>
+                            <button class="btn btn-link">
+                                <img src="assets/images/fb.png" alt="">
+                            </button>
+                            <button class="btn btn-link">
+                                <mat-icon style="color: white;line-height: 1.5;">share</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4 bg-white ps-4 py-3 mt-3 mt-md-0">
+                <div class="card border-0">
+                    <img src="assets/images/video-tutorial-1.png" alt="video1">
+                    <h4>Who Are Your Affiliates</h4>
+                </div>
+                <div class="card border-0">
+                    <img src="assets/images/video-tutorial-2.png" alt="video2">
+                    <h4>Campaigns and Banners</h4>
+                </div>
+            </div>
+        </div>
+
+    </mat-tab>
+    <mat-tab label="Terms and Conditions">
+        <div id="terms-div">
+
+            <p>Introduction</p>
+            <p>
+                These Website Standard Terms and Conditions written on this webpage shall manage your use of our
+                website, Brandfiliate accessible at https://brandfiliate.com.
+            </p>
+            <p>
+                These Terms will be applied fully and affect to your use of this Website. By using this Website, you
+                agreed to accept all terms and conditions written in here. You must not use this Website if you disagree
+                with any of these Website Standard Terms and Conditions.
+            </p>
+            <p>
+                Minors or people below 18 years old are not allowed to use this Website.
+            </p>
+            <p>
+                Intellectual Property Rights
+            </p>
+            <p>
+                Other than the content you own, under these Terms, Brandfiliate and/or its licensors own all the
+                intellectual property
+            </p>
+        </div>
+    </mat-tab>
+</mat-tab-group>

@@ -14,16 +14,14 @@
                 <div class="form-group d-flex justify-content-between">
                     <mat-form-field appearance="fill">
                         <mat-label>Start date</mat-label>
-                        <input matInput [matDatepicker]="picker" formControlName="bannerStartDate"
-                            class="border-0">
+                        <input matInput [matDatepicker]="picker" formControlName="bannerStartDate" class="border-0">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
 
                     <mat-form-field appearance="fill">
                         <mat-label>End date</mat-label>
-                        <input matInput [matDatepicker]="picker2" formControlName="bannerEndDate"
-                            class="border-0">
+                        <input matInput [matDatepicker]="picker2" formControlName="bannerEndDate" class="border-0">
                         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                         <mat-datepicker #picker2></mat-datepicker>
                     </mat-form-field>
@@ -33,19 +31,19 @@
                         placeholder="Banner Name">
                 </div>
                 <div class="form-group mt-md-3">
-                    <input class="form-control" type="text" formControlName="bannerUrlLink"
-                        placeholder="Banner URL">
+                    <input class="form-control" type="text" formControlName="bannerUrlLink" placeholder="Banner URL">
                 </div>
             </div>
             <div class="mt-auto">
                 <div class="form-group ms-3 mt-3">
                     <div class="col text-center pb-2 pb-md-0">
                         <div style="max-height: 360px;overflow: hidden;">
-                            <input #fileUpload type="file" id="fileUpload"
-                                style="display:none" (change)="onFileChanged($event)" />
-                                <div class="settingImage" [ngStyle]="{'background-image': 'url(' + selectedFilePath + ')'}" (click)="fileUpload.click()">
+                            <input #fileUpload type="file" id="fileUpload" style="display:none"
+                                (change)="onFileChanged($event)" />
+                            <div class="settingImage" [ngStyle]="{'background-image': 'url(' + selectedFilePath + ')'}"
+                                (click)="fileUpload.click()">
 
-                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -53,8 +51,9 @@
         </div>
 
         <div class="d-flex justify-content-center mt-4">
-            <button mat-button class="btn mb-5 mb-md-0 app-btn" (click)="submit()"
-                [disabled]="!addBannerForm.valid">Submit</button>
+            <button mat-button class="btn mb-5 mb-md-0 app-btn" (click)="submit()" [disabled]="!addBannerForm.valid">
+                Submit
+            </button>
         </div>
         <div *ngIf="alertMsg.message" class="alert fade show d-flex justify-content-between align-items-center mt-2 p-2"
             [ngClass]="(alertMsg.type == 'danger')?'alert-danger': 'alert-success'" role="alert">
