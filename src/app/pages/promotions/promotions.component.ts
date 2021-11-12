@@ -41,13 +41,15 @@ export class PromotionsComponent implements OnInit {
   };
   currentTabIndex = 0;
   banners: any[] = [];
-  campaigns:any[] = [];
+  campaigns: any[] = [];
   selection = new SelectionModel<Banner>(true, []);
   loading: boolean = true;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   pageEvent: PageEvent;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild('tabGroup') tabGroup:any;
+  @ViewChild('campaignPaginator') campaignPaginator: MatPaginator;
+  
+  @ViewChild('tabGroup') tabGroup: any;
   currentQuery: any = {
     searchString: '',
   };
@@ -63,7 +65,7 @@ export class PromotionsComponent implements OnInit {
   ngOnInit(): void {
     this.getBannerData(this.currentQuery, this.paginationBanner.pageSize, this.paginationBanner.length, 0);
     this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length, 0);
-    
+
   }
   getBannerData(query: any, page: any, size: any, previousSize?: any) {
     this.loading = true;
@@ -81,13 +83,14 @@ export class PromotionsComponent implements OnInit {
   getCampaignData(query: any, page: any, size: any, previousSize?: any) {
     this.loading = true;
     this.dataService.getAllCampaign(query, page, size).subscribe(res => {
+      console.log("prev size =>", previousSize);
       this.campaigns.length = previousSize;
       this.campaigns.push(...res.response.campaignList);
       this.campaigns.length = res.response.totalItems;
       this.dataSourceCampaign = new MatTableDataSource<Banner>(this.campaigns);
       this.dataSourceCampaign._updateChangeSubscription();
       console.log(this.campaigns);
-      this.dataSourceCampaign.paginator = this.paginator;
+      this.dataSourceCampaign.paginator = this.campaignPaginator;
       this.loading = false;
     });
   }
@@ -116,7 +119,7 @@ export class PromotionsComponent implements OnInit {
     } else {
       size = ['350px', '400px'];
     }
-    if(this.currentTabIndex == 0){
+    if (this.currentTabIndex == 0) {
       const dialogRef1 = this.dialog.open(AddCampaignModalComponent, {
         maxWidth: size[0],
         maxHeight: size[1],
@@ -129,7 +132,7 @@ export class PromotionsComponent implements OnInit {
         console.log('The dialog was closed', result);
         this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length, 0);
       });
-    }else if(this.currentTabIndex == 1){
+    } else if (this.currentTabIndex == 1) {
       const dialogRef2 = this.dialog.open(AddBannerModalComponent, {
         maxWidth: size[0],
         maxHeight: size[1],
@@ -144,33 +147,33 @@ export class PromotionsComponent implements OnInit {
       });
     }
   }
-  openEditDialog(data:any) {
+  openEditDialog(data: any) {
     let size = ['675px', '475px'];
     if (window.innerWidth > 786) {
       size = ['695px', '600px'];
     } else {
       size = ['350px', '400px'];
     }
-    if(this.currentTabIndex == 0){
+    if (this.currentTabIndex == 0) {
       const dialogRef1 = this.dialog.open(AddCampaignModalComponent, {
         maxWidth: size[0],
         maxHeight: size[1],
         height: '100%',
         width: '100%',
-        data: {data},
+        data: { data },
         disableClose: false
       });
       dialogRef1.afterClosed().subscribe(result => {
         console.log('The dialog was closed', result);
         this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length, 0);
       });
-    }else if(this.currentTabIndex == 1){
+    } else if (this.currentTabIndex == 1) {
       const dialogRef2 = this.dialog.open(AddBannerModalComponent, {
         maxWidth: size[0],
         maxHeight: size[1],
         height: '100%',
         width: '100%',
-        data: {data},
+        data: { data },
         disableClose: false
       });
       dialogRef2.afterClosed().subscribe(result => {
@@ -185,9 +188,9 @@ export class PromotionsComponent implements OnInit {
   deleteMultipleRecords() {
 
   }
- 
+
   deleteBanner(bannerId: number, index: number) {
-    if(confirm('Want to delete?')){
+    if (confirm('Want to delete?')) {
       this.dataService.deleteBanner({ bannerId: bannerId }).subscribe(res => {
         console.log(res.responseCode);
         if (res.responseCode == 0) {
@@ -201,12 +204,12 @@ export class PromotionsComponent implements OnInit {
           this.alertMsg.message = "Server error"
         }
       });
-    }else{
+    } else {
 
     }
   }
   deleteCampaign(campaignId: number, index: number) {
-    if(confirm('Want to delete?')){
+    if (confirm('Want to delete?')) {
       this.dataService.deleteCampaign({ campaignId: campaignId }).subscribe(res => {
         console.log(res.responseCode);
         if (res.responseCode == 0) {
@@ -220,7 +223,7 @@ export class PromotionsComponent implements OnInit {
           this.alertMsg.message = "Server error"
         }
       });
-    }else{
+    } else {
 
     }
   }
@@ -237,7 +240,7 @@ export class PromotionsComponent implements OnInit {
       })
     }
   }
-  toggleCampaignStatus(campaign: any){
+  toggleCampaignStatus(campaign: any) {
     if (campaign.status == 'active') {
       this.dataService.disableCampaign({ campaignId: campaign.campaignId }).subscribe(res => {
         this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length, 0);
@@ -249,11 +252,11 @@ export class PromotionsComponent implements OnInit {
     }
   }
 
-  pageChanged(event:any){
+  pageChanged(event: any) {
 
     let pageIndex = event.pageIndex;
     let pageSize = event.pageSize;
-    
+
     let previousIndex = event.previousPageIndex;
 
     let previousSize = pageSize * pageIndex;
@@ -265,12 +268,12 @@ export class PromotionsComponent implements OnInit {
     //this.getNextData(this.currentQuery, pageIndex.toString(), pageSize, previousSize);
     if (this.currentTabIndex == 0) {
       this.pagination.pageSize = pageIndex;
-    this.pagination.length = pageSize;
-      this.getCampaignData(this.currentQuery, this.pagination.pageSize, this.pagination.length, previousSize);
+      this.pagination.length = pageSize;
+      this.getCampaignData(this.currentQuery, pageIndex.toString(), this.pagination.length, previousSize);
     } else {
       this.paginationBanner.pageSize = pageIndex;
-    this.paginationBanner.length = pageSize;
-      this.getBannerData(this.currentQuery, this.paginationBanner.pageSize, this.paginationBanner.length, previousSize);
+      this.paginationBanner.length = pageSize;
+      this.getBannerData(this.currentQuery, pageIndex.toString(), this.paginationBanner.length, previousSize);
     }
   }
 }

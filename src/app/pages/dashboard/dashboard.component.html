@@ -1,1 +1,63 @@
-<p>dashboard works!</p>
+<div class="page-container">
+    <div class="row">
+        <div class="col-md-12 p-0">
+            <h1 class="page-heading">Dashboard</h1>
+        </div>
+        <div class="col-md-12 p-0">
+            <div *ngIf="alertMsg.message"
+                class="alert fade show d-flex justify-content-between align-items-center mt-2 p-2"
+                [ngClass]="(alertMsg.type == 'danger')?'alert-danger': 'alert-success'" role="alert">
+                <span>{{alertMsg.message}}</span>
+                <button type="button" class="btn btn-default close" (click)="close()" data-dismiss="alert"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+        <div class="col-md-12 p-0 d-flex justify-content-between mb-5">
+            <div class="card card1 flex-grow-1 me-1 me-md-5 text-center py-3 strip1 pb-0">
+                <div>
+                    <img src="assets/images/total-reg.png" alt="" class="card-icon">
+                </div>
+                <p class="d-count aleft">4905</p>
+                <p class="text-muted aleft">Total Registered Affiliates
+                </p>
+            </div>
+            <div class="card card1 flex-grow-1 ms-1 ms-md-2 me-1 me-md-2 text-center py-3 strip2 pb-0">
+                <div>
+                    <img src="assets/images/total-prospects.png" alt="" class="card-icon">
+                </div>
+                <p class="d-count aleft">3316</p>
+                <p class="text-muted aleft">Total Prospects
+            </div>
+            <div class="card card1 flex-grow-1 me-1 ms-md-5 text-center py-3 strip3 pb-0">
+                <div>
+                    <img src="assets/images/leads-procured.png" alt="" class="card-icon">
+                </div>
+                <p class="d-count aleft">299</p>
+                <p class="text-muted aleft">Leads  Procured
+            </div>
+            <div class="card card1 flex-grow-1 me-1 ms-md-5 text-center py-3 strip3 pb-0">
+                <div>
+                    <img src="assets/images/sales-value.png" alt="" class="card-icon">
+                </div>
+                <p class="d-count aleft">490</p>
+                <p class="text-muted aleft">Total Sales value
+            </div>
+            <div class="card card1 flex-grow-1 me-1 ms-md-5 text-center py-3 strip3 pb-0">
+                <div>
+                    <img src="assets/images/affiliate-comm.png" alt="" class="card-icon">
+                </div>
+                <p class="d-count aleft">1908</p>
+                <p class="text-muted aleft">Total Affiliates Commission
+            </div>
+            <div class="card card1 flex-grow-1 me-1 ms-md-5 text-center py-3 strip3 pb-0">
+                <div>
+                    <img src="assets/images/lead-freq.png" alt="" class="card-icon">
+                </div>
+                <p class="d-count aleft">1902</p>
+                <p class="text-muted aleft">Lead Frequency
+            </div>
+        </div>
+    </div>
+</div>
