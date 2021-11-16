@@ -113,6 +113,9 @@ table
     border: 0;
 }
 @media only screen and (min-device-width: 768px){
+    .page-container{
+        padding: 1.5rem 3rem;
+    }
     .pagination-box{
         width: 60%;
         left:20%;

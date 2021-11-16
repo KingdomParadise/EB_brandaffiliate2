@@ -7,7 +7,7 @@
         <div class="ps-3 text-light">
             <img [src]="userPhotoUrl ? userPhotoUrl :'assets/images/profile-pic.png'" alt="profile-pic" class="img-fluid" id="profile-pic">
             <h3 *ngIf="!isPartialClose" class="my-0" id="userName">{{userData.firstName}}</h3>
-            <p *ngIf="!isPartialClose" ><i>{{userData.emailId}}</i></p>
+            <p *ngIf="!isPartialClose" class="emailText"><i>{{userData.emailId}}</i></p>
             <p *ngIf="!isPartialClose" id="date">{{date1 | date: 'medium'}}</p>
         </div>
         <div class="px-3 text-light" *ngIf="!isPartialClose">

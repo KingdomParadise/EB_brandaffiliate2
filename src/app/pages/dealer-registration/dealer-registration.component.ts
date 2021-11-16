@@ -219,4 +219,7 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
       });
     }
   }
+  goToLogin(){
+    this.router.navigateByUrl('/dealer-login');
+  }
 }

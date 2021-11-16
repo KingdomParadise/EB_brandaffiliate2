@@ -1,7 +1,7 @@
 <div class="page-container">
 
     <div class="row">
-        <div class="col-md-12 p-0">
+        <div class="col-md-12 p-0 mb-2">
             <h1 class="page-heading">Promotions</h1>
         </div>
         <div class="col-md-12 p-0">
@@ -26,8 +26,8 @@
                         <ng-container matColumnDef="duration">
                             <th mat-header-cell *matHeaderCellDef> Duration </th>
                             <td mat-cell *matCellDef="let element">
-                                <p class="mb-1">{{element?.campaignStartDate | date: 'mediumDate'}} </p>
-                                <p>{{element?.campaignEndDate | date: 'mediumDate'}} </p>
+                                <p class="mb-1 durationText">{{element?.campaignStartDate | date: 'mediumDate'}} </p>
+                                <p class="durationText">{{element?.campaignEndDate | date: 'mediumDate'}} </p>
                             </td>
                         </ng-container>
 

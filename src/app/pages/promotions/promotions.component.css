@@ -61,11 +61,14 @@ input::placeholder {
     font-size: 12px;
 }
 .profilePic{
-    width: 90px;
+    width: 30px;
 }
 td.mat-cell{
     padding-top: 8px !important;
     padding-bottom: 8px !important;
+}
+.durationText{
+    font-size: 12px;
 }
 .dropdown-item.active, .dropdown-item:active{
     background-color: #a63da1;
@@ -85,4 +88,10 @@ button.mat-menu-item:hover .mat-icon{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media only screen and (min-device-width: 768px){
+    .page-container{
+        padding:1.5rem 3rem;
+    }
 }
