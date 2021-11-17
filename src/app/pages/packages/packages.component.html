@@ -3,7 +3,7 @@
         <div class="col-md-12 p-0 mb-2">
             <h1 class="page-heading">Packages</h1>
         </div>
-        <div class="col-md-12 bg-white shadow">
+        <div class="col-md-12 p-0 bg-white shadow">
             <div>
                 <h3 class="text-center text-muted text-uppercase position-relative" style="top:50px">Your Current Package</h3>
                 <div id="currentPackage" class="row p-3 activeCard" >
@@ -25,7 +25,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12" id='addContent'>
+        <div class="col-md-12 p-0" id='addContent'>
             <h3 class="subheading">Add Content</h3>
         </div>
         <div class="col-md-12 bg-white shadow py-4 px-md-5">
@@ -38,12 +38,15 @@
                 <button class="btn btn-add" (click)="addContent('banner')">Add</button>
             </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12 p-0">
             <h3 class="subheading">Upgrade Package</h3>
         </div>
         <div class="col-md-12 bg-white shadow">
-            <p class="text-center mt-4">
+            <p class="text-center mt-5">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+            <p class="text-center">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid
             </p>
             <div class="card-container">
                 <div *ngFor="let pack of packs;let i = index" class="card me-3 shadow" [class.activePack]="cardActive === i" (click)="makeActiveCard(i)">

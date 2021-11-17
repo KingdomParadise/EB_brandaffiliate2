@@ -43,7 +43,7 @@
     margin-top: 5rem;
 }
 .subheading{
-    font-weight: 600;
+    font-weight: 500;
     margin-top: 2rem;
 
 }
@@ -85,7 +85,7 @@
         padding:6px 5rem;
     }
     .page-container{
-        padding:1rem 3rem;
+        padding:1rem 4rem;
     }
     #currentPackage {
         height:200px;
@@ -96,7 +96,7 @@
         border-bottom: none;
     }
     .card-container{
-        top: 90px;
+        top: 80px;
     }
     .card-container .card{
         padding:1rem 3rem;

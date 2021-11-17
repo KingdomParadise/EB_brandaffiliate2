@@ -103,6 +103,9 @@ th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:la
     outline: none;
     box-shadow: none;
 }
+.shadow{
+    box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+}
 button.mat-menu-item:hover{
     background-color: #a63da1;
     color:white;
@@ -146,7 +149,7 @@ mat-spinner{
         padding:6px 5rem;
     }
     .page-container{
-        padding:1rem 3rem;
+        padding:1rem 4rem;
     }
     .mat-header-cell {
         font-weight: bold;
