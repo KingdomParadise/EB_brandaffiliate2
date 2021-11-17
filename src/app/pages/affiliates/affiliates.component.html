@@ -64,7 +64,7 @@
                 <mat-spinner class="center" [diameter]="50"></mat-spinner>
               </div>
             <ng-template #table>
-                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 d-none d-md-table">
+                <table mat-table [dataSource]="dataSource" class="d-none d-md-table">
 
                     <!-- Checkbox Column -->
                     <ng-container matColumnDef="select">
@@ -153,7 +153,7 @@
                     </tr>
                 </table>
     
-                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mt-3 d-table d-md-none">
+                <table mat-table [dataSource]="dataSource" class="mt-3 d-table d-md-none">
     
                     <!-- Checkbox Column -->
                     <ng-container matColumnDef="select">

@@ -28,7 +28,10 @@
 
         <div class="row mt-md-4 mt-xl-4 mt-xxl-5 page-margin">
             <div class="col-md-6 ps-0 d-none d-md-block text-center">
-                <img [src]="currentStepperImage" alt="main image" [ngStyle]="{'width': (stepper.selectedIndex ==1 || stepper.selectedIndex ==2) ? '54%' : '50%'}" class="img-fluid stepperImage">
+                <div class="bg-div" [ngStyle]="{'background-image': 'url(' + currentStepperImage + ')'}">
+
+                </div>
+                <!-- <img [src]="currentStepperImage" alt="main image" [ngStyle]="{'width': (stepper.selectedIndex ==1 || stepper.selectedIndex ==2) ? '54%' : '50%'}" class="img-fluid stepperImage"> -->
             </div>
             <div class="col-md-6">
                 <mat-stepper [linear]="isLinear" #stepper 
