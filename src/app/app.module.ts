@@ -106,7 +106,7 @@ import { SupportModalComponent } from './pages/support-modal/support-modal.compo
     MatNativeDateModule,
     MatRadioModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAhWahf8oOXf9UyFu8W_iCE8HChcbgOVbQ',
+      apiKey: 'AIzaSyA_XQ9GC0XunCHAghiL_tByZ87TBL0jaY0',
       libraries: ['places']
     })
 
