@@ -7,7 +7,7 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 import { InitialDataService } from 'src/app/services/initial-data.service';
 import { AddBannerModalComponent } from './add-banner-modal/add-banner-modal.component';
 import { AddCampaignModalComponent } from './add-campaign-modal/add-campaign-modal.component';
-
+import { NgxSpinnerService } from "ngx-spinner";
 export interface Banner {
   duration: string;
   title: string;
@@ -43,7 +43,6 @@ export class PromotionsComponent implements OnInit {
   banners: any[] = [];
   campaigns: any[] = [];
   selection = new SelectionModel<Banner>(true, []);
-  loading: boolean = true;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   pageEvent: PageEvent;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -59,7 +58,8 @@ export class PromotionsComponent implements OnInit {
   dataSourceCampaign = new MatTableDataSource<Banner>([]);
   constructor(
     public dialog: MatDialog,
-    private dataService: InitialDataService
+    private dataService: InitialDataService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -68,30 +68,28 @@ export class PromotionsComponent implements OnInit {
 
   }
   getBannerData(query: any, page: any, size: any, previousSize?: any) {
-    this.loading = true;
+    this.spinner.show();
     this.dataService.getAllBanner(query, page, size).subscribe(res => {
-      this.banners.length = previousSize;
+      this.banners.length = previousSize || 0;
       this.banners.push(...res.response.bannerList);
       this.banners.length = res.response.totalItems;
       this.dataSourceBanner = new MatTableDataSource<Banner>(this.banners);
       this.dataSourceBanner._updateChangeSubscription();
       console.log(this.banners);
       this.dataSourceBanner.paginator = this.paginator;
-      this.loading = false;
+      this.spinner.hide();
     });
   }
   getCampaignData(query: any, page: any, size: any, previousSize?: any) {
-    this.loading = true;
     this.dataService.getAllCampaign(query, page, size).subscribe(res => {
       console.log("prev size =>", previousSize);
-      this.campaigns.length = previousSize;
+      this.campaigns.length = previousSize || 0;
       this.campaigns.push(...res.response.campaignList);
       this.campaigns.length = res.response.totalItems;
       this.dataSourceCampaign = new MatTableDataSource<Banner>(this.campaigns);
       this.dataSourceCampaign._updateChangeSubscription();
       console.log(this.campaigns);
       this.dataSourceCampaign.paginator = this.campaignPaginator;
-      this.loading = false;
     });
   }
   close() {

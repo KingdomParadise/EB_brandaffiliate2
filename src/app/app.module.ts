@@ -51,6 +51,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatRadioModule} from '@angular/material/radio';
 import { SupportModalComponent } from './pages/support-modal/support-modal.component';
+import { NgxSpinnerModule } from "ngx-spinner";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -108,7 +110,8 @@ import { SupportModalComponent } from './pages/support-modal/support-modal.compo
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyA_XQ9GC0XunCHAghiL_tByZ87TBL0jaY0',
       libraries: ['places']
-    })
+    }),
+    NgxSpinnerModule
 
   ],
   providers: [
