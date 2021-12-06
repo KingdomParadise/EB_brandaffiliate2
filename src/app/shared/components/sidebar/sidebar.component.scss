@@ -7,7 +7,12 @@
   a{
       color: white;
       font-size: small;
+      opacity: .7;
   }
+  .list-item-active {
+    opacity: 1;
+}
+
 }
 ::ng-deep mat-drawer{
     width: 240px !important;
@@ -25,6 +30,7 @@
     width:50px;
     height: 50px;
     margin:10px auto;
+    border-radius: 25px;
 }
 #date{
     color: #8c37a3;
@@ -39,5 +45,20 @@
     font-weight: bold !important;
 }
 .emailText{
-    font-size: 13px;
+    font-size: 10px;
+    color:#ebebeb;
+}
+#profile-wrapper{
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border:2px solid white;
+    border-radius: 27px;
+    padding:4px;
+}
+
+.list-item-active {
+    opacity: 1;
 }
