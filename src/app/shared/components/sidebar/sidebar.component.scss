@@ -61,4 +61,15 @@
 
 .list-item-active {
     opacity: 1;
+    position: relative;
+    padding-left:20px !important;
+}
+.list-item-active:before {
+    content:"\A";
+    border-style: solid;
+    border-width: 8px 0px 8px 15px;
+    border-color: transparent transparent transparent white;
+    position: absolute;
+    left: -1px;
+    top:15px;
 }

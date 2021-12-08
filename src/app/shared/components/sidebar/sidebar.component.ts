@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 
 import { ContactUsComponent } from 'src/app/pages/contact-us/contact-us.component';
 import { SelectPackageModalComponent } from 'src/app/pages/select-package-modal/select-package-modal.component';
@@ -15,6 +15,7 @@ export class SidebarComponent implements OnInit {
   date1 = new Date();
   userPhotoUrl: any = '';
   userData: any;
+  isPackageActive = false;
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
   @Input() isPartialClose: boolean;
   //isExpanded = false;
@@ -29,6 +30,14 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.router.events.subscribe(event =>{
+      if (event instanceof NavigationStart){
+        console.log(event.url != '/packages');
+        if(event.url != '/packages'){
+          this.isPackageActive = false;
+        }
+      }
+   })
   }
   toggleSideBar() {
     if (window.innerWidth < 786) {
@@ -65,25 +74,24 @@ export class SidebarComponent implements OnInit {
     });
   }
   goToPackagePage() {
-    
-      if (this.userData.packagePurchased  == 1) {
-        this.router.navigateByUrl('/packages')
+    this.isPackageActive = true;
+    if (this.userData.packagePurchased == 1) {
+      this.router.navigateByUrl('/packages')
+    } else {
+      let size = ['875px', '475px'];
+      if (window.innerWidth > 786) {
+        size = ['875px', '520px'];
       } else {
-        let size = ['875px', '475px'];
-        if (window.innerWidth > 786) {
-          size = ['875px', '520px'];
-        } else {
-          size = ['96%', '500px'];
-        }
-        const dialogRef = this.dialog.open(SelectPackageModalComponent, {
-          width: size[0],
-          height: size[1],
-          data: {},
-          disableClose: true,
-          panelClass: 'package-dialog'
-        });
+        size = ['96%', '500px'];
       }
-    
+      const dialogRef = this.dialog.open(SelectPackageModalComponent, {
+        width: size[0],
+        height: size[1],
+        data: {},
+        disableClose: true,
+        panelClass: 'package-dialog'
+      });
+    }
   }
   logout(){
     localStorage.clear();
