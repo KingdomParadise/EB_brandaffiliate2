@@ -28,7 +28,7 @@ export class DefaultComponent implements OnInit {
 
       this.isPartialClose = !this.isPartialClose;
       if(this.isPartialClose){
-        this.marginLeft = '60px';
+        this.marginLeft = '90px';
       }else{
         this.marginLeft ='240px'
       }

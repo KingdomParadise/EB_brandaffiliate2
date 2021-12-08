@@ -1,7 +1,7 @@
 <app-header (toggleSideBarForMe)="sideBarToggler()"></app-header>
 <mat-drawer-container>
 
-    <mat-drawer mode="side" [opened]="sideBarOpen" [style.width]="isPartialClose? '60px !important': '240px !important'">
+    <mat-drawer mode="side" [opened]="sideBarOpen" [style.width]="isPartialClose? '90px !important': '240px !important'">
         <app-sidebar [isPartialClose]="isPartialClose" (toggleSideBarForMe)="sideBarToggler()"></app-sidebar>
     </mat-drawer>
 
