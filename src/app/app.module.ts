@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -52,6 +52,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatRadioModule} from '@angular/material/radio';
 import { SupportModalComponent } from './pages/support-modal/support-modal.component';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -79,8 +81,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     AddBannerModalComponent,
     AddCampaignModalComponent,
     CreditCardDirective,
-    SupportModalComponent
-    //DashboardComponent
+    SupportModalComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -111,7 +113,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
       apiKey: 'AIzaSyA_XQ9GC0XunCHAghiL_tByZ87TBL0jaY0',
       libraries: ['places']
     }),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgxChartsModule
 
   ],
   providers: [
@@ -121,6 +124,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
       multi: true
     }
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

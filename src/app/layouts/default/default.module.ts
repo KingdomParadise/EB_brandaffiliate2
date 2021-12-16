@@ -22,8 +22,7 @@ import {NgbPaginationModule, NgbAlertModule, NgbPopoverModule} from '@ng-bootstr
 
 @NgModule({
   declarations: [
-    DefaultComponent,
-    DashboardComponent
+    DefaultComponent
   ],
   imports: [
     CommonModule,
