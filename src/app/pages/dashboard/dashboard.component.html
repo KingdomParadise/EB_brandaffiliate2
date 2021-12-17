@@ -1,7 +1,12 @@
 <div class="page-container">
     <div class="row">
-        <div class="col-md-12 p-0 mb-2">
+        <div class="col-md-12 p-0 mb-2 d-flex justify-content-between">
             <h1 class="page-heading">Dashboard</h1>
+            <div class="d-flex">
+                <select name="days" id="" class="cusSelect">
+                    <option value="0">Last 7 days</option>
+                </select>
+            </div>
         </div>
         <div class="col-md-12 p-0">
             <div *ngIf="alertMsg.message"
@@ -15,13 +20,6 @@
             </div>
         </div>
         <div class="col-md-12 p-0">
-            <div class="row">
-                <div class="col-md-12 text-right">
-                    <select name="days" id="" class="cusSelect">
-                        <option value="0">Last 7 days</option>
-                    </select>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-md-4">
                     <div class="card card1 color-bg px-3 py-3 position-relative">
@@ -82,7 +80,33 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="d-flex justify-content-between">
-                                <h1>Content Shared</h1>
+                                <h2>Content Shared</h2>
+                                <div class="d-flex">
+                                    <select name="days" id="" class="cusSelect">
+                                        <option value="0">Last 7 days</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="w-100" style="display:grid">
+                                <ngx-charts-line-chart style="width: 100%;" [showXAxisLabel]="showXAxisLabel"
+                                    [xAxis]="xAxis" [yAxis]="yAxis" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                                    [results]="multi">
+                                </ngx-charts-line-chart>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="d-flex justify-content-between">
+                                <h2>Affiliate Performance</h2>
                                 <select name="days" id="" class="cusSelect">
                                     <option value="0">Last 7 days</option>
                                 </select>
@@ -91,23 +115,20 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="container">
-                                <ngx-charts-line-chart style="width: 100%;" [showXAxisLabel]="showXAxisLabel"
-                                    [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis" [yAxis]="yAxis"
-                                    [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [timeline]="timeline"
-                                    [results]="multi">
-                                </ngx-charts-line-chart>
+                        <div class="col-md-12">
+                            <div class="pe-3" style="display:flex">
+                                <ngx-charts-bar-vertical [results]="single2" [yAxis]="true"
+                                [gradient]="false" [yAxisLabel]="yAxisLabel">
+                            </ngx-charts-bar-vertical>
                             </div>
 
                         </div>
                     </div>
                 </div>
-
             </div>
 
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12 mt-4">
             <div class="row">
                 <div class="col-md-6">
                     <div class="d-flex justify-content-between">
@@ -138,9 +159,25 @@
                 </div>
                 <div class="col-md-6">
                     <mat-tab-group mat-align-tabs="start">
-                        <mat-tab label="Campaign Performances">Campaign Performances</mat-tab>
-                        <mat-tab label="Banner Performances">Banner Performances</mat-tab>
-                      </mat-tab-group>
+                        <mat-tab label="Campaign Performances">
+                            <div>
+                                <ngx-charts-pie-chart [view]="[400, 300]"
+                                     [results]="series"
+                                    [legend]="true" [labels]="true" [doughnut]="true" 
+                                    [legendTitle]="''">
+                                </ngx-charts-pie-chart>
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="Banner Performances">
+                            <div>
+                                <ngx-charts-pie-chart [view]="[400, 300]"
+                                     [results]="series"
+                                    [legend]="true" [labels]="true" [doughnut]="true" 
+                                    [legendTitle]="''">
+                                </ngx-charts-pie-chart>
+                            </div>
+                        </mat-tab>
+                    </mat-tab-group>
                 </div>
             </div>
         </div>

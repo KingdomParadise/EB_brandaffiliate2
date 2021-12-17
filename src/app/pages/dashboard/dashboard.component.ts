@@ -5,64 +5,15 @@ let multi = [
     "series": [
       {
         "name": "1990",
-        "value": 62000000
+        "value": 10
       },
       {
         "name": "2010",
-        "value": 73000000
+        "value": 5
       },
       {
         "name": "2011",
-        "value": 89400000
-      }
-    ]
-  },
-
-  {
-    "name": "USA",
-    "series": [
-      {
-        "name": "1990",
-        "value": 250000000
-      },
-      {
-        "name": "2010",
-        "value": 309000000
-      },
-      {
-        "name": "2011",
-        "value": 311000000
-      }
-    ]
-  },
-
-  {
-    "name": "France",
-    "series": [
-      {
-        "name": "1990",
-        "value": 58000000
-      },
-      {
-        "name": "2010",
-        "value": 50000020
-      },
-      {
-        "name": "2011",
-        "value": 58000000
-      }
-    ]
-  },
-  {
-    "name": "UK",
-    "series": [
-      {
-        "name": "1990",
-        "value": 57000000
-      },
-      {
-        "name": "2010",
-        "value": 62000000
+        "value": 12
       }
     ]
   }
@@ -80,7 +31,7 @@ export class DashboardComponent implements OnInit {
   //chart vars below
   
   multi:any[];
-  view: any[] = [700, 300];
+  view: any[] = [400, 300];
 
   // options
   legend: boolean = true;
@@ -97,6 +48,53 @@ export class DashboardComponent implements OnInit {
   colorScheme = {
     domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
   };
+  //pie chart vars
+  series = [
+    {
+      "name": "Retired",
+      "value": 20,
+      "label": "20%"
+    },
+    {
+      "name": "Employed",
+      "value": 70,
+      "label": "70%"
+    },
+    {
+      "name": "Unemployed",
+      "value": 10,
+      "label": "10%"
+    }
+  ];
+  single2 = [
+    {
+      "name": "1",
+      "value": 56
+    },
+    {
+      "name": "2",
+      "value": 44
+    },
+    {
+      "name": "3",
+      "value": 34
+    },
+    {
+      "name": "4",
+      "value": 75
+    },
+    {
+      "name": "5",
+      "value": 32
+    } ,
+    {
+      "name": "6",
+      "value": 50
+    },{
+      "name": "7",
+      "value": 45
+    }
+  ];
   constructor() { }
 
   ngOnInit(): void {
