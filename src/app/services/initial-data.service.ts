@@ -309,6 +309,13 @@ export class InitialDataService {
         catchError(this.handleError)
       )
   }
+  getDealerDashboard(){
+    return this.http.post<any>(this.apiUrl + '/dealer/getDealerDashboard', {})
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
   handleError(error: HttpErrorResponse) {
     let errorMessage = 'Unknown error!';
     if (error.error instanceof ErrorEvent) {
