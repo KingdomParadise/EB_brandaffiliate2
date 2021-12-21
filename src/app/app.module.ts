@@ -54,7 +54,7 @@ import { SupportModalComponent } from './pages/support-modal/support-modal.compo
 import { NgxSpinnerModule } from "ngx-spinner";
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,6 +90,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NgxGalleryModule,
     ReactiveFormsModule,
     MatStepperModule,
     MatFormFieldModule,

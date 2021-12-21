@@ -130,7 +130,7 @@
         </div>
         <div class="col-md-12 mt-4">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="d-flex justify-content-between">
                         <h3>New Affiliates</h3>
                         <mat-icon class="text-muted">refresh</mat-icon>
@@ -146,24 +146,43 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <mat-tab-group mat-align-tabs="start">
                         <mat-tab label="Campaign Performances">
-                            <div>
-                                <ngx-charts-pie-chart [view]="[400, 300]"
-                                     [results]="series"
-                                    [legend]="true" [labels]="true" [doughnut]="true" 
-                                    [legendTitle]="''">
-                                </ngx-charts-pie-chart>
+                            <div class="d-flex">
+                                <div class="col-md-5 d-flex flex-column p-0">
+                                    <ngx-charts-pie-chart [view]="[200, 200]"
+                                         [results]="campaignDonut"
+                                         [doughnut]="true" 
+                                        [legendTitle]="''">
+                                    </ngx-charts-pie-chart>
+                                    <p class="bold text-muted">{{activeCampaignName}}</p>
+                                </div>
+                                <div class="col-md-7 p-0">
+                                    <ngx-gallery [options]="galleryOptions" [images]="galleryImages" (change)="onCampaignImageChange($event)"
+                                     class="ngx-gallery">
+
+                                    </ngx-gallery>
+                                </div>
                             </div>
+                            
                         </mat-tab>
                         <mat-tab label="Banner Performances">
-                            <div>
-                                <ngx-charts-pie-chart [view]="[400, 300]"
-                                     [results]="series"
-                                    [legend]="true" [labels]="true" [doughnut]="true" 
-                                    [legendTitle]="''">
-                                </ngx-charts-pie-chart>
+                            <div class="d-flex">
+                                <div class="col-md-5 d-flex flex-column p-0">
+                                    <ngx-charts-pie-chart [view]="[200, 200]"
+                                         [results]="bannerDonut"
+                                         [doughnut]="true" 
+                                        [legendTitle]="''">
+                                    </ngx-charts-pie-chart>
+                                    <p class="bold text-muted">{{activeBannerName}}</p>
+                                </div>
+                                <div class="col-md-7 p-0">
+                                    <ngx-gallery [options]="galleryOptionsBanner" [images]="galleryImagesBanner" (change)="onBannerImageChange($event)"
+                                     class="ngx-gallery">
+
+                                    </ngx-gallery>
+                                </div>
                             </div>
                         </mat-tab>
                     </mat-tab-group>
