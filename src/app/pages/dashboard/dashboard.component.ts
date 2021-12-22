@@ -138,32 +138,65 @@ export class DashboardComponent implements OnInit {
         }
         barGraph.push(obj);
       }
-      console.log(barGraph);
       Object.assign(this, {barGraph});
+
+      let arr = [
+        {
+          name: ' Total Shares',
+          value: this.apiData.campaignsPerformace[0].totalShares
+        },
+        {
+          name: ' Total Leads',
+          value: this.apiData.campaignsPerformace[0].totalLeads
+        },
+        {
+          name: ' Total Views',
+          value: this.apiData.campaignsPerformace[0].totalViews
+        },
+      ]
+      this.campaignDonut = [...this.campaignDonut, ...arr];
+
+      let arr2 = [
+        {
+          name: ' Total Shares',
+          value: this.apiData.bannerPerformance[0].totalShares
+        },
+        {
+          name: ' Total Leads',
+          value: this.apiData.bannerPerformance[0].totalLeads
+        },
+        {
+          name: ' Total Views',
+          value: this.apiData.bannerPerformance[0].totalViews
+        },
+      ]
+      this.bannerDonut = [...this.bannerDonut, ...arr2];
+
 
       this.galleryOptions[0].thumbnailsColumns = this.apiData.campaignsPerformace.length;
       this.activeCampaignName = this.apiData.campaignsPerformace[0].campaignName;
-      for(let i = 0; i< this.apiData.campaignsPerformace.length;i++){
-        let obj = {
-          small: this.apiData.campaignsPerformace[i].campaignImageLink,
-          medium: this.apiData.campaignsPerformace[i].campaignImageLink,
-          big: this.apiData.campaignsPerformace[i].campaignImageLink
+    
+      this.galleryImages = this.apiData.campaignsPerformace.map(item => {
+        return {
+          small: item.campaignImageLink,
+          medium: item.campaignImageLink,
+          big: item.campaignImageLink
         }
-        this.galleryImages.push(obj);
-      }
+      });
 
       this.galleryOptionsBanner[0].thumbnailsColumns = this.apiData.bannerPerformance.length;
-      this.activeBannerName = this.apiData.bannerPerformance[0].campaignName;
-      for(let i = 0; i< this.apiData.bannerPerformance.length;i++){
-        let obj = {
-          small: this.apiData.bannerPerformance[i].bannerImageLink,
-          medium: this.apiData.bannerPerformance[i].bannerImageLink,
-          big: this.apiData.bannerPerformance[i].bannerImageLink
+      this.activeBannerName = this.apiData.bannerPerformance[0].bannerName;
+     
+      this.galleryImagesBanner = this.apiData.bannerPerformance.map(item => {
+        return {
+          small: item.bannerImageLink,
+          medium: item.bannerImageLink,
+          big: item.bannerImageLink
         }
-        this.galleryImagesBanner.push(obj);
-      }
+      });
     })
 
+    
   }
   onCampaignImageChange(ev:any){
     this.campaignDonut = [];
