@@ -14,7 +14,7 @@ export class SelectPackageModalComponent implements OnInit {
     message: ''
   };
   cardActive = 0
-  upgradePackageList:any[] = [];
+  upgradePackageList: any[] = [];
   constructor(
     public dialog: MatDialog,
     private dataService: InitialDataService,
@@ -23,11 +23,11 @@ export class SelectPackageModalComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.dataService.packageDetails().subscribe(res =>{
-      if(res.responseCode == 0){
+    this.dataService.packageDetails().subscribe(res => {
+      if (res.responseCode == 0) {
         this.upgradePackageList = res.response.upgradePackageList
       }
-      
+
     })
   }
   close() {
@@ -36,15 +36,15 @@ export class SelectPackageModalComponent implements OnInit {
   closeModal() {
     this.dialog.closeAll();
   }
-  makeActiveCard(i:number){
+  makeActiveCard(i: number) {
     this.cardActive = i;
   }
-  purchasePackage(){
+  purchasePackage() {
     let req = {
       packageId: this.upgradePackageList[this.cardActive].packageId,
       stripeToken: ''
     }
-    this.dataService.purchasePackage(req).subscribe( res =>{
+    this.dataService.purchasePackage(req).subscribe(res => {
       if (res.responseCode == 0) {
         this.alertMsg.type = 'succsess';
         this.alertMsg.message = res.successMsg;
