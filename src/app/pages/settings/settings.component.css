@@ -83,12 +83,12 @@ label{
     transition: 0.3s;
 }
 .settingImage{
-    min-width: 120px;
-    min-height: 120px;
+    min-width: 100px;
+    min-height: 100px;
     max-width:200px;
     max-height: 200px;
-    width: 140px;
-    height: 140px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     background-position: center;
     background-repeat: no-repeat;

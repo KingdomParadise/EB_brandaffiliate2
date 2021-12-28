@@ -165,6 +165,9 @@ export class SettingsComponent implements OnInit {
       })
     }
   }
+  resetForm(){
+    this.profileForm.reset();
+  }
 }
 
 

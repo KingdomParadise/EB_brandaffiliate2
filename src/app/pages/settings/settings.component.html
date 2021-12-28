@@ -21,7 +21,7 @@
                 <div class="bg-white flex-grow-1 px-4 py-2 pt-md-4 pb-md-5 text-center mb-3 me-2 shadow">
                     <h4 class="text-uppercase text-muted">Company Photo</h4>
                     <div class="position-relative m-auto settingImage mb-3"
-                        [ngStyle]="{'background-image': 'url(' + selectedCompanyLogoPath + ')'}">>
+                        [ngStyle]="{'background-image': 'url(' + selectedCompanyLogoPath + ')'}">
                         <!-- <img [src]="selectedCompanyLogoPath ? selectedCompanyLogoPath :'assets/images/profile-pic.png'"
                             alt="" class="img-fluid"> -->
                         <input #companyLogo type="file" id="companyLogoUpload" style="display:none" accept="image/*"
@@ -178,7 +178,7 @@
             </mat-tab-group>
         </div>
         <div class="col-md-12 text-center mt-3">
-            <button class="btn btn-secondary me-3">Reset</button>
+            <button class="btn btn-secondary me-3" (click)="resetForm()">Reset</button>
             <button class="btn btn-dark btn-save" (click)="updateChanges()">Save Changes</button>
         </div>
     </div>

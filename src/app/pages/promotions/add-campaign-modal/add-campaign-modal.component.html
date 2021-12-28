@@ -12,7 +12,7 @@
             <form [formGroup]="addCampaignForm" class="m-0 p-0" style="width:100%">
                 <div class="d-flex flex-column flex-md-row">
                     <div class="my-auto flex-grow-1">
-                        <div class="form-group d-flex justify-content-between">
+                        <div class="form-group d-flex flex-column flex-md-row justify-content-between">
                             <mat-form-field appearance="fill">
                                 <mat-label>Start date</mat-label>
                                 <input matInput [matDatepicker]="picker" formControlName="campaignStartDate"
@@ -38,7 +38,7 @@
                                 placeholder="Campaign URL">
                         </div>
                         <div class="form-group mt-5">
-                            <textarea class="form-control" rows="5" placeholder="Campaign Description"
+                            <textarea class="form-control text-center" rows="5" placeholder="Campaign Description"
                                 formControlName="campaignDescription">
                             </textarea>
                         </div>

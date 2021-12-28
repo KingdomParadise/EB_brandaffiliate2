@@ -14,14 +14,14 @@
 }
 #searchBook{
     position: absolute;
-    top:0px;
+    top:54px;
     right: 0px;
-    width: 200px;
-    float: right;
+    width: 100%;
     z-index: 10;
 }
 table{
     width: 100%;
+    margin-top:50px;
 }
 .app-color{
     background-color: #622da6;
@@ -60,6 +60,31 @@ input::placeholder {
     text-transform: uppercase;
     font-size: 12px;
 }
+::ng-deep .mat-menu-panel{
+    padding:0
+}
+.table-container{
+    overflow-x: auto;
+}
+.mat-table {
+    overflow-x: auto;
+  }
+
+.mat-cell,
+.mat-header-cell {
+  word-wrap: initial;
+  display: table-cell;
+  padding: 0px 10px;
+  line-break: unset;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  vertical-align: middle;
+}
+.mat-row,
+.mat-header-row {
+  display: table-row;
+}
 .profilePic{
     width: 30px;
 }
@@ -96,5 +121,23 @@ button.mat-menu-item:hover .mat-icon{
 @media only screen and (min-device-width: 768px){
     .page-container{
         padding:1.5rem 4rem;
+    }
+    #searchBook{
+        position: absolute;
+        top:0px;
+        right: 0px;
+        width: 200px;
+        float: right;
+        z-index: 10;
+    }
+    table{
+        width: 100%;
+        margin-top:0px;
+    }
+    .mat-cell,
+    .mat-header-cell {
+    
+    width: unset;
+
     }
 }

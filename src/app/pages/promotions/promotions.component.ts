@@ -47,6 +47,7 @@ export class PromotionsComponent implements OnInit {
   pageEvent: PageEvent;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('campaignPaginator') campaignPaginator: MatPaginator;
+  @ViewChild('bannerPaginator') bannerPaginator: MatPaginator;
   
   @ViewChild('tabGroup') tabGroup: any;
   currentQuery: any = {
@@ -76,7 +77,7 @@ export class PromotionsComponent implements OnInit {
       this.dataSourceBanner = new MatTableDataSource<Banner>(this.banners);
       this.dataSourceBanner._updateChangeSubscription();
       console.log(this.banners);
-      this.dataSourceBanner.paginator = this.paginator;
+      this.dataSourceBanner.paginator = this.bannerPaginator;
       this.spinner.hide();
     });
   }

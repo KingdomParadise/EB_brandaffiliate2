@@ -136,6 +136,31 @@ button.mat-menu-item:hover .mat-icon{
 mat-spinner{
     margin:auto;
 }
+::ng-deep .mat-menu-panel{
+    padding:0
+}
+.table-container{
+    overflow-x: auto;
+}
+.mat-table {
+    overflow-x: auto;
+  }
+
+.mat-cell,
+.mat-header-cell {
+  word-wrap: initial;
+  display: table-cell;
+  padding: 0px 10px;
+  line-break: unset;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  vertical-align: middle;
+}
+.mat-row,
+.mat-header-row {
+  display: table-row;
+}
 @media only screen and (min-device-width: 768px){
     .btn-save{
         padding:6px 5rem;
@@ -151,6 +176,12 @@ mat-spinner{
     }
     th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type {
         padding-right: 24px;
+    }
+    .mat-cell,
+    .mat-header-cell {
+
+    width: unset;
+
     }
 }
 /* X-Large devices (large desktops, 1200px and up) */

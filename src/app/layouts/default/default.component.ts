@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
+import { NavigationEnd, Router } from '@angular/router';
+import { map, filter, withLatestFrom } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-default',
@@ -9,12 +14,26 @@ export class DefaultComponent implements OnInit {
   isPartialClose = false;
   sideBarOpen = true;
   marginLeft = '0px';
-  constructor() { }
+  hasBackdrop = false;
+  @ViewChild('drawer') drawer: MatSidenav;
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches)
+    );
+
+  constructor(private breakpointObserver: BreakpointObserver,
+    router: Router) {
+    router.events.pipe(
+      withLatestFrom(this.isHandset$),
+      filter(([a, b]) => b && a instanceof NavigationEnd)
+    ).subscribe(_ => this.sideBarOpen = false);
+  }
 
   ngOnInit(): void {
     if (window.innerWidth < 786) {
       this.sideBarOpen = false;
       this.isPartialClose = false;
+      this.hasBackdrop = true;
     }else{
 
       this.marginLeft = '240px';

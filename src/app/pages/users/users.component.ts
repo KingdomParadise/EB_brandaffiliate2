@@ -175,7 +175,7 @@ export class UsersComponent implements OnInit {
     if (window.innerWidth > 786) {
       size = ['675px', '420px'];
     } else {
-      size = ['350px', '400px'];
+      size = ['350px', '500px'];
     }
     const dialogRef = this.dialog.open(AddUserModalComponent, {
       maxWidth: size[0],

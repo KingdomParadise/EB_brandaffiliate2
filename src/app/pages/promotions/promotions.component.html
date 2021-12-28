@@ -1,5 +1,5 @@
 <div class="page-container">
-    <ngx-spinner type = "ball-spin">
+    <ngx-spinner type="ball-spin">
     </ngx-spinner>
     <div class="row">
         <div class="col-md-12 p-0 mb-2">
@@ -21,132 +21,139 @@
         <div class="com-md-12 p-0 shadow position-relative">
             <mat-tab-group #tabGroup (selectedIndexChange)="tabChanged($event)">
                 <mat-tab label="Campaigns">
-                    <table mat-table [dataSource]="dataSourceCampaign" class="mat-elevation-z8">
-                        <ng-container matColumnDef="duration">
-                            <th mat-header-cell *matHeaderCellDef> Duration </th>
-                            <td mat-cell *matCellDef="let element">
-                                <p class="mb-1 durationText">{{element?.campaignStartDate | date: 'mediumDate'}} </p>
-                                <p class="durationText">{{element?.campaignEndDate | date: 'mediumDate'}} </p>
-                            </td>
-                        </ng-container>
+                    <div class="table-container">
+                        <table mat-table [dataSource]="dataSourceCampaign" class="mat-elevation-z8">
+                            <ng-container matColumnDef="duration">
+                                <th mat-header-cell *matHeaderCellDef> Duration </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <p class="mb-1 durationText">{{element?.campaignStartDate | date: 'mediumDate'}}
+                                    </p>
+                                    <p class="durationText">{{element?.campaignEndDate | date: 'mediumDate'}} </p>
+                                </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="title">
-                            <th mat-header-cell *matHeaderCellDef> Title </th>
-                            <td mat-cell *matCellDef="let element"> {{element?.campaignName}} </td>
-                        </ng-container>
+                            <ng-container matColumnDef="title">
+                                <th mat-header-cell *matHeaderCellDef> Title </th>
+                                <td mat-cell *matCellDef="let element"> {{element?.campaignName}} </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="image">
-                            <th mat-header-cell *matHeaderCellDef> </th>
-                            <td mat-cell *matCellDef="let element">
-                                <img [src]="element?.campaignImageLink" alt="" class='profilePic'>
-                            </td>
-                        </ng-container>
+                            <ng-container matColumnDef="image">
+                                <th mat-header-cell *matHeaderCellDef> </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <img [src]="element?.campaignImageLink" alt="" class='profilePic'>
+                                </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="status">
-                            <th mat-header-cell *matHeaderCellDef> Status </th>
-                            <td mat-cell *matCellDef="let element">
-                                <span class="verifiedTag"
-                                    [ngStyle]="{'background-color':element?.status =='active'?'#4db050':'#bbbbbb','padding':element?.status=='active'?'2px 17px':'2px 4px'}">{{element?.status
-                                    == 'active' ?'Enabled':'Disabled'}} </span>
-                            </td>
-                        </ng-container>
-                        <ng-container matColumnDef="action">
-                            <th mat-header-cell *matHeaderCellDef> </th>
-                            <td mat-cell *matCellDef="let element;let i = index">
-                                <button mat-icon-button
-                                    [ngStyle]="{ 'color': selection.isSelected(element)?'white':'#2c2c2c'}"
-                                    class="btn btn-default btn-gear" [matMenuTriggerFor]="adminActions">
-                                    <mat-icon>settings</mat-icon>
-                                </button>
-
-                                <mat-menu #adminActions="matMenu">
-                                    <button mat-menu-item (click)="openEditDialog(element)">
-                                        <mat-icon>edit</mat-icon>
-                                        <span>Edit</span>
+                            <ng-container matColumnDef="status">
+                                <th mat-header-cell *matHeaderCellDef> Status </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <span class="verifiedTag"
+                                        [ngStyle]="{'background-color':element?.status =='active'?'#4db050':'#bbbbbb','padding':element?.status=='active'?'2px 17px':'2px 4px'}">{{element?.status
+                                        == 'active' ?'Enabled':'Disabled'}} </span>
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="action">
+                                <th mat-header-cell *matHeaderCellDef> </th>
+                                <td mat-cell *matCellDef="let element;let i = index">
+                                    <button mat-icon-button
+                                        [ngStyle]="{ 'color': selection.isSelected(element)?'white':'#2c2c2c'}"
+                                        class="btn btn-default btn-gear" [matMenuTriggerFor]="adminActions">
+                                        <mat-icon>settings</mat-icon>
                                     </button>
-                                    <button mat-menu-item (click)="toggleCampaignStatus(element)">
-                                        <mat-icon>wb_sunny</mat-icon>
-                                        <span *ngIf="element?.status != 'active'">Enable</span>
-                                        <span *ngIf="element?.status == 'active'">Disable</span>
-                                    </button>
-                                    <button mat-menu-item (click)="deleteCampaign(element.campaignId, i)">
-                                        <mat-icon>delete</mat-icon>
-                                        <span>Delete</span>
-                                    </button>
-                                </mat-menu>
-                                <!-- <mat-icon>settings</mat-icon>     -->
-                            </td>
-                        </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                    </table>
-                    <mat-paginator #campaignPaginator [pageSizeOptions]="[5,10, 15, 20, 30]" [length]="pagination.length"
-                        showFirstLastButtons (page)="pageChanged($event)">
+
+                                    <mat-menu #adminActions="matMenu">
+                                        <button mat-menu-item (click)="openEditDialog(element)">
+                                            <mat-icon>edit</mat-icon>
+                                            <span>Edit</span>
+                                        </button>
+                                        <button mat-menu-item (click)="toggleCampaignStatus(element)">
+                                            <mat-icon>wb_sunny</mat-icon>
+                                            <span *ngIf="element?.status != 'active'">Enable</span>
+                                            <span *ngIf="element?.status == 'active'">Disable</span>
+                                        </button>
+                                        <button mat-menu-item (click)="deleteCampaign(element.campaignId, i)">
+                                            <mat-icon>delete</mat-icon>
+                                            <span>Delete</span>
+                                        </button>
+                                    </mat-menu>
+                                    <!-- <mat-icon>settings</mat-icon>     -->
+                                </td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                    </div>
+
+                    <mat-paginator #campaignPaginator="matPaginator" [pageSizeOptions]="[5,10, 15, 20, 30]"
+                        [length]="pagination.length" showFirstLastButtons (page)="pageChanged($event)">
                     </mat-paginator>
                 </mat-tab>
                 <mat-tab label="Banners">
-                    <table mat-table [dataSource]="dataSourceBanner" class="mat-elevation-z8">
+                    <div class="table-container">
+                        <table mat-table [dataSource]="dataSourceBanner" class="mat-elevation-z8">
 
-                        <ng-container matColumnDef="duration">
-                            <th mat-header-cell *matHeaderCellDef> Duration </th>
-                            <td mat-cell *matCellDef="let element">
-                                <p class="mb-1">{{element?.bannerStartDate | date: 'mediumDate'}} </p>
-                                <p>{{element?.bannerEndDate | date: 'mediumDate'}} </p>
-                            </td>
-                        </ng-container>
+                            <ng-container matColumnDef="duration">
+                                <th mat-header-cell *matHeaderCellDef> Duration </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <p class="mb-1">{{element?.bannerStartDate | date: 'mediumDate'}} </p>
+                                    <p>{{element?.bannerEndDate | date: 'mediumDate'}} </p>
+                                </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="title">
-                            <th mat-header-cell *matHeaderCellDef> Title </th>
-                            <td mat-cell *matCellDef="let element"> {{element?.bannerName}} </td>
-                        </ng-container>
+                            <ng-container matColumnDef="title">
+                                <th mat-header-cell *matHeaderCellDef> Title </th>
+                                <td mat-cell *matCellDef="let element"> {{element?.bannerName}} </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="image">
-                            <th mat-header-cell *matHeaderCellDef> </th>
-                            <td mat-cell *matCellDef="let element">
-                                <img [src]="element?.bannerImageLink" alt="" class='profilePic'>
-                            </td>
-                        </ng-container>
+                            <ng-container matColumnDef="image">
+                                <th mat-header-cell *matHeaderCellDef> </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <img [src]="element?.bannerImageLink" alt="" class='profilePic'>
+                                </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="status">
-                            <th mat-header-cell *matHeaderCellDef> Status </th>
-                            <td mat-cell *matCellDef="let element">
-                                <span class="verifiedTag"
-                                    [ngStyle]="{'background-color':element?.status=='active'?'#4db050':'#bbbbbb','padding':element?.status=='active'?'2px 17px':'2px 4px'}">{{element?.status
-                                    == 'active' ?'Enabled':'Disabled'}} </span>
-                            </td>
-                        </ng-container>
-                        <ng-container matColumnDef="action">
-                            <th mat-header-cell *matHeaderCellDef> </th>
-                            <td mat-cell *matCellDef="let element;let i = index">
-                                <button mat-icon-button
-                                    [ngStyle]="{ 'color': selection.isSelected(element)?'white':'#2c2c2c'}"
-                                    class="btn btn-default btn-gear" [matMenuTriggerFor]="adminActions">
-                                    <mat-icon>settings</mat-icon>
-                                </button>
-
-                                <mat-menu #adminActions="matMenu">
-                                    <button mat-menu-item (click)="openEditDialog(element)">
-                                        <mat-icon>edit</mat-icon>
-                                        <span>Edit</span>
+                            <ng-container matColumnDef="status">
+                                <th mat-header-cell *matHeaderCellDef> Status </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <span class="verifiedTag"
+                                        [ngStyle]="{'background-color':element?.status=='active'?'#4db050':'#bbbbbb','padding':element?.status=='active'?'2px 17px':'2px 4px'}">{{element?.status
+                                        == 'active' ?'Enabled':'Disabled'}} </span>
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="action">
+                                <th mat-header-cell *matHeaderCellDef> </th>
+                                <td mat-cell *matCellDef="let element;let i = index">
+                                    <button mat-icon-button
+                                        [ngStyle]="{ 'color': selection.isSelected(element)?'white':'#2c2c2c'}"
+                                        class="btn btn-default btn-gear" [matMenuTriggerFor]="adminActions">
+                                        <mat-icon>settings</mat-icon>
                                     </button>
-                                    <button mat-menu-item (click)="toggleBannerStatus(element)">
-                                        <mat-icon>wb_sunny</mat-icon>
-                                        <span *ngIf="element?.status != 'active'">Enable</span>
-                                        <span *ngIf="element?.status == 'active'">Disable</span>
-                                    </button>
-                                    <button mat-menu-item (click)="deleteBanner(element.bannerId, i)">
-                                        <mat-icon>delete</mat-icon>
-                                        <span>Delete</span>
-                                    </button>
-                                </mat-menu>
-                                <!-- <mat-icon>settings</mat-icon>     -->
-                            </td>
-                        </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                    </table>
-                    <mat-paginator [pageSizeOptions]="[5,10, 15, 20, 30]" [length]="paginationBanner.length"
-                        showFirstLastButtons (page)="pageChanged($event)">
+
+                                    <mat-menu #adminActions="matMenu">
+                                        <button mat-menu-item (click)="openEditDialog(element)">
+                                            <mat-icon>edit</mat-icon>
+                                            <span>Edit</span>
+                                        </button>
+                                        <button mat-menu-item (click)="toggleBannerStatus(element)">
+                                            <mat-icon>wb_sunny</mat-icon>
+                                            <span *ngIf="element?.status != 'active'">Enable</span>
+                                            <span *ngIf="element?.status == 'active'">Disable</span>
+                                        </button>
+                                        <button mat-menu-item (click)="deleteBanner(element.bannerId, i)">
+                                            <mat-icon>delete</mat-icon>
+                                            <span>Delete</span>
+                                        </button>
+                                    </mat-menu>
+                                    <!-- <mat-icon>settings</mat-icon>     -->
+                                </td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+
+                    </div>
+                    <mat-paginator #bannerPaginator="matPaginator" [pageSizeOptions]="[5,10, 15, 20, 30]"
+                        [length]="paginationBanner.length" showFirstLastButtons (page)="pageChanged($event)">
                     </mat-paginator>
                 </mat-tab>
             </mat-tab-group>

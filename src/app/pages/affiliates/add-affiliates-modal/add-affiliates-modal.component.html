@@ -20,19 +20,20 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="form-group">
+            <div class="form-group mb-4 mb-md-0">
                 <input type="email" matInput class="form-control" formControlName="customerEmailId" placeholder="Email">
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <input type="number" class="form-control"
-                    formControlName="customerPhoneNumber" placeholder="Phone">
+                <input type="number" matInput class="form-control" formControlName="customerPhoneNumber"
+                    placeholder="Phone">
                 <div *ngIf="f.customerPhoneNumber.touched && f.customerPhoneNumber.invalid" class="">
                     <div *ngIf="f.customerPhoneNumber.errors?.required">Mobile Number is required.</div>
                     <div *ngIf="f.customerPhoneNumber.errors?.pattern">Please, Enter 10 digit Mobile Number.</div>
                 </div>
             </div>
+
         </div>
 
         <div class="col-md-12 mt-5 text-center">
@@ -55,6 +56,5 @@
                 </button>
             </div>
         </div>
-
     </form>
 </div>
