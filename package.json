@@ -32,6 +32,7 @@
     "jquery": "^3.6.0",
     "ngx-spinner": "^12.0.0",
     "rxjs": "~6.6.0",
+    "stripe-angular": "^1.7.0",
     "tslib": "^2.2.0",
     "xlsx": "^0.17.2",
     "zone.js": "~0.11.4"
@@ -43,6 +44,8 @@
     "@types/file-saver": "^2.0.3",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
+    "@types/stripe-checkout": "^1.0.4",
+    "@types/stripe-v3": "^3.1.26",
     "jasmine-core": "~3.7.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",

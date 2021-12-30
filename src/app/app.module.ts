@@ -55,6 +55,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { StripeModule } from "stripe-angular"
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -115,7 +117,8 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
       libraries: ['places']
     }),
     NgxSpinnerModule,
-    NgxChartsModule
+    NgxChartsModule,
+    StripeModule.forRoot("pk_test_51KCAH4KvYzveXmtdY6ZVxJaeVC87kHUdQ3bb6cEqd07q7B61Ckcs2bKYPHaP5icnN8ppR7eUY2CyewSA72VxyUcu00ibgfLCmk")
 
   ],
   providers: [
