@@ -38,6 +38,7 @@ export class PackagesComponent implements OnInit {
   makeActiveCard(num :number){
     this.cardActive = num;
   }
+
   makePayment(amount:number) {
     const paymentHandler = (<any>window).StripeCheckout.configure({
       key: 'pk_test_51KCAH4KvYzveXmtdY6ZVxJaeVC87kHUdQ3bb6cEqd07q7B61Ckcs2bKYPHaP5icnN8ppR7eUY2CyewSA72VxyUcu00ibgfLCmk',

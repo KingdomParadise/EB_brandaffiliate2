@@ -34,7 +34,7 @@ export class DefaultComponent implements OnInit {
       this.sideBarOpen = false;
       this.isPartialClose = false;
       this.hasBackdrop = true;
-    }else{
+    } else {
 
       this.marginLeft = '240px';
     }
@@ -43,13 +43,12 @@ export class DefaultComponent implements OnInit {
     if (window.innerWidth < 786) {
       this.sideBarOpen = !this.sideBarOpen;
       this.marginLeft = '0px'
-    }else{
-
+    } else {
       this.isPartialClose = !this.isPartialClose;
-      if(this.isPartialClose){
+      if (this.isPartialClose) {
         this.marginLeft = '90px';
-      }else{
-        this.marginLeft ='240px'
+      } else {
+        this.marginLeft = '240px'
       }
     }
   }

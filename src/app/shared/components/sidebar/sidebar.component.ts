@@ -40,8 +40,9 @@ export class SidebarComponent implements OnInit {
    })
   }
   toggleSideBar() {
+    this.toggleSideBarForMe.emit();
     if (window.innerWidth < 786) {
-      this.toggleSideBarForMe.emit();
+      //this.toggleSideBarForMe.emit();
       //this.isExpanded = !this.isExpanded
     } else {
       this.isPartialClose = !this.isPartialClose;
