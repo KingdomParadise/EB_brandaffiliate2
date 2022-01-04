@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 
 export class InitialDataService {
   private apiUrl = environment.apiUrl;
-
+  notificationInterval;
   constructor(private http: HttpClient) { }
 
   getIndustries(): Observable<any> {

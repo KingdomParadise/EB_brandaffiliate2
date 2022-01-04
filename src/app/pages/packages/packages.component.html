@@ -43,11 +43,9 @@
         </div>
         <div class="col-md-12 bg-white shadow">
             <p class="text-center mt-5">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Choose a better package for better offer, You just need to pay the difference amount!
             </p>
-            <p class="text-center">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid
-            </p>
+           
             <div class="card-container">
                 <div *ngFor="let pack of packs;let i = index" class="card me-3 shadow" [class.activePack]="cardActive === i" (click)="makeActiveCard(i)">
                     <h3 class="text-uppercase app-text-color font-weight-bold">{{pack?.packageName}}</h3>
@@ -76,7 +74,7 @@
             </div>
         </div>
         <div class="col-md-12 btn-bottom">
-            <button class="btn btn-dark px-5" (click)="openCardDialog()">Next</button>
+            <button class="btn btn-dark px-5" (click)="purchasePackage()">Next</button>
         </div>
     </div>
 </div>

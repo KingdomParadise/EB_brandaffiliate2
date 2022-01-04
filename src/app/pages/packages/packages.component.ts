@@ -15,9 +15,17 @@ export class PackagesComponent implements OnInit {
   paymentHandler:any = null;
   cardActive = 0;
   packs:any =[];
+  alertMsg: any = {
+    type: '',
+    message: ''
+  };
   constructor(private dataService: InitialDataService,public dialog: MatDialog,) { }
 
   ngOnInit(): void {
+    this.getInitialData();
+    this.invokeStripe();
+  }
+  getInitialData(){
     this.dataService.packageDetails().subscribe((res: any) => {
       console.log(res);
       if (res.response) {
@@ -26,14 +34,13 @@ export class PackagesComponent implements OnInit {
         //this.packs[1] = this.packs[0];
       }
     });
-    this.invokeStripe();
   }
   makeActiveCard(num :number){
     this.cardActive = num;
   }
   makePayment(amount:number) {
     const paymentHandler = (<any>window).StripeCheckout.configure({
-      key: 'pk_test_51Jm51vDpsbIh6JAxazfuiFNvW7GgfGKCfWzDQ7CQMnDESBJVspoeOTdC6mHaQKDQndr0xcrYHF72D39WUIzncGul001m4w72fh',
+      key: 'pk_test_51KCAH4KvYzveXmtdY6ZVxJaeVC87kHUdQ3bb6cEqd07q7B61Ckcs2bKYPHaP5icnN8ppR7eUY2CyewSA72VxyUcu00ibgfLCmk',
       locale: 'auto',
       token: function (stripeToken: any) {
         console.log(stripeToken)
@@ -50,26 +57,6 @@ export class PackagesComponent implements OnInit {
     });
   }
 
-  invokeStripe() {
-    if (!window.document.getElementById('stripe-script')) {
-      const script = window.document.createElement("script");
-      script.id = "stripe-script";
-      script.type = "text/javascript";
-      script.src = "https://checkout.stripe.com/checkout.js";
-      script.onload = () => {
-        this.paymentHandler = (<any>window).StripeCheckout.configure({
-          key: 'pk_test_51H7bbSE2RcKvfXD4DZhu',
-          locale: 'auto',
-          token: function (stripeToken: any) {
-            console.log(stripeToken)
-            alert('Payment has been successfull!');
-          }
-        });
-      }
-
-      window.document.body.appendChild(script);
-    }
-  }
   openCardDialog() {
     let size = ['675px', '475px'];
     if (window.innerWidth > 786) {
@@ -117,5 +104,61 @@ export class PackagesComponent implements OnInit {
         }
       });
     });
+  }
+
+  purchasePackage() {
+    
+    let req = {
+      packageId: this.packs[this.cardActive].packageId,
+      stripeToken: ''
+    }
+    
+    let amount = (this.packs[this.cardActive].packagePrice - this.currentPackage?.packagePrice);
+    const paymentHandler = (<any>window).StripeCheckout.configure({
+      key: 'pk_test_51KCAH4KvYzveXmtdY6ZVxJaeVC87kHUdQ3bb6cEqd07q7B61Ckcs2bKYPHaP5icnN8ppR7eUY2CyewSA72VxyUcu00ibgfLCmk',
+      locale: 'auto',
+      token:  (stripeToken: any) =>{
+        req.stripeToken =  stripeToken.id
+        this.dataService.purchasePackage(req).subscribe( res =>{
+          if (res.responseCode == 0) {
+            this.alertMsg.type = 'succsess';
+            this.alertMsg.message = res.successMsg;
+            this.getInitialData();
+          } else if (res.responseCode == -1) {
+            this.alertMsg.type = 'danger';
+            this.alertMsg.message = res.errorMsg
+          } else {
+            this.alertMsg.type = 'danger';
+            this.alertMsg.message = "Server error"
+          }
+        })
+      }
+    });
+  
+    paymentHandler.open({
+      name: 'Brandaffiliate',
+      description: 'Upgrade Package',
+      amount: amount * 100
+    });
+  }
+  
+  invokeStripe() {
+    if (!window.document.getElementById('stripe-script')) {
+      const script = window.document.createElement("script");
+      script.id = "stripe-script";
+      script.type = "text/javascript";
+      script.src = "https://checkout.stripe.com/checkout.js";
+      script.onload = () => {
+        this.paymentHandler = (<any>window).StripeCheckout.configure({
+          key: 'pk_test_51KCAH4KvYzveXmtdY6ZVxJaeVC87kHUdQ3bb6cEqd07q7B61Ckcs2bKYPHaP5icnN8ppR7eUY2CyewSA72VxyUcu00ibgfLCmk',
+          locale: 'auto',
+          token: function (stripeToken: any) {
+            console.log(stripeToken)
+          }
+        });
+      }
+
+      window.document.body.appendChild(script);
+    }
   }
 }

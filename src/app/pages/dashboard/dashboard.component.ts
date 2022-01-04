@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InitialDataService } from 'src/app/services/initial-data.service';
 import { DatePipe } from '@angular/common';
 import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
+import { Router } from '@angular/router';
 let multi:any[] = [
   {
     "name": "Shared",
@@ -60,7 +61,7 @@ export class DashboardComponent implements OnInit {
   bannerDonut:any[] =[];
  
   
-  constructor(private dataService: InitialDataService,private datePipe: DatePipe) { }
+  constructor(private dataService: InitialDataService,private datePipe: DatePipe, private router:Router) { }
 
   ngOnInit(): void {
     
@@ -139,11 +140,11 @@ export class DashboardComponent implements OnInit {
         barGraph.push(obj);
       }
       Object.assign(this, {barGraph});
-
+    
       let arr = [
         {
           name: ' Total Shares',
-          value: this.apiData.campaignsPerformace[0].totalShares
+          value: this.apiData?.campaignsPerformace[0].totalShares
         },
         {
           name: ' Total Leads',
@@ -239,5 +240,8 @@ export class DashboardComponent implements OnInit {
   }
   close() {
 
+  }
+  goToAffiliates(){
+    this.router.navigateByUrl('/affiliates')
   }
 }

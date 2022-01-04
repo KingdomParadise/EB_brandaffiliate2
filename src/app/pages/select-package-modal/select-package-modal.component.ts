@@ -75,7 +75,6 @@ export class SelectPackageModalComponent implements OnInit {
       description: 'Package Payment',
       amount: amount * 100
     });
-    
   }
   invokeStripe() {
     if (!window.document.getElementById('stripe-script')) {
@@ -89,7 +88,6 @@ export class SelectPackageModalComponent implements OnInit {
           locale: 'auto',
           token: function (stripeToken: any) {
             console.log(stripeToken)
-            //alert('Payment has been successfull!');
           }
         });
       }

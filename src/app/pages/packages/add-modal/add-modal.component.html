@@ -10,7 +10,7 @@
 
     <form class="row m-0 p-0" style="width:100%">
         <div class="col-md-6 my-auto">
-            <label for="qwe">$75/ Additional Content</label>
+            <label for="qwe">$<span>{{perContentCharge}}</span>/ Additional Content</label>
         </div>
         <div class="col-md-6 my-auto">
             <div class="form-group d-flex align-items-center">
@@ -29,7 +29,7 @@
         </div>
 
         <div class="col-md-12 mt-5 text-center">
-            <button mat-button class="btn mb-5 mb-md-0 btn-add" (click)="purchaseContent()">
+            <button mat-button class="btn mb-5 mb-md-0 btn-add" (click)="purchaseContent()" [disabled]="count==0">
                 Next
             </button>
         </div>

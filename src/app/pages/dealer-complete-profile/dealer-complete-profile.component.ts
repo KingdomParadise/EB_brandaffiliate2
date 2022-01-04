@@ -22,10 +22,18 @@ export class DealerCompleteProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.completeProfile = this._formBuilder.group({
-      facebookLink: ['', Validators.required],
-      instaLink: ['', Validators.required],
-      linkedinLink: ['', Validators.required]
+      facebookLink: [''],
+      instaLink: [''],
+      linkedinLink: ['']
     });
+  }
+  isValidForm(){
+    if(this.completeProfile.value.facebookLink || this.completeProfile.value.instaLink || this.completeProfile.value.linkedinLink){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
   close(){
     this.alertMsg.message = '';
@@ -36,7 +44,8 @@ export class DealerCompleteProfileComponent implements OnInit {
         if (res.responseCode == 0) {
           this.alertMsg.type = 'success';
           this.alertMsg.message = res.successMsg;
-          this.router.navigateByUrl('/dashboard');
+          this.router.navigateByUrl('/dealer-create-password');
+          //this.router.navigateByUrl('/dashboard');
         }else if( res.responseCode == -1){
           this.alertMsg.type = 'danger';
           this.alertMsg.message = res.errorMsg;

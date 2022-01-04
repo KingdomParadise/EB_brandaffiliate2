@@ -27,7 +27,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.getNotifications();
-    setInterval(()=>{this.getNotifications()},30000);
+    this.dataService.notificationInterval = setInterval(()=>{this.getNotifications()},30000);
+    
   }
 
   getNotifications(){

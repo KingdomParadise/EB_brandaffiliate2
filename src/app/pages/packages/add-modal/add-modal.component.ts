@@ -12,7 +12,9 @@ export class AddModalComponent implements OnInit {
     type: '',
     message: ''
   };
+  perContentCharge = 75;
   count = 0;
+  paymentHandler:any = null;
   constructor(
     public dialog: MatDialog,
     private dataService: InitialDataService,
@@ -52,19 +54,53 @@ export class AddModalComponent implements OnInit {
         stripeToken: null
       }
     }
-   
-    this.dataService.purchaseContent(req).subscribe( res =>{
-      if (res.responseCode == 0) {
-        this.alertMsg.type = 'succsess';
-        this.alertMsg.message = res.successMsg;
-        this.dialogRef.close();
-      } else if (res.responseCode == -1) {
-        this.alertMsg.type = 'danger';
-        this.alertMsg.message = res.errorMsg
-      } else {
-        this.alertMsg.type = 'danger';
-        this.alertMsg.message = "Server error"
+    let amount = this.perContentCharge*this.count;
+    const paymentHandler = (<any>window).StripeCheckout.configure({
+      key: 'pk_test_51KCAH4KvYzveXmtdY6ZVxJaeVC87kHUdQ3bb6cEqd07q7B61Ckcs2bKYPHaP5icnN8ppR7eUY2CyewSA72VxyUcu00ibgfLCmk',
+      locale: 'auto',
+      token:  (stripeToken: any) =>{
+        req.stripeToken =  stripeToken.id
+        this.dataService.purchaseContent(req).subscribe( res =>{
+          if (res.responseCode == 0) {
+            this.alertMsg.type = 'succsess';
+            this.alertMsg.message = res.successMsg;
+            this.dialogRef.close();
+          } else if (res.responseCode == -1) {
+            this.alertMsg.type = 'danger';
+            this.alertMsg.message = res.errorMsg
+          } else {
+            this.alertMsg.type = 'danger';
+            this.alertMsg.message = "Server error"
+          }
+        })
       }
-    })
+    });
+  
+    paymentHandler.open({
+      name: 'Brandaffiliate',
+      description: 'Content Upgrade Payment',
+      amount: amount * 100
+    });
   }
+  
+  invokeStripe() {
+    if (!window.document.getElementById('stripe-script')) {
+      const script = window.document.createElement("script");
+      script.id = "stripe-script";
+      script.type = "text/javascript";
+      script.src = "https://checkout.stripe.com/checkout.js";
+      script.onload = () => {
+        this.paymentHandler = (<any>window).StripeCheckout.configure({
+          key: 'pk_test_51KCAH4KvYzveXmtdY6ZVxJaeVC87kHUdQ3bb6cEqd07q7B61Ckcs2bKYPHaP5icnN8ppR7eUY2CyewSA72VxyUcu00ibgfLCmk',
+          locale: 'auto',
+          token: function (stripeToken: any) {
+            console.log(stripeToken)
+          }
+        });
+      }
+
+      window.document.body.appendChild(script);
+    }
+  }
+
 }

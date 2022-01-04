@@ -95,6 +95,8 @@ export class SidebarComponent implements OnInit {
   }
   logout(){
     localStorage.clear();
+    
+    window.clearInterval(this.dataService.notificationInterval);
     this.router.navigateByUrl('/dealer-login');
   }
 }
