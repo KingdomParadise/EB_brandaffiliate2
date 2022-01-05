@@ -149,7 +149,6 @@ export class AffiliatesComponent implements OnInit {
       this.customers.length = res.response.totalItems;
       this.dataSource = new MatTableDataSource<PeriodicElement>(this.customers);
       this.dataSource._updateChangeSubscription();
-      console.log(this.customers);
       this.dataSource.paginator = this.paginator;
       this.loading = false;
     });
@@ -187,15 +186,13 @@ export class AffiliatesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
+      
       let query = {
         type: 'all',
         sort: '',
         searchString: '',
       }
-      // this.dataService.getAllAffiliate(query, 0, 2).subscribe(res => {
-      //   this.dataSource.data = res.response.customerList;
-      // })
+      
       this.getNextData(query, this.pagination.pageSize, this.pagination.length, 0);
     });
   }
@@ -334,17 +331,13 @@ export class AffiliatesComponent implements OnInit {
 
 
 function dynamicSort(property:any) {
-  console.log(property);
   var sortOrder = 1;
   if(property[0] === "-") {
       sortOrder = -1;
       property = property.substr(1);
   }
   return (a:any, b:any) => {
-      /* next line works with strings and numbers, 
-       * and you may want to customize it to your needs
-       */
-      // x = a[property]
+      
       if(property == 'createTs'){
         var result = (new Date(a[property]) < new Date(b[property])) ? -1 : (new Date(a[property]) > new Date(b[property])) ? 1 : 0;
       }else{

@@ -18,7 +18,7 @@ export class SidebarComponent implements OnInit {
   isPackageActive = false;
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
   @Input() isPartialClose: boolean;
-  //isExpanded = false;
+
   constructor(
     public dialog: MatDialog,
     public router: Router,
@@ -26,7 +26,6 @@ export class SidebarComponent implements OnInit {
   ) {
     this.userData = JSON.parse(localStorage.getItem('userData') || '{}');
     this.userPhotoUrl = this.userData.userPhotoUrl;
-    console.log(this.userData);
   }
 
   ngOnInit(): void {
@@ -66,12 +65,7 @@ export class SidebarComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
-      let query = {
-        type: 'all',
-        sort: '',
-        searchString: '',
-      }
+      
     });
   }
   goToPackagePage() {
