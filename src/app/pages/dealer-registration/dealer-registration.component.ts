@@ -74,12 +74,12 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
       //companyPhone: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: [null, Validators.required],
-      personalEmail:  ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      personalEmail:  ['', [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')]],
       personalPhone: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
     });
     this.regForm2 = this._formBuilder.group({
-      companyLogo: [null, Validators.required],
-      userLogo: [null, Validators.required],
+      companyLogo: [null],
+      userLogo: [null],
     });
     this.regForm3 = this._formBuilder.group({
       addressLine1: ['', Validators.required],
@@ -91,7 +91,7 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
       mapLocations: [null]
     });
 
-    
+
     // this.secondFormGroup = this._formBuilder.group({
     //   secondCtrl: ['', Validators.required]
     // });
@@ -102,12 +102,12 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
     // };
     // this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
   }
-  get f1(){  
-    return this.regForm1.controls;  
-  }  
-  get f3(){  
-    return this.regForm3.controls;  
-  } 
+  get f1(){
+    return this.regForm1.controls;
+  }
+  get f3(){
+    return this.regForm3.controls;
+  }
   private setCurrentLocation() {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -131,7 +131,7 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
       } else {
         window.alert('Geocoder failed due to: ' + status);
       }
-  
+
     });
   }
   ngAfterViewInit() {
@@ -145,16 +145,16 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
       this.mapsAPILoader.load().then(() => {
         this.setCurrentLocation();
         this.geoCoder = new google.maps.Geocoder;
-    
+
         let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
         autocomplete.addListener("place_changed", () => {
           this.ngZone.run(() => {
             let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-    
+
             if (place.geometry === undefined || place.geometry === null) {
               return;
             }
-    
+
             this.latitude = place.geometry.location.lat();
             this.longitude = place.geometry.location.lng();
             this.zoom = 12;
@@ -166,18 +166,24 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
 
   onFileChanged(event: any, type: string) {
     const reader = new FileReader();
-    if (type == 'company') {
-      this.selectedCompanyLogo = event.target.files[0];
-      reader.readAsDataURL(this.selectedCompanyLogo);
-      reader.onload = (_event) => {
-        this.selectedCompanyLogoPath = reader.result;
+    console.log(event.target.files[0]);
+    let fileType = (event.target.files[0]).type;
+    if(fileType == ('image/jpeg') || fileType == ('image/png')){
+      if (type == 'company') {
+        this.selectedCompanyLogo = event.target.files[0];
+        reader.readAsDataURL(this.selectedCompanyLogo);
+        reader.onload = (_event) => {
+          this.selectedCompanyLogoPath = reader.result;
+        }
+      } else if (type == 'user') {
+        this.selectedUserImg = event.target.files[0];
+        reader.readAsDataURL(this.selectedUserImg);
+        reader.onload = (_event) => {
+          this.selectedUserImgPath = reader.result;
+        }
       }
-    } else if (type == 'user') {
-      this.selectedUserImg = event.target.files[0];
-      reader.readAsDataURL(this.selectedUserImg);
-      reader.onload = (_event) => {
-        this.selectedUserImgPath = reader.result;
-      }
+    }else{
+      alert("Allowed to upload only jpg, jpeg and png images")
     }
   }
 

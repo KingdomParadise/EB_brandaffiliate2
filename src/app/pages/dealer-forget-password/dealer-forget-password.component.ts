@@ -24,13 +24,19 @@ export class DealerForgetPasswordComponent implements OnInit {
     this.createPassword = this._formBuilder.group({
       oldPassword: ['', Validators.required],
       newPassword: ['', Validators.required],
+      cnfPassword: ['', Validators.required]
     });
   }
   close(){
     this.alertMsg.message = ''
   }
   submit(){
+    if(this.createPassword.value.newPassword != this.createPassword.value.cnfPassword){
+      alert("Confirm password does not match");
+      return;
+    }
     if(this.createPassword.valid){
+      this.createPassword.removeControl('cnfPassword');
       this.dataService.updateDealerPassword(this.createPassword.value).subscribe( res =>{
         if(res.responseCode == 0){
           this.alertMsg.type = 'succsess';
