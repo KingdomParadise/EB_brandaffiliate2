@@ -6,37 +6,61 @@ import { InitialDataService } from 'src/app/services/initial-data.service';
 @Component({
   selector: 'app-dealer-forget-password',
   templateUrl: './dealer-forget-password.component.html',
-  styleUrls: ['./dealer-forget-password.component.css']
+  styleUrls: ['./dealer-forget-password.component.css'],
 })
 export class DealerForgetPasswordComponent implements OnInit {
   createPassword: FormGroup;
   alertMsg: any = {
     type: '',
-    message: ''
+    message: '',
   };
   constructor(
     private _formBuilder: FormBuilder,
     private router: Router,
-    private dataService: InitialDataService,
-  ) { }
+    private dataService: InitialDataService
+  ) {}
 
   ngOnInit(): void {
     this.createPassword = this._formBuilder.group({
       oldPassword: ['', Validators.required],
-      newPassword: ['', Validators.required],
-      cnfPassword: ['', Validators.required]
+      newPassword: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}'
+          ),
+        ],
+      ],
+      cnfPassword: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}'
+          ),
+        ],
+      ],
     });
   }
-  close(){
-    this.alertMsg.message = ''
+  get f1() {
+    return this.createPassword.controls;
   }
-  submit(){
-    if(this.createPassword.value.newPassword != this.createPassword.value.cnfPassword){
-      alert("Confirm password does not match");
+  close() {
+    this.alertMsg.message = '';
+  }
+  submit() {
+    if (
+      this.createPassword.value.newPassword !=
+      this.createPassword.value.cnfPassword
+    ) {
+      alert('Confirm password does not match');
       return;
     }
-    if(this.createPassword.valid){
-      this.createPassword.removeControl('cnfPassword');
+    if (this.createPassword.valid) {
+      //this.createPassword.removeControl('cnfPassword');
+      delete this.createPassword.value.cnfPassword;
+
       this.dataService.updateDealerPassword(this.createPassword.value).subscribe( res =>{
         if(res.responseCode == 0){
           this.alertMsg.type = 'succsess';
@@ -51,5 +75,4 @@ export class DealerForgetPasswordComponent implements OnInit {
       })
     }
   }
-
 }
