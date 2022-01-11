@@ -76,7 +76,7 @@ export class PackagesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      
+
     });
   }
   addContent(type:string){
@@ -108,12 +108,12 @@ export class PackagesComponent implements OnInit {
   }
 
   purchasePackage() {
-    
+
     let req = {
       packageId: this.packs[this.cardActive].packageId,
       stripeToken: ''
     }
-    
+
     let amount = (this.packs[this.cardActive].packagePrice - this.currentPackage?.packagePrice);
     const paymentHandler = (<any>window).StripeCheckout.configure({
       key: 'pk_test_51KCAH4KvYzveXmtdY6ZVxJaeVC87kHUdQ3bb6cEqd07q7B61Ckcs2bKYPHaP5icnN8ppR7eUY2CyewSA72VxyUcu00ibgfLCmk',
@@ -135,14 +135,14 @@ export class PackagesComponent implements OnInit {
         })
       }
     });
-  
+
     paymentHandler.open({
       name: 'Brandaffiliate',
       description: 'Upgrade Package',
       amount: amount * 100
     });
   }
-  
+
   invokeStripe() {
     if (!window.document.getElementById('stripe-script')) {
       const script = window.document.createElement("script");

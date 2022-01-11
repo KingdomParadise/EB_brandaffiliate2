@@ -15,6 +15,7 @@ export class AddModalComponent implements OnInit {
   perContentCharge = 75;
   count = 0;
   paymentHandler:any = null;
+  title= 'Add Campaign Content';
   constructor(
     public dialog: MatDialog,
     private dataService: InitialDataService,
@@ -23,7 +24,11 @@ export class AddModalComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    if(this.data.type == "campaign"){
+      this.title= 'Add Campaign Content';
+    }else{
+      this.title= 'Add Banners';
+    }
   }
   close() {
     this.alertMsg.message = ''
@@ -75,14 +80,14 @@ export class AddModalComponent implements OnInit {
         })
       }
     });
-  
+
     paymentHandler.open({
       name: 'Brandaffiliate',
       description: 'Content Upgrade Payment',
       amount: amount * 100
     });
   }
-  
+
   invokeStripe() {
     if (!window.document.getElementById('stripe-script')) {
       const script = window.document.createElement("script");

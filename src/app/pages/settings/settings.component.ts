@@ -28,6 +28,7 @@ export class SettingsComponent implements OnInit {
   selectedCompanyLogoPath:any = 'assets/images/profile-pic.png';
   selectedUserImgPath:any = 'assets/images/profile-pic.png';
 
+  isEditable: boolean = false;
   constructor(
     private _formBuilder: FormBuilder,
     private dataService: InitialDataService,
@@ -48,7 +49,7 @@ export class SettingsComponent implements OnInit {
     this.dataService.getCountries().subscribe(data => {
       this.countries = data.response.countryList;
     });
-    
+
     this.profileForm = this._formBuilder.group({
       addressLine1: [this.userData.addressLine1, Validators.required],
       addressLine2: [this.userData.addressLine2, Validators.required],
@@ -62,6 +63,7 @@ export class SettingsComponent implements OnInit {
       personalPhone: [this.userData.phoneNumber, Validators.required],
     });
     this.onCountrySelect(this.userData.countryId);
+    this.disableEdit();
   }
 
   onCountrySelect(country: any) {
@@ -157,6 +159,7 @@ export class SettingsComponent implements OnInit {
           this.alertMsg.type = 'success';
           this.profileForm.patchValue(res.response);
           localStorage.setItem('userData', JSON.stringify(res.response));
+          this.disableEdit();
           this.alertMsg.message = res.successMsg;
         } else {
           this.alertMsg.type = 'danger';
@@ -165,8 +168,32 @@ export class SettingsComponent implements OnInit {
       })
     }
   }
-  resetForm(){
-    this.profileForm.reset();
+  enableEdit(){
+    this.isEditable = true;
+    this.profileForm.controls['addressLine1'].enable();
+    this.profileForm.controls['addressLine2'].enable();
+    this.profileForm.controls['city'].enable();
+    this.profileForm.controls['countryId'].enable();
+    this.profileForm.controls['stateId'].enable();
+    this.profileForm.controls['zipCode'].enable();
+    this.profileForm.controls['companyEmail'].enable();
+    this.profileForm.controls['companyPhone'].enable();
+    this.profileForm.controls['personalEmail'].enable();
+    this.profileForm.controls['personalPhone'].enable();
+
+  }
+  disableEdit(){
+    this.isEditable = false;
+    this.profileForm.controls['addressLine1'].disable();
+    this.profileForm.controls['addressLine2'].disable();
+    this.profileForm.controls['city'].disable();
+    this.profileForm.controls['countryId'].disable();
+    this.profileForm.controls['stateId'].disable();
+    this.profileForm.controls['zipCode'].disable();
+    this.profileForm.controls['companyEmail'].disable();
+    this.profileForm.controls['companyPhone'].disable();
+    this.profileForm.controls['personalEmail'].disable();
+    this.profileForm.controls['personalPhone'].disable();
   }
 }
 

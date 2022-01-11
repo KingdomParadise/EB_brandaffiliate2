@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="row text-center justify-content-center">
-        <div *ngFor="let pack of upgradePackageList;let i = index" class="card me-3 shadow"
+        <div *ngFor="let pack of upgradePackageList;let i = index" class="card me-3 shadow mt-2"
             [class.activePack]="cardActive === i" (click)="makeActiveCard(i)">
             <h3 class="text-uppercase app-text-color font-weight-bold">{{pack?.packageName}}</h3>
             <p class="amount"><span style="font-size:32px;margin-right: 2px;"> $</span>{{pack?.packagePrice}}</p>

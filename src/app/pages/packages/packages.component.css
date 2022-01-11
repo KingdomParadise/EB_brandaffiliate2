@@ -12,7 +12,7 @@
     text-transform: uppercase;
 }
 #currentPackage {
-    
+
     height:auto;
     width: 90%;
     display: flex;
@@ -97,19 +97,22 @@
     }
     .card-container{
         top: 80px;
+        flex-wrap: wrap;
+
     }
     .card-container .card{
         padding:1rem 3rem;
+        margin-top:12px;
     }
 }
 /* X-Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) { 
-    
+@media (min-width: 1200px) {
+
 }
 
 /* XX-Large devices (larger desktops, 1400px and up) */
 @media (min-width: 1400px) {
-    
+
 }
 /* XXX-Large devices (larger desktops, 1800px and up) */
 @media (min-width: 1800px) {
