@@ -38,7 +38,7 @@
                 <div class="form-group ms-3 mt-3">
                     <div class="col text-center pb-2 pb-md-0">
                         <div style="max-height: 360px;overflow: hidden;">
-                            <input #fileUpload type="file" id="fileUpload" style="display:none"
+                            <input #fileUpload type="file" id="fileUpload" style="display:none" accept="image/*"
                                 (change)="onFileChanged($event)" />
                             <div class="settingImage" [ngStyle]="{'background-image': 'url(' + selectedFilePath + ')'}"
                                 (click)="fileUpload.click()">

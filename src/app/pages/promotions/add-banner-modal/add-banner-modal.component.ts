@@ -41,12 +41,18 @@ export class AddBannerModalComponent implements OnInit {
   onFileChanged(event: any) {
     const reader = new FileReader();
     this.selectedFile = event.target.files[0];
-    if (this.selectedFile) {
-      reader.readAsDataURL(this.selectedFile);
-      reader.onload = (_event) => {
-        this.selectedFilePath = reader.result;
+    let fileType = (event.target.files[0]).type;
+    if(fileType == ('image/jpeg') || fileType == ('image/png')){
+      if (this.selectedFile) {
+        reader.readAsDataURL(this.selectedFile);
+        reader.onload = (_event) => {
+          this.selectedFilePath = reader.result;
+        }
       }
+    }else{
+      alert("Allowed to upload only jpg, jpeg and png images")
     }
+
   }
   close(){
 
@@ -93,5 +99,5 @@ export class AddBannerModalComponent implements OnInit {
   closeModal() {
     this.dialogRef.close();
   }
-  
+
 }
