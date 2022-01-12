@@ -31,7 +31,7 @@ export class AddUserModalComponent implements OnInit {
       lastName: ['', Validators.required],
       emailId: ['', Validators.required],
       phoneNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
-      userType: ['', Validators.required]
+      userType: ['admin', Validators.required]
     });
     if (this.data.mode == 'edit') {
       this.customerForm.patchValue(this.data.customer);
