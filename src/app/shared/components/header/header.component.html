@@ -1,5 +1,5 @@
 
-<mat-toolbar style="background-color: white;border-bottom: 1px solid #e6e6e6; color: black; width: 100%; padding: 0px;height: 10vh;">   
+<mat-toolbar style="background-color: white;border-bottom: 1px solid #e6e6e6; color: black; width: 100%; padding: 0px;height: 10vh;">
     <mat-toolbar-row style="width: 100%;margin:auto;">
         <div class="row w-100 d-none d-md-block">
             <div class="col-md-12 p-0">
@@ -9,10 +9,10 @@
                             <mat-icon>menu</mat-icon>
                         </button>
                         <div class="my-auto d-none d-md-block">
-                            <img src="assets/images/HorizontalBA.png" alt="logo" id="header-logo"> <span class="text2">Dealers/Dashboard</span>
+                            <img src="assets/images/HorizontalBA.png" alt="logo" id="header-logo"> <span class="text2">Dealers</span>
                         </div>
                     </div>
-                   
+
                     <div class="my-auto d-none d-md-flex">
                         <button class="btn btn-link headerLink my-auto" (click)="openContactUs()">Contact Us</button>
                         <button class="btn btn-link headerLink" (click)="openSupport()">Support</button>
@@ -29,7 +29,7 @@
 
                                 </div>
                             </a>
-    
+
                             <mat-menu #adminActions="matMenu" xPosition="before" class="p-0">
                                 <div id="notificationHead">
                                     <h3 class="mb-0">Notifications</h3>
@@ -44,7 +44,7 @@
                                 </div>
                             </mat-menu>
                         </div>
-                        
+
                         <div id="headerProfileImg">
                             <img [src]="userPhotoUrl ? userPhotoUrl :'assets/images/profile-pic.png'" alt="" style="width:50px;height:50px">
                         </div>
