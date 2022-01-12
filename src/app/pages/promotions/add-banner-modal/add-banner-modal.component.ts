@@ -52,7 +52,6 @@ export class AddBannerModalComponent implements OnInit {
     }else{
       alert("Allowed to upload only jpg, jpeg and png images")
     }
-
   }
   close(){
 

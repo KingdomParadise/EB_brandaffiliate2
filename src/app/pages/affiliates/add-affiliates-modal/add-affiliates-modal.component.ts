@@ -28,7 +28,7 @@ export class AddAffiliatesModalComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       customerEmailId: ['', [ Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-      customerPhoneNumber: ['', [Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]]
+      customerPhoneNumber: ['', [ Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]]
     },{ validator: atLeastOne(Validators.required, ['customerEmailId','customerPhoneNumber']) });
     if (this.data.mode == 'edit') {
       this.customerForm.patchValue(this.data.customer);
@@ -89,7 +89,7 @@ export class AddAffiliatesModalComponent implements OnInit {
         }
       }
     }else{
-      alert("please provide either a phone number or an email")
+      alert("please provide either a phone number and an email")
     }
 
   }
