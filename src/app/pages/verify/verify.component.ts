@@ -35,7 +35,6 @@ export class VerifyComponent implements OnInit {
         personalPhone: localStorage.getItem('personalPhone')
       })
       this.dataService.verifyDealerRegOtp(this.otpForm.value).subscribe(res => {
-        console.log(res);
         if (res.responseCode == 0) {
           //this.router.navigate(['review'], { state: {msg: res.successMsg} });
           this.router.navigateByUrl('/review', { state: { msg: res.successMsg } });
@@ -51,7 +50,7 @@ export class VerifyComponent implements OnInit {
     //this.router.navigateByUrl('/review');
   }
   EnterSubmit(eve:any){
-   
+
     if(eve.keyCode === 13){
       eve.preventDefault();
       this.onSubmit();

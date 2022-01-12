@@ -60,14 +60,14 @@ export class UsersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+
     this.getNextData({}, this.pagination.pageSize, this.pagination.length, 0);
     // this.dataService.getAllAffiliate(query,0,2).subscribe(res => {
     //   this.dataSource.data = res.response.customerList;
     //   this.dataSource.paginator = this.paginator;
     // });
     if(window.innerWidth < 786){
-      this.displayedColumns= ['select', 'userPhotoUrl',  'firstName','status', 'action'];
+      //this.displayedColumns= ['select', 'userPhotoUrl',  'firstName','status','phoneNumber','admin', 'action'];
     }
   }
 
@@ -137,7 +137,6 @@ export class UsersComponent implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed', result);
       });
     }
   }
@@ -149,7 +148,6 @@ export class UsersComponent implements OnInit {
       this.customers.length = res.response.userList.length //res.response.totalItems;
       this.dataSource = new MatTableDataSource<PeriodicElement>(this.customers);
       this.dataSource._updateChangeSubscription();
-      console.log(this.customers);
       this.dataSource.paginator = this.paginator;
       this.loading = false;
     });
@@ -187,7 +185,6 @@ export class UsersComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
       let query = {
         type: 'all',
         sort: '',
@@ -216,7 +213,6 @@ export class UsersComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
       let query = {
         type: 'all',
         sort: '',
@@ -230,7 +226,6 @@ export class UsersComponent implements OnInit {
   deleteUser(customerId: number, index: number) {
     if(confirm('Want to delete?')){
       this.dataService.deleteAffiliate({ customerId: customerId }).subscribe(res => {
-        console.log(res.responseCode);
         if (res.responseCode == 0) {
           this.dataSource.data.splice(index, 1);
           this.dataSource._updateChangeSubscription();
@@ -245,21 +240,19 @@ export class UsersComponent implements OnInit {
     }else{
 
     }
-    
+
   }
   toggleUserStatus(user:any){
     if(user.status == 'active'){
       this.dataService.disableUser({userId: user.userId}).subscribe( res  =>{
-        console.log(res);
         this.getNextData({}, this.pagination.pageSize, this.pagination.length, 0);
       })
     }else{
       this.dataService.enableUser({userId: user.userId}).subscribe( res  =>{
-        console.log(res);
         this.getNextData({}, this.pagination.pageSize, this.pagination.length, 0);
       })
     }
-    
+
   }
   sortTable(prop: any) {
     if (prop == 'dateAdded') {
@@ -312,7 +305,6 @@ export class UsersComponent implements OnInit {
           this.alertMsg.message = res.successMsg;
           this.selection.selected.forEach(item => {
             let index: number = this.dataSource.data.findIndex(d => d === item);
-            console.log(this.dataSource.data.findIndex(d => d === item));
             this.dataSource.data.splice(index, 1)
           });
           this.dataSource._updateChangeSubscription();
@@ -326,7 +318,6 @@ export class UsersComponent implements OnInit {
         }
       });
     }
-    console.log(this.selection.selected);
   }
 
   public downloadExcel(): void {
@@ -348,14 +339,13 @@ export class UsersComponent implements OnInit {
 
 
 function dynamicSort(property:any) {
-  console.log(property);
   var sortOrder = 1;
   if(property[0] === "-") {
       sortOrder = -1;
       property = property.substr(1);
   }
   return (a:any, b:any) => {
-      /* next line works with strings and numbers, 
+      /* next line works with strings and numbers,
        * and you may want to customize it to your needs
        */
       // x = a[property]
@@ -364,7 +354,7 @@ function dynamicSort(property:any) {
       }else{
         var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
       }
-      
+
       return result * sortOrder;
   }
 }

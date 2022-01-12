@@ -99,7 +99,6 @@ export class AddModalComponent implements OnInit {
           key: 'pk_test_51KCAH4KvYzveXmtdY6ZVxJaeVC87kHUdQ3bb6cEqd07q7B61Ckcs2bKYPHaP5icnN8ppR7eUY2CyewSA72VxyUcu00ibgfLCmk',
           locale: 'auto',
           token: function (stripeToken: any) {
-            console.log(stripeToken)
           }
         });
       }

@@ -60,7 +60,7 @@ export class AffiliatesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+
     this.getNextData(this.currentQuery, this.pagination.pageSize, this.pagination.length, 0);
     // this.dataService.getAllAffiliate(query,0,2).subscribe(res => {
     //   this.dataSource.data = res.response.customerList;
@@ -137,7 +137,6 @@ export class AffiliatesComponent implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed', result);
       });
     }
   }
@@ -186,13 +185,13 @@ export class AffiliatesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      
+
       let query = {
         type: 'all',
         sort: '',
         searchString: '',
       }
-      
+
       this.getNextData(query, this.pagination.pageSize, this.pagination.length, 0);
     });
   }
@@ -213,7 +212,6 @@ export class AffiliatesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
       let query = {
         type: 'all',
         sort: '',
@@ -242,7 +240,7 @@ export class AffiliatesComponent implements OnInit {
     }else{
 
     }
-    
+
   }
   sortTable(prop: any) {
     if (prop == 'dateAdded') {
@@ -295,7 +293,7 @@ export class AffiliatesComponent implements OnInit {
           this.alertMsg.message = res.successMsg;
           this.selection.selected.forEach(item => {
             let index: number = this.dataSource.data.findIndex(d => d === item);
-            console.log(this.dataSource.data.findIndex(d => d === item));
+
             this.dataSource.data.splice(index, 1)
           });
           this.dataSource._updateChangeSubscription();
@@ -337,13 +335,13 @@ function dynamicSort(property:any) {
       property = property.substr(1);
   }
   return (a:any, b:any) => {
-      
+
       if(property == 'createTs'){
         var result = (new Date(a[property]) < new Date(b[property])) ? -1 : (new Date(a[property]) > new Date(b[property])) ? 1 : 0;
       }else{
         var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
       }
-      
+
       return result * sortOrder;
   }
 }

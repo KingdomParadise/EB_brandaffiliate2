@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 
-import { Observable, throwError } from 'rxjs';
+import { Observable, Subject, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
@@ -15,6 +15,10 @@ export class InitialDataService {
   notificationInterval;
   constructor(private http: HttpClient) { }
 
+  userData$ = new Subject();
+  getUserData(): Observable<any> {
+    return this.userData$.asObservable();
+  }
   getIndustries(): Observable<any> {
     return this.http.get<any>(this.apiUrl + '/dealer/getAllIndustry')
       .pipe(
@@ -106,7 +110,6 @@ export class InitialDataService {
       )
   }
   deleteAffiliate(data: any) {
-    console.log(data);
     return this.http.post<any>(this.apiUrl + '/dealer/deleteCustomer', data)
       .pipe(
         retry(1),

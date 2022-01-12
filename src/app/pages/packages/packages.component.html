@@ -38,12 +38,12 @@
                 <button class="btn btn-add" (click)="addContent('banner')">Add</button>
             </div>
         </div>
-        <div class="col-md-12 p-0">
+        <div class="col-md-12 p-0" *ngIf="packs.length >0">
             <h3 class="subheading">Upgrade Package</h3>
         </div>
-        <div class="col-md-12 bg-white shadow">
+        <div class="col-md-12 bg-white shadow" *ngIf="packs.length >0">
             <p class="text-center mt-5">
-                Choose a better package for better offer, You just need to pay the difference amount!
+                Choose a better package for better offer, You just need to pay the difference!
             </p>
 
             <div class="card-container">
@@ -74,7 +74,7 @@
             </div>
         </div>
         <div class="col-md-12 btn-bottom">
-            <button class="btn btn-dark px-5" (click)="purchasePackage()" *ngIf="packs.length >0">Next</button>
+            <button class="btn btn-dark px-5" (click)="purchasePackage()">Next</button>
         </div>
     </div>
 </div>

@@ -27,7 +27,6 @@ export class PackagesComponent implements OnInit {
   }
   getInitialData(){
     this.dataService.packageDetails().subscribe((res: any) => {
-      console.log(res);
       if (res.response) {
         this.currentPackage = res.response.currentPackage;
         this.packs = res.response.upgradePackageList;
@@ -44,7 +43,6 @@ export class PackagesComponent implements OnInit {
       key: 'pk_test_51KCAH4KvYzveXmtdY6ZVxJaeVC87kHUdQ3bb6cEqd07q7B61Ckcs2bKYPHaP5icnN8ppR7eUY2CyewSA72VxyUcu00ibgfLCmk',
       locale: 'auto',
       token: function (stripeToken: any) {
-        console.log(stripeToken)
         if(stripeToken){
           this.da
         }
@@ -65,7 +63,6 @@ export class PackagesComponent implements OnInit {
     } else {
       size = ['350px', '400px'];
     }
-    console.log(this.packs)
     const dialogRef = this.dialog.open(CardModalComponent, {
       maxWidth: size[0],
       maxHeight: size[1],
@@ -97,7 +94,6 @@ export class PackagesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.dataService.packageDetails().subscribe((res: any) => {
-        console.log(res);
         if (res.response) {
           this.currentPackage = res.response.currentPackage;
           this.packs = res.response.upgradePackageList;
@@ -154,7 +150,6 @@ export class PackagesComponent implements OnInit {
           key: 'pk_test_51KCAH4KvYzveXmtdY6ZVxJaeVC87kHUdQ3bb6cEqd07q7B61Ckcs2bKYPHaP5icnN8ppR7eUY2CyewSA72VxyUcu00ibgfLCmk',
           locale: 'auto',
           token: function (stripeToken: any) {
-            console.log(stripeToken)
           }
         });
       }

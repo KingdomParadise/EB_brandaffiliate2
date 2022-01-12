@@ -21,14 +21,13 @@ export class HeaderComponent implements OnInit {
   constructor(public dialog: MatDialog, private dataService: InitialDataService) {
     this.userData = JSON.parse(localStorage.getItem('userData') || '{}');
     this.userPhotoUrl = this.userData.userPhotoUrl;
-    console.log(this.userData);
   }
   selected: any = '0';
 
   ngOnInit(): void {
     this.getNotifications();
     this.dataService.notificationInterval = setInterval(()=>{this.getNotifications()},30000);
-    
+
   }
 
   getNotifications(){
@@ -58,7 +57,6 @@ export class HeaderComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
       let query = {
         type: 'all',
         sort: '',
@@ -82,7 +80,6 @@ export class HeaderComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
       let query = {
         type: 'all',
         sort: '',

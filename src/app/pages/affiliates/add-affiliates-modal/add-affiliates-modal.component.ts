@@ -24,7 +24,6 @@ export class AddAffiliatesModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
-    console.log(this.data);
     this.customerForm = this._formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -49,7 +48,6 @@ export class AddAffiliatesModalComponent implements OnInit {
     this.dialog.closeAll();
   }
   validatePhone(eve:any){
-    console.log(eve.target.value.length);
     if(eve.target.value.length > 10){
       return false;
     }else{

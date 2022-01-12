@@ -14,10 +14,10 @@
                 <img [src]="userPhotoUrl ? userPhotoUrl :'assets/images/profile-pic.png'" alt="profile-pic" class="img-fluid" id="profile-pic">
             </div>
             <div class="ms-2 d-flex flex-column justify-content-center">
-                <h3 *ngIf="!isPartialClose" class="my-0" id="userName">{{userData.firstName}} {{userData.lastName}}</h3>
-                <p *ngIf="!isPartialClose" class="emailText"><i>{{userData.emailId}}</i></p>
+                <h3 *ngIf="!isPartialClose" class="my-0" id="userName">{{userData?.firstName}} {{userData?.lastName}}</h3>
+                <p *ngIf="!isPartialClose" class="emailText"><i>{{userData?.emailId}}</i></p>
             </div>
-           
+
         </div>
         <div class="px-3 text-light" *ngIf="!isPartialClose">
             <hr style="color:#d8d8d8" />
@@ -55,7 +55,7 @@
             <mat-icon> local_atm</mat-icon>
             <span *ngIf="!isPartialClose">Packages</span>
         </a>
-        
+
 
         <a mat-list-item routerLinkActive="list-item-active" routerLink="/settings">
             <mat-icon>settings</mat-icon>

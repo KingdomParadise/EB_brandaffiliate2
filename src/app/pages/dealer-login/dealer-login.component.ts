@@ -49,7 +49,8 @@ export class DealerLoginComponent implements OnInit {
           }else{
             localStorage.setItem('token',res.response.token);
             localStorage.setItem('userData',JSON.stringify(res.response));
-            
+            this.dataService.userData$.next(res.response);
+
             this.router.navigateByUrl('/dashboard');
           }
         } else {

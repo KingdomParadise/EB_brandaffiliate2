@@ -111,7 +111,6 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
   private setCurrentLocation() {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
-        console.log(position);
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
         this.zoom = 8;
@@ -139,7 +138,6 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
   }
 
   public onStepChange(event: any): void {
-    console.log(event.selectedIndex);
     this.currentStepperImage= this.stepperImages[event.selectedIndex].url;
     if(event.selectedIndex == 2){
       this.mapsAPILoader.load().then(() => {
@@ -166,7 +164,6 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
 
   onFileChanged(event: any, type: string) {
     const reader = new FileReader();
-    console.log(event.target.files[0]);
     let fileType = (event.target.files[0]).type;
     if(fileType == ('image/jpeg') || fileType == ('image/png')){
       if (type == 'company') {
@@ -188,13 +185,11 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
   }
 
   onCountrySelect(country:any){
-    console.log(country);
     if(country){
       this.dataService.getStates(country.countryId).subscribe(data =>{
         this.states = data.response.stateList;
       })
     }
-    console.log(this.regForm3);
   }
   close() {
     this.alertMsg.message = ''
@@ -211,7 +206,6 @@ export class DealerRegistrationComponent implements OnInit, AfterViewInit {
       formData.append('userPhoto', this.selectedUserImg);
       formData.append('companyLogo', this.selectedCompanyLogo);
       this.dataService.registerDealer(formData).subscribe(res =>{
-        console.log(res);
         if (res.responseCode == 0) {
           this.router.navigateByUrl("/verify");
         }

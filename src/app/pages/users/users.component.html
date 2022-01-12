@@ -63,7 +63,7 @@
                 <mat-spinner class="center" [diameter]="50"></mat-spinner>
               </div>
             <ng-template #table>
-                <table mat-table [dataSource]="dataSource" class="d-none d-md-table">
+                <table mat-table [dataSource]="dataSource" class="d-md-table">
 
                     <!-- Checkbox Column -->
                     <ng-container matColumnDef="select">
@@ -80,15 +80,15 @@
                             </mat-checkbox>
                         </td>
                     </ng-container>
-    
+
                     <!-- Position Column -->
                     <ng-container matColumnDef="userPhotoUrl">
                         <th mat-header-cell *matHeaderCellDef> </th>
-                        <td mat-cell *matCellDef="let element"> 
+                        <td mat-cell *matCellDef="let element">
                             <img [src]="element?.userPhotoUrl" [alt]="element?.userPhotoUrl" class="profilePic">
                         </td>
                     </ng-container>
-    
+
                     <!-- Status Column -->
                     <ng-container matColumnDef="status">
                         <th mat-header-cell *matHeaderCellDef> Status </th>
@@ -96,13 +96,13 @@
                              <span class="verifiedTag px-2" [ngStyle]="{'background-color':element?.status =='active'?'#4db050':'#bbbbbb'}">{{element?.status == 'active' ?'Enabled':'Disabled'}} </span>
                         </td>
                     </ng-container>
-    
+
                     <!-- Name Column -->
                     <ng-container matColumnDef="firstName">
                         <th mat-header-cell *matHeaderCellDef> Name </th>
                         <td mat-cell *matCellDef="let element"> {{element?.firstName}} </td>
                     </ng-container>
-    
+
                     <!-- Email Column -->
                     <ng-container matColumnDef="emailId">
                         <th mat-header-cell *matHeaderCellDef> Email </th>
@@ -117,7 +117,7 @@
                         <th mat-header-cell *matHeaderCellDef> Date Added </th>
                         <td mat-cell *matCellDef="let element"> {{element?.createTs | date: 'short'}} </td>
                     </ng-container>
-    
+
                     <!-- Action -->
                     <ng-container matColumnDef="action">
                         <th mat-header-cell *matHeaderCellDef> </th>
@@ -126,7 +126,7 @@
                                 class="btn btn-default btn-gear" [matMenuTriggerFor]="adminActions">
                                 <mat-icon>settings</mat-icon>
                             </button>
-    
+
                             <mat-menu #adminActions="matMenu">
                                 <button mat-menu-item (click)="editAffiliate(element)">
                                     <mat-icon>edit</mat-icon>
@@ -145,16 +145,15 @@
                             <!-- <mat-icon>settings</mat-icon>     -->
                         </td>
                     </ng-container>
-    
+
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"
                         [ngClass]="{ 'selected': selection.isSelected(row)}">
                     </tr>
                 </table>
-    
-                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mt-3 d-table d-md-none">
-    
-                    <!-- Checkbox Column -->
+
+                <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mt-3 d-table d-md-none">
+
                     <ng-container matColumnDef="select">
                         <th mat-header-cell *matHeaderCellDef>
                             <mat-checkbox (change)="$event ? masterToggle() : null" color='white'
@@ -169,11 +168,10 @@
                             </mat-checkbox>
                         </td>
                     </ng-container>
-                    <!-- Position Column -->
                     <ng-container matColumnDef="userPhotoUrl">
                         <th mat-header-cell *matHeaderCellDef>  </th>
                         <td mat-cell *matCellDef="let element">
-                            <img [src]="element?.userPhotoUrl" [alt]="element?.userPhotoUrl" class="profilePic">    
+                            <img [src]="element?.userPhotoUrl" [alt]="element?.userPhotoUrl" class="profilePic">
                         </td>
                     </ng-container>
                     <ng-container matColumnDef="firstName">
@@ -181,22 +179,18 @@
                         <td mat-cell *matCellDef="let element">
                             <p class="mb-2 font-weight-bold">{{element?.firstName}}</p>
                             <p class="mb-0">{{element?.admin ?'Admin':'User'}}</p>
-                            <!-- <p class="mb-0">{{element?.customerPhoneNumber}} </p> -->
-    
+
                         </td>
                     </ng-container>
-                    
-    
-                    <!-- Status Column -->
+
+
                     <ng-container matColumnDef="status">
                         <th mat-header-cell *matHeaderCellDef> Status </th>
-                        <td mat-cell *matCellDef="let element"> 
-                            <span class="verifiedTag" [ngStyle]="{'background-color':element?.status?'#4db050':'#bbbbbb','padding':element?.status?'2px 17px':'2px 4px'}">{{element?.status == 'active' ?'Enabled':'Disabled'}} </span>    
+                        <td mat-cell *matCellDef="let element">
+                            <span class="verifiedTag" [ngStyle]="{'background-color':element?.status?'#4db050':'#bbbbbb','padding':element?.status?'2px 17px':'2px 4px'}">{{element?.status == 'active' ?'Enabled':'Disabled'}} </span>
                         </td>
                     </ng-container>
-                    
-                    <!-- Name Column -->
-                    <!-- Phone Column -->
+
                     <ng-container matColumnDef="phoneNumber">
                         <th mat-header-cell *matHeaderCellDef class="d-none"> Phone </th>
                         <td mat-cell *matCellDef="let element" class="d-none"> {{element?.phoneNumber}} </td>
@@ -205,13 +199,11 @@
                         <th mat-header-cell *matHeaderCellDef class="d-none"> Date Added </th>
                         <td mat-cell *matCellDef="let element" class="d-none"> {{element?.createTs}} </td>
                     </ng-container>
-                    <!-- Email Column -->
                     <ng-container matColumnDef="emailId">
                         <th mat-header-cell *matHeaderCellDef class="d-none"> Email </th>
                         <td mat-cell *matCellDef="let element" class="d-none"> {{element?.emailId}} </td>
                     </ng-container>
-    
-                    <!-- Action -->
+
                     <ng-container matColumnDef="action">
                         <th mat-header-cell *matHeaderCellDef> </th>
                         <td mat-cell *matCellDef="let element;let i = index">
@@ -219,7 +211,7 @@
                                 class="btn btn-default btn-gear" [matMenuTriggerFor]="adminActions">
                                 <mat-icon>settings</mat-icon>
                             </button>
-    
+
                             <mat-menu #adminActions="matMenu">
                                 <button mat-menu-item (click)="editAffiliate(element)">
                                     <mat-icon>edit</mat-icon>
@@ -234,17 +226,16 @@
                                     <span>Delete</span>
                                 </button>
                             </mat-menu>
-                            <!-- <mat-icon>settings</mat-icon>     -->
                         </td>
                     </ng-container>
-    
-    
+
+
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"
                         [ngClass]="{ 'selected': selection.isSelected(row)}">
                     </tr>
-                </table>
+                </table> -->
             </ng-template>
-            
+
             <mat-paginator [pageSizeOptions]="[5,10, 15, 20, 30]" [length]="pagination.length"
                 showFirstLastButtons (page)="pageChanged($event)">
             </mat-paginator>

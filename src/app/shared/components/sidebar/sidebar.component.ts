@@ -24,11 +24,18 @@ export class SidebarComponent implements OnInit {
     public router: Router,
     private dataService: InitialDataService,
   ) {
-    this.userData = JSON.parse(localStorage.getItem('userData') || '{}');
-    this.userPhotoUrl = this.userData.userPhotoUrl;
+
   }
 
   ngOnInit(): void {
+    // /this.userData = JSON.parse(localStorage.getItem('userData') || '{}');
+    this.userData = JSON.parse(localStorage.getItem('userData') || '{}');
+    this.userPhotoUrl = this.userData.userPhotoUrl;
+    this.dataService.getUserData().subscribe( data =>{
+      this.userData = data;
+      this.userPhotoUrl = this.userData.userPhotoUrl;
+    })
+
     this.router.events.subscribe(event =>{
       if (event instanceof NavigationStart){
         console.log(event.url != '/packages');
@@ -65,11 +72,12 @@ export class SidebarComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      
+
     });
   }
   goToPackagePage() {
     this.isPackageActive = true;
+    console.log(this.userData);
     if (this.userData.packagePurchased == 1) {
       this.router.navigateByUrl('/packages')
     } else {
@@ -90,7 +98,7 @@ export class SidebarComponent implements OnInit {
   }
   logout(){
     localStorage.clear();
-    
+
     window.clearInterval(this.dataService.notificationInterval);
     this.router.navigateByUrl('/dealer-login');
   }

@@ -16,7 +16,7 @@ export class SelectPackageModalComponent implements OnInit {
   };
   cardActive = 0
   upgradePackageList: any[] = [];
-  
+
   confirmation: any;
   loading = false;
   paymentHandler:any = null;
@@ -58,6 +58,8 @@ export class SelectPackageModalComponent implements OnInit {
           if (res.responseCode == 0) {
             this.alertMsg.type = 'succsess';
             this.alertMsg.message = res.successMsg;
+            this.updatePackageFlag();
+            alert(res.successMsg);
             this.dialogRef.close();
           } else if (res.responseCode == -1) {
             this.alertMsg.type = 'danger';
@@ -69,7 +71,7 @@ export class SelectPackageModalComponent implements OnInit {
         })
       }
     });
-  
+
     paymentHandler.open({
       name: 'Brandaffiliate',
       description: 'Package Payment',
@@ -87,7 +89,6 @@ export class SelectPackageModalComponent implements OnInit {
           key: 'pk_test_51KCAH4KvYzveXmtdY6ZVxJaeVC87kHUdQ3bb6cEqd07q7B61Ckcs2bKYPHaP5icnN8ppR7eUY2CyewSA72VxyUcu00ibgfLCmk',
           locale: 'auto',
           token: function (stripeToken: any) {
-            console.log(stripeToken)
           }
         });
       }
@@ -96,6 +97,12 @@ export class SelectPackageModalComponent implements OnInit {
     }
   }
   makePayment(amount) {
-    
+
+  }
+  updatePackageFlag(){
+    let storedData = JSON.parse(localStorage.getItem('userData') || '{}');
+    storedData.packagePurchased = 1;
+    localStorage.setItem('userData', JSON.stringify(storedData));
+    this.dataService.userData$.next(storedData);
   }
 }

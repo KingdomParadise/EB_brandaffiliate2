@@ -159,6 +159,7 @@ export class SettingsComponent implements OnInit {
           this.alertMsg.type = 'success';
           this.profileForm.patchValue(res.response);
           localStorage.setItem('userData', JSON.stringify(res.response));
+          this.dataService.userData$.next(res.response);
           this.disableEdit();
           this.alertMsg.message = res.successMsg;
         } else {

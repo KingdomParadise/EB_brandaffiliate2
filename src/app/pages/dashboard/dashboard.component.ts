@@ -1,33 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { InitialDataService } from 'src/app/services/initial-data.service';
 import { DatePipe } from '@angular/common';
-import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
+import {
+  NgxGalleryAnimation,
+  NgxGalleryImage,
+  NgxGalleryOptions,
+} from '@kolkov/ngx-gallery';
 import { Router } from '@angular/router';
-let multi:any[] = [
+let multi: any[] = [
   {
-    "name": "Shared",
-    "series": [
-      
-    ]
-  }
+    name: 'Shared',
+    series: [],
+  },
 ];
-let barGraph:any[] = [
-    
-];
+let barGraph: any[] = [];
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
-  providers: [DatePipe]
+  providers: [DatePipe],
 })
 export class DashboardComponent implements OnInit {
   alertMsg: any = {
     type: '',
-    message: ''
+    message: '',
   };
   apiData: any;
-  newAffiliates:any[] = [];
+  newAffiliates: any[] = [];
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
   galleryOptionsBanner: NgxGalleryOptions[];
@@ -35,9 +35,9 @@ export class DashboardComponent implements OnInit {
   activeCampaignName = '';
   activeBannerName = '';
   //chart vars below
-  
-  multi:any[];
-  barGraph:any[];
+
+  multi: any[];
+  barGraph: any[];
   view: any[] = [400, 300];
 
   // options
@@ -51,26 +51,28 @@ export class DashboardComponent implements OnInit {
   xAxisLabel: string = 'Dates';
   yAxisLabel: string = 'Count';
   timeline: boolean = true;
-  lineChartData:any[] = [];
+  lineChartData: any[] = [];
 
   colorScheme = {
-    domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
+    domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5'],
   };
   //pie chart vars
-  campaignDonut:any[] =[];
-  bannerDonut:any[] =[];
- 
-  
-  constructor(private dataService: InitialDataService,private datePipe: DatePipe, private router:Router) { }
+  campaignDonut: any[] = [];
+  bannerDonut: any[] = [];
+
+  constructor(
+    private dataService: InitialDataService,
+    private datePipe: DatePipe,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    
     this.galleryOptions = [
       {
         width: '600px',
         height: '400px',
         thumbnailsColumns: 4,
-        imageAnimation: NgxGalleryAnimation.Slide
+        imageAnimation: NgxGalleryAnimation.Slide,
       },
       {
         breakpoint: 800,
@@ -79,25 +81,23 @@ export class DashboardComponent implements OnInit {
         imagePercent: 80,
         thumbnailsPercent: 20,
         thumbnailsMargin: 20,
-        thumbnailMargin: 20
+        thumbnailMargin: 20,
       },
       // max-width 400
       {
         breakpoint: 400,
-        preview: false
-      }
+        preview: false,
+      },
     ];
 
-    this.galleryImages = [
-      
-    ];
-    
+    this.galleryImages = [];
+
     this.galleryOptionsBanner = [
       {
         width: '600px',
         height: '400px',
         thumbnailsColumns: 4,
-        imageAnimation: NgxGalleryAnimation.Slide
+        imageAnimation: NgxGalleryAnimation.Slide,
       },
       {
         breakpoint: 800,
@@ -106,142 +106,148 @@ export class DashboardComponent implements OnInit {
         imagePercent: 80,
         thumbnailsPercent: 20,
         thumbnailsMargin: 20,
-        thumbnailMargin: 20
+        thumbnailMargin: 20,
       },
       // max-width 400
       {
         breakpoint: 400,
-        preview: false
-      }
+        preview: false,
+      },
     ];
 
-    this.galleryImagesBanner = [
-      
-    ];
-    this.dataService.getDealerDashboard().subscribe( (res:any) =>{
+    this.galleryImagesBanner = [];
+    this.dataService.getDealerDashboard().subscribe((res: any) => {
       this.apiData = res.response;
       this.newAffiliates = res.response.newAffiliates;
-      for(let i = 0; i< this.apiData.contentShared.length; i++){
+      for (let i = 0; i < this.apiData.contentShared.length; i++) {
         let obj = {
-          name: this.datePipe.transform(this.apiData.contentShared[i].createTs, 'shortDate'),
-          value: this.apiData.contentShared[i].count
-        }
+          name: this.datePipe.transform(
+            this.apiData.contentShared[i].createTs,
+            'shortDate'
+          ),
+          value: this.apiData.contentShared[i].count,
+        };
         this.lineChartData.push(obj);
       }
       //console.log(this.lineChartData);
       multi[0]['series'] = this.lineChartData;
-      
-      Object.assign(this, {multi});
-      for(let i = 0; i< this.apiData.affiliatePerformance.length; i++){
+
+      Object.assign(this, { multi });
+      for (let i = 0; i < this.apiData.affiliatePerformance.length; i++) {
         let obj = {
-          name: this.datePipe.transform(this.apiData.affiliatePerformance[i].createTs, 'shortDate'),
-          value: this.apiData.affiliatePerformance[i].count
-        }
+          name: this.datePipe.transform(
+            this.apiData.affiliatePerformance[i].createTs,
+            'shortDate'
+          ),
+          value: this.apiData.affiliatePerformance[i].count,
+        };
         barGraph.push(obj);
       }
-      Object.assign(this, {barGraph});
-    
-      let arr = [
-        {
-          name: ' Total Shares',
-          value: this.apiData?.campaignsPerformace[0].totalShares
-        },
-        {
-          name: ' Total Leads',
-          value: this.apiData.campaignsPerformace[0].totalLeads
-        },
-        {
-          name: ' Total Views',
-          value: this.apiData.campaignsPerformace[0].totalViews
-        },
-      ]
-      this.campaignDonut = [...this.campaignDonut, ...arr];
+      Object.assign(this, { barGraph });
+      if (this.apiData?.campaignsPerformace.length > 0) {
+        let arr = [
+          {
+            name: ' Total Shares',
+            value: this.apiData?.campaignsPerformace[0].totalShares,
+          },
+          {
+            name: ' Total Leads',
+            value: this.apiData.campaignsPerformace[0].totalLeads,
+          },
+          {
+            name: ' Total Views',
+            value: this.apiData.campaignsPerformace[0].totalViews,
+          },
+        ];
+        this.campaignDonut = [...this.campaignDonut, ...arr];
+        this.galleryOptions[0].thumbnailsColumns =
+          this.apiData.campaignsPerformace.length;
+        this.activeCampaignName =
+          this.apiData.campaignsPerformace[0].campaignName;
 
-      let arr2 = [
-        {
-          name: ' Total Shares',
-          value: this.apiData.bannerPerformance[0].totalShares
-        },
-        {
-          name: ' Total Leads',
-          value: this.apiData.bannerPerformance[0].totalLeads
-        },
-        {
-          name: ' Total Views',
-          value: this.apiData.bannerPerformance[0].totalViews
-        },
-      ]
-      this.bannerDonut = [...this.bannerDonut, ...arr2];
+        this.galleryImages = this.apiData.campaignsPerformace.map((item) => {
+          return {
+            small: item.campaignImageLink,
+            medium: item.campaignImageLink,
+            big: item.campaignImageLink,
+          };
+        });
+      }
 
+      if (this.apiData?.bannerPerformance.length > 0) {
+        let arr2 = [
+          {
+            name: ' Total Shares',
+            value: this.apiData.bannerPerformance[0].totalShares,
+          },
+          {
+            name: ' Total Leads',
+            value: this.apiData.bannerPerformance[0].totalLeads,
+          },
+          {
+            name: ' Total Views',
+            value: this.apiData.bannerPerformance[0].totalViews,
+          },
+        ];
+        this.bannerDonut = [...this.bannerDonut, ...arr2];
+        this.galleryOptionsBanner[0].thumbnailsColumns =
+          this.apiData.bannerPerformance.length;
+        this.activeBannerName = this.apiData.bannerPerformance[0].bannerName;
 
-      this.galleryOptions[0].thumbnailsColumns = this.apiData.campaignsPerformace.length;
-      this.activeCampaignName = this.apiData.campaignsPerformace[0].campaignName;
-    
-      this.galleryImages = this.apiData.campaignsPerformace.map(item => {
-        return {
-          small: item.campaignImageLink,
-          medium: item.campaignImageLink,
-          big: item.campaignImageLink
-        }
-      });
-
-      this.galleryOptionsBanner[0].thumbnailsColumns = this.apiData.bannerPerformance.length;
-      this.activeBannerName = this.apiData.bannerPerformance[0].bannerName;
-     
-      this.galleryImagesBanner = this.apiData.bannerPerformance.map(item => {
-        return {
-          small: item.bannerImageLink,
-          medium: item.bannerImageLink,
-          big: item.bannerImageLink
-        }
-      });
-    })
-
-    
+        this.galleryImagesBanner = this.apiData.bannerPerformance.map(
+          (item) => {
+            return {
+              small: item.bannerImageLink,
+              medium: item.bannerImageLink,
+              big: item.bannerImageLink,
+            };
+          }
+        );
+      }
+    });
   }
-  onCampaignImageChange(ev:any){
+  onCampaignImageChange(ev: any) {
     this.campaignDonut = [];
-    this.activeCampaignName = this.apiData.campaignsPerformace[ev.index].campaignName;
+    this.activeCampaignName =
+      this.apiData.campaignsPerformace[ev.index].campaignName;
     let arr = [
       {
         name: ' Total Shares',
-        value: this.apiData.campaignsPerformace[ev.index].totalShares
+        value: this.apiData.campaignsPerformace[ev.index].totalShares,
       },
       {
         name: ' Total Leads',
-        value: this.apiData.campaignsPerformace[ev.index].totalLeads
+        value: this.apiData.campaignsPerformace[ev.index].totalLeads,
       },
       {
         name: ' Total Views',
-        value: this.apiData.campaignsPerformace[ev.index].totalViews
+        value: this.apiData.campaignsPerformace[ev.index].totalViews,
       },
-    ]
+    ];
     this.campaignDonut = [...this.campaignDonut, ...arr];
   }
 
-  onBannerImageChange(ev:any){
+  onBannerImageChange(ev: any) {
     this.bannerDonut = [];
     this.activeBannerName = this.apiData.bannerPerformance[ev.index].bannerName;
     let arr = [
       {
         name: ' Total Shares',
-        value: this.apiData.bannerPerformance[ev.index].totalShares
+        value: this.apiData.bannerPerformance[ev.index].totalShares,
       },
       {
         name: ' Total Leads',
-        value: this.apiData.bannerPerformance[ev.index].totalLeads
+        value: this.apiData.bannerPerformance[ev.index].totalLeads,
       },
       {
         name: ' Total Views',
-        value: this.apiData.bannerPerformance[ev.index].totalViews
+        value: this.apiData.bannerPerformance[ev.index].totalViews,
       },
-    ]
+    ];
     this.bannerDonut = [...this.bannerDonut, ...arr];
   }
-  close() {
-
-  }
-  goToAffiliates(){
-    this.router.navigateByUrl('/affiliates')
+  close() {}
+  goToAffiliates() {
+    this.router.navigateByUrl('/affiliates');
   }
 }
