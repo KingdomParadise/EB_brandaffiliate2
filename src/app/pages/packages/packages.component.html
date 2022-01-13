@@ -73,7 +73,7 @@
                 </div> -->
             </div>
         </div>
-        <div class="col-md-12 btn-bottom">
+        <div class="col-md-12 btn-bottom" *ngIf="packs.length >0">
             <button class="btn btn-dark px-5" (click)="purchasePackage()">Next</button>
         </div>
     </div>
