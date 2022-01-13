@@ -104,7 +104,7 @@ export class SettingsComponent implements OnInit {
   openChangePasswordDialog(){
     let size = ['375px','375'];
     if(window.innerWidth > 786){
-      size = ['475px','400px'];
+      size = ['475px','530px'];
     }else{
       size = ['350px','400px'];
     }
