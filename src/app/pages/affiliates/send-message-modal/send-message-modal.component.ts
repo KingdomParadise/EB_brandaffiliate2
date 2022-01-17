@@ -62,7 +62,7 @@ export class SendMessageModalComponent implements OnInit {
           this.alertMsg.message = res.successMsg;
           setTimeout(()=>{
             this.dialogRef.close();
-          },1000)
+          },2500)
 
         } else if (res.responseCode == -1) {
           this.alertMsg.type = 'danger';

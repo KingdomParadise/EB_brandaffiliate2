@@ -51,8 +51,8 @@ export class SettingsComponent implements OnInit {
     });
 
     this.profileForm = this._formBuilder.group({
-      addressLine1: [this.userData.addressLine1, Validators.required],
-      addressLine2: [this.userData.addressLine2, Validators.required],
+      addressLine1: [this.userData.addressLine1],
+      addressLine2: [this.userData.addressLine2],
       city: [this.userData.city, Validators.required],
       countryId: [this.userData.countryId, Validators.required],
       stateId: [this.userData.stateId, Validators.required],

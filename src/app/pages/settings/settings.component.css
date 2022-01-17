@@ -39,6 +39,12 @@ label{
     text-transform: uppercase;
     color:#b3b3b3;
 }
+.ng-dirty.ng-invalid {
+  border-color: red;
+}
+.ng-touched.ng-invalid {
+  border-color: red !important;
+}
 ::ng-deep .ng-select .ng-select-container{
     border:0 !important;
     border-bottom: 1px solid gray !important;
@@ -138,13 +144,13 @@ label{
     }
 }
 /* X-Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) { 
-    
+@media (min-width: 1200px) {
+
 }
 
 /* XX-Large devices (larger desktops, 1400px and up) */
 @media (min-width: 1400px) {
-    
+
 }
 /* XXX-Large devices (larger desktops, 1800px and up) */
 @media (min-width: 1800px) {
